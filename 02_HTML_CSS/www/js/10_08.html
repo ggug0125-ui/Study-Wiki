@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>배열 고급활용</title>
+</head>
+<body>
+<script>
+// 기본 문자열 정렬 (주의: 숫자도 문자로 취급!)
+let numbers = [10, 5, 40, 25, 1000, 1];
+console.log(numbers.sort()); // [1, 10, 1000, 25, 40, 5] - 원하는 결과가 아님!
+
+// 숫자 크기 순 정렬
+console.log(numbers.sort((a, b) => a - b)); // [1, 5, 10, 25, 40, 1000] - 올바른 결과!
+
+  // 학생 점수 배열 정렬하기
+let scores = [85, 92, 78, 96, 88, 74];
+
+// 오름차순 정렬 (낮은 점수부터)
+let ascending = scores.sort((a, b) => a - b);
+console.log("오름차순:", ascending); // [74, 78, 85, 88, 92, 96]
+
+// 내림차순 정렬 (높은 점수부터)
+let descending = scores.sort((a, b) => b - a);
+console.log("내림차순:", descending); // [96, 92, 88, 85, 78, 74]
+
+// 문자열 배열 정렬
+let names = ["김개발", "박멘토", "이디자인", "최기획"];
+let sortedNames = names.sort();
+console.log("이름순:", sortedNames); // 한글도 가나다 순으로 정렬됩니다!
+
+// 학생 정보 객체 배열
+let students = [
+ { name: "김개발", score: 85, age: 20 },
+ { name: "박멘토", score: 92, age: 22 },
+ { name: "이디자인", score: 78, age: 19 },
+ { name: "최기획", score: 96, age: 21 }
+];
+
+// 점수 기준 정렬
+let byScore = students.sort((a, b) => b.score - a.score);
+console.log("점수순:", byScore);
+
+// 나이 기준 정렬
+let byAge = students.sort((a, b) => a.age - b.age);
+console.log("나이순:", byAge);
+
+// 이름 기준 정렬
+let byName = students.sort((a, b) => a.name.localeCompare(b.name));
+console.log("이름순:", byName);
+
+// 복합 조건으로 정렬하기 (점수가 같으면 나이순)
+let complexSort = students.sort((a, b) => {
+ // 1차: 점수 내림차순
+ if (a.score !== b.score) {
+ return b.score - a.score;
+ }
+ // 2차: 나이 오름차순
+ return a.age - b.age;
+});
+
+console.log("복합 정렬:", complexSort);
+
+// 실제 웹사이트에서 자주 사용하는 패턴
+function sortStudents(students, criteria) {
+ return students.sort((a, b) => {
+ switch(criteria) {
+ case 'score':
+ return b.score - a.score;
+ case 'name':
+ return a.name.localeCompare(b.name);
+ case 'age':
+ return a.age - b.age;
+ default:
+ return 0;
+ }
+ });
+}
+
+// 사용 예시
+console.log("점수순:", sortStudents([...students], 'score'));
+console.log("이름순:", sortStudents([...students], 'name'));
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!--
+position 속성은 HTML 요소를 정확히 어디에 배치할 것인지를 결정
+
+4가지 position 값
+static (기본값): 문서의 일반적인 흐름대로 배치
+relative: 원래 위치를 기준으로 상대적 이동
+absolute: 가장 가까운 positioned 부모를 기준으로 절대 위치
+fixed: 브라우저 창을 기준으로 고정 위치
+
+-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Position 실습</title>
+ <style>
+ .container {
+ width: 400px;
+ height: 300px;
+ border: 2px solid #333;
+ margin: 50px;
+ position: relative; /* 중요: absolute의 기준점 역할 */
+ }
+
+ .box {
+ width: 100px;
+ height: 100px;
+ background-color: #3498db;
+ color: white;
+ text-align: center;
+ line-height: 100px;
+ font-weight: bold;
+ }
+  /* Box 2를 relative로 이동 */
+#box2 {
+ background-color: #e74c3c;
+ position: relative;
+ top: 20px; /* 원래 위치에서 아래로 20px */
+ left: 50px; /* 원래 위치에서 오른쪽으로 50px */
+}
+  /* Box 3을 absolute로 정확한 위치에 배치 */
+#box3 {
+ background-color: #2ecc71;
+ position: absolute;
+ top: 10px; /* 부모(.container) 상단에서 10px */
+ right: 10px; /* 부모(.container) 우측에서 10px */
+}
+/* 고정 버튼 만들기 */
+.fixed-button {
+ position: fixed;
+ bottom: 20px; /* 화면 하단에서 20px */
+ right: 20px; /* 화면 우측에서 20px */
+ width: 60px;
+ height: 60px;
+ background-color: #9b59b6;
+ color: white;
+ border: none;
+ border-radius: 50%;
+ cursor: pointer;
+ font-size: 24px;
+}
+.popup {
+ position: fixed;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%); /* 정확한 중앙 정렬 */
+ width: 300px;
+ height: 200px;
+ background-color: white;
+ border: 1px solid #ddd;
+ box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+ z-index: 1000; /* 다른 요소 위에 표시 */
+}
+
+
+ </style>
+</head>
+<body>
+ <div class="container">
+ <div class="box" id="box1">Box 1</div>
+ <div class="box" id="box2">Box 2</div>
+ <div class="box" id="box3">Box 3</div>
+ </div>
+<!-- body 태그 안에 추가 -->
+<button class="fixed-button">↑</button>
+
+</body>
+</html>
+
+<!--
+static: 기본 흐름대로 배치 (top, left 등 무시)
+relative: 원래 위치 기준으로 이동 (공간 유지)
+absolute: 부모 기준으로 절대 위치 (공간에서 제거)
+fixed: 화면 기준으로 고정 위치 (스크롤 무관)
+-->

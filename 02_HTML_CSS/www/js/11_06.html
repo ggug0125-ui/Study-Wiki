@@ -1,0 +1,165 @@
+<!--
+요소 생성과 삽입, 동적으로 HTML 구조 만들기
+
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+ <title>할 일 관리</title>
+ <style>
+ .todo-item {
+ padding: 10px;
+ margin: 5px 0;
+ background-color: #f0f0f0;
+ border-radius: 5px;
+ }
+ .delete-btn {
+ background-color: #ff4444;
+ color: white;
+ border: none;
+ padding: 5px 10px;
+ border-radius: 3px;
+ margin-left: 10px;
+ cursor: pointer;
+ }
+ </style>
+</head>
+<body>
+ <h1>할 일 관리</h1>
+
+ <div>
+ <input type="text" id="todoInput" placeholder="할 일을 입력하세요">
+ <select id="prioritySelect">
+ <option value="low">낮음</option>
+ <option value="medium">보통</option>
+ <option value="high">높음</option>
+ </select>
+ <button onclick="addTodoWithPriority()">추가</button>
+</div>
+
+
+ <ul id="todoList"></ul>
+
+ <script>
+ function addTodo() {
+ const input = document.getElementById('todoInput');
+ const todoText = input.value.trim();
+
+ if (todoText === '') {
+ alert('할 일을 입력해주세요!');
+ return;
+ }
+
+ // 새로운 li 요소 생성
+ const newTodo = document.createElement('li');
+ newTodo.className = 'todo-item';
+ newTodo.textContent = todoText;
+
+ // 목록에 추가
+ const todoList = document.getElementById('todoList');
+ todoList.appendChild(newTodo);
+
+ // 입력창 비우기
+ input.value = '';
+ }
+
+ function addTodo() {
+ const input = document.getElementById('todoInput');
+ const todoText = input.value.trim();
+
+ if (todoText === '') {
+ alert('할 일을 입력해주세요!');
+ return;
+ }
+
+ // 새로운 li 요소 생성
+ const newTodo = document.createElement('li');
+ newTodo.className = 'todo-item';
+
+ // 할 일 텍스트를 담을 span 생성
+ const textSpan = document.createElement('span');
+ textSpan.textContent = todoText;
+
+ // 삭제 버튼 생성
+ const deleteBtn = document.createElement('button');
+ deleteBtn.textContent = '삭제';
+ deleteBtn.className = 'delete-btn';
+ deleteBtn.onclick = function() {
+ newTodo.remove(); // 이 부분은 다음 섹션에서 자세히 배울 예정!
+ };
+
+ // li에 텍스트와 버튼 추가
+ newTodo.appendChild(textSpan);
+ newTodo.appendChild(deleteBtn);
+
+ // 목록에 추가
+ const todoList = document.getElementById('todoList');
+ todoList.appendChild(newTodo);
+
+ // 입력창 비우기
+ input.value = '';
+}
+
+function addTodoWithPriority() {
+ const input = document.getElementById('todoInput');
+ const prioritySelect = document.getElementById('prioritySelect');
+ const todoText = input.value.trim();
+ const priority = prioritySelect.value;
+
+ if (todoText === '') {
+ alert('할 일을 입력해주세요!');
+ return;
+ }
+
+ // 새로운 li 요소 생성
+ const newTodo = document.createElement('li');
+ newTodo.className = `todo-item priority-${priority}`;
+ newTodo.setAttribute('data-priority', priority);
+
+ // 우선순위 표시와 텍스트
+ const prioritySpan = document.createElement('span');
+ prioritySpan.textContent = `[${priority.toUpperCase()}] `;
+ prioritySpan.style.fontWeight = 'bold';
+
+ const textSpan = document.createElement('span');
+ textSpan.textContent = todoText;
+
+ const deleteBtn = document.createElement('button');
+ deleteBtn.textContent = '삭제';
+ deleteBtn.className = 'delete-btn';
+ deleteBtn.onclick = function() {
+ newTodo.remove();
+ };
+
+ newTodo.appendChild(prioritySpan);
+ newTodo.appendChild(textSpan);
+ newTodo.appendChild(deleteBtn);
+
+ // 우선순위에 따라 삽입 위치 결정
+ const todoList = document.getElementById('todoList');
+
+ if (priority === 'high') {
+ // 높은 우선순위: 맨 앞에 삽입
+ todoList.insertBefore(newTodo, todoList.firstChild);
+ } else if (priority === 'medium') {
+ // 보통 우선순위: 높은 우선순위 다음, 낮은 우선순위 앞에 삽입
+ const lowPriorityItems = todoList.querySelectorAll('[data-priority="low"]');
+ if (lowPriorityItems.length > 0) {
+ todoList.insertBefore(newTodo, lowPriorityItems[0]);
+ } else {
+ todoList.appendChild(newTodo);
+ }
+ } else {
+ // 낮은 우선순위: 맨 뒤에 추가
+ todoList.appendChild(newTodo);
+ }
+
+ input.value = '';
+}
+
+ </script>
+</body>
+</html>
+

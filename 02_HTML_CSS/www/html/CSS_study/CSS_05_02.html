@@ -1,0 +1,77 @@
+<!--
+뷰 포트 : 브라우저 창문
+
+기본 뷰포트: 모바일 브라우저가 기본으로 사용하는 가상 화면 (보통 980px)
+실제 뷰포트: 실제 기기의 화면 크기 (예: iPhone 14는 390px)
+
+-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>뷰포트 테스트 (개선됨)</title>
+ <!-- 나머지 코드는 동일 -->
+</head>
+
+ <style>
+ body {
+ font-family: Arial, sans-serif;
+ margin: 0;
+ padding: 20px;
+ background-color: #f0f0f0;
+ }
+ .container {
+ max-width: 800px;
+ margin: 0 auto;
+ background-color: white;
+ padding: 30px;
+ border-radius: 10px;
+ box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+ }
+ h1 {
+ color: #333;
+ font-size: 2.5em;
+ text-align: center;
+ }
+ p {
+ font-size: 1.2em;
+ line-height: 1.6;
+ color: #666;
+ }
+ .button {
+ display: inline-block;
+ background-color: #007bff;
+ color: white;
+ padding: 15px 30px;
+ text-decoration: none;
+ border-radius: 5px;
+ font-size: 1.1em;
+ margin: 10px 0;
+ }
+ </style>
+
+<body>
+ <div class="container">
+ <h1>뷰포트 테스트 페이지</h1>
+ <p>이 페이지는 뷰포트 설정의 중요성을 보여주는 예제입니다.
+ 모바일에서 이 페이지를 확인해보세요!</p>
+ <p>텍스트가 너무 작아서 읽기 어렵다면, 뷰포트 설정이 필요합니다.</p>
+ <a href="#" class="button">버튼 클릭</a>
+ </div>
+</body>
+</html>
+
+<!--
+속성          	설명	                    예시
+width	        뷰포트의 너비 설정	        device-width (기기 너비)
+initial-scale	초기 확대/축소 비율	    1.0 (100%)
+maximum-scale	최대 확대 비율	        2.0 (200%)
+minimum-scale	최소 축소 비율	        0.5 (50%)
+user-scalable	사용자 확대/축소 허용 여부	yes 또는 no
+
+뷰포트는 웹페이지가 표시되는 화면 영역
+- <meta name="viewport" content="width=device-width, initial-scale=1.0">는 필수
+- 모든 HTML 문서의 <head> 섹션에 포함해야 함
+-->

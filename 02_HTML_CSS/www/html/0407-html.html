@@ -1,0 +1,236 @@
+<!--
+aside 태그의 특징
+블로그/뉴스 사이트의 사이드바
+관련 글 추천
+광고 영역
+용어 설명 박스
+인용구나 참고 자료
+작성자 정보
+
+1. 보조적 역할
+- 메인 콘텐츠를 보완하는 정보
+- 없어도 메인 콘텐츠 이해에 지장 없음
+- 하지만 있으면 더 풍부한 경험 제공-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- 블로그 사이드바 -->
+<aside class="sidebar">
+ <h3>인기 글</h3>
+ <h3>태그 모음</h3>
+ <h3>광고</h3>
+</aside>
+
+<!-- 본문 중 관련 정보 -->
+<article>
+ <p>웹 개발을 배우면서...</p>
+ <aside class="tip">
+ <h4> 개발 팁</h4>
+ <p>HTML 태그는 의미를 생각하며 사용하세요!</p>
+ </aside>
+</article>
+
+
+  <!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>블로그 with Aside</title>
+ <style>
+ body {
+ font-family: Arial, sans-serif;
+ max-width: 1200px;
+ margin: 0 auto;
+ padding: 20px;
+ }
+
+ .container {
+ display: flex;
+ gap: 30px;
+ }
+
+ main {
+ flex: 2;
+ }
+
+ aside {
+ flex: 1;
+ background-color: #f8f9fa;
+ padding: 20px;
+ border-radius: 8px;
+ height: fit-content;
+ }
+
+ .widget {
+ margin-bottom: 30px;
+ }
+
+ .widget h3 {
+ color: #333;
+ border-bottom: 2px solid #007bff;
+ padding-bottom: 10px;
+ }
+
+ .tag {
+ display: inline-block;
+ background-color: #007bff;
+ color: white;
+ padding: 5px 10px;
+ margin: 3px;
+ border-radius: 15px;
+ font-size: 12px;
+ }
+ </style>
+</head>
+<body>
+ <div class="container">
+ <main>
+ <article>
+ <h1>웹 개발 첫걸음</h1>
+ <p>안녕하세요! 오늘은 HTML5 시맨틱 태그에 대해 알아보겠습니다...</p>
+ <p>특히 aside 태그는 보조 정보를 담는 중요한 역할을 합니다.</p>
+ </article>
+ </main>
+
+ <aside>
+ <div class="widget">
+ <h3> 인기 글</h3>
+ <ul>
+ <li><a href="#">CSS 기초 완전 정복</a></li>
+ <li><a href="#">JavaScript 시작하기</a></li>
+ <li><a href="#">반응형 웹 만들기</a></li>
+ </ul>
+ </div>
+
+ <div class="widget">
+ <h3> 태그</h3>
+ <span class="tag">HTML</span>
+ <span class="tag">CSS</span>
+ <span class="tag">JavaScript</span>
+ <span class="tag">웹개발</span>
+ </div>
+ </aside>
+ </div>
+</body>
+</html>
+
+
+  <article>
+ <h1>HTML5 시맨틱 태그 마스터하기</h1>
+
+ <p>HTML5는 웹 페이지의 구조를 더 명확하게 표현할 수 있는 다양한 시맨틱 태그를 제공합니다.</p>
+
+ <aside class="inline-tip">
+ <h4> 시맨틱 태그란?</h4>
+ <p>태그 이름만 봐도 그 역할을 알 수 있는 태그들을 말합니다.
+ 예를 들어 &lt;header&gt;, &lt;nav&gt;, &lt;main&gt; 등이 있어요.</p>
+ </aside>
+
+ <p>이러한 태그들을 적절히 사용하면 검색엔진도 우리 페이지를 더 잘 이해할 수 있습니다.</p>
+</article>
+
+<style>
+.inline-tip {
+ background-color: #e8f4fd;
+ border-left: 4px solid #007bff;
+ padding: 15px;
+ margin: 20px 0;
+ border-radius: 0 8px 8px 0;
+}
+
+.inline-tip h4 {
+ margin-top: 0;
+ color: #007bff;
+}
+</style>
+
+
+
+  <aside class="sidebar">
+ <!-- 프로필 위젯 -->
+ <div class="widget profile-widget">
+ <h3>‍ 작성자</h3>
+ <div class="profile">
+ <img src="https://via.placeholder.com/80x80" alt="프로필" class="profile-img">
+ <div class="profile-info">
+ <h4>김개발</h4>
+ <p>웹 개발을 사랑하는 개발자입니다.</p>
+ </div>
+ </div>
+ </div>
+
+ <!-- 최근 댓글 위젯 -->
+ <div class="widget">
+ <h3> 최근 댓글</h3>
+ <div class="comment">
+ <strong>박멘토:</strong> 좋은 글이네요!
+ <small>2시간 전</small>
+ </div>
+ <div class="comment">
+ <strong>이디자인:</strong> 도움이 많이 됐어요.
+ <small>5시간 전</small>
+ </div>
+ </div>
+
+ <!-- 광고 위젯 -->
+ <div class="widget ad-widget">
+ <h3> 광고</h3>
+ <div class="ad-banner">
+ <p>웹 개발 강의 50% 할인!</p>
+ <button>자세히 보기</button>
+ </div>
+ </div>
+</aside>
+
+<style>
+.profile {
+ display: flex;
+ align-items: center;
+ gap: 15px;
+}
+
+.profile-img {
+ border-radius: 50%;
+ width: 60px;
+ height: 60px;
+}
+
+.comment {
+ padding: 10px 0;
+ border-bottom: 1px solid #eee;
+}
+
+.comment small {
+ display: block;
+ color: #666;
+ margin-top: 5px;
+}
+
+.ad-widget {
+ background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+ color: white;
+}
+
+.ad-banner {
+ text-align: center;
+}
+
+.ad-banner button {
+ background-color: white;
+ color: #667eea;
+ border: none;
+ padding: 8px 16px;
+ border-radius: 20px;
+ cursor: pointer;
+}
+</style>
+
+
+  <!--aside 태그: 보조적인 콘텐츠를 담는 시맨틱 태그
+사용 용도: 사이드바, 관련 정보, 광고, 팁 박스 등
+위치: 페이지 옆쪽이나 본문 중간 어디든 가능
+특징: 메인 콘텐츠와 관련 있지만 독립적으로 존재 가능-->

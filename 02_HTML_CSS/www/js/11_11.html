@@ -1,0 +1,268 @@
+
+<!--
+실전 DOM 프로젝트, 완전한 웹 애플리케이션 구현
+
+컴포넌트 기반 사고
+
+복잡한 웹 애플리케이션을 작은 기능 단위로 나누어 생각하는 방법입니다.
+
+헤더 컴포넌트: 앱 제목과 현재 날짜 표시
+- 입력 컴포넌트: 새로운 일정을 추가하는 폼
+- 리스트 컴포넌트: 일정 목록을 보여주는 영역
+- 아이템 컴포넌트: 개별 일정 항목 (수정/삭제 기능 포함)
+
+DOM 구조 설계의 핵심 원칙
+의미 있는 구조: HTML 요소들이 논리적으로 구성되어야 함
+재사용 가능한 패턴: 비슷한 기능은 동일한 구조로 만들기
+상태 관리: 데이터의 변화를 효율적으로 DOM에 반영하기
+
+-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>나의 일정 관리 앱</title>
+ <style>
+ * { margin: 0; padding: 0; box-sizing: border-box; }
+ body { font-family: Arial, sans-serif; background-color: #f5f5f5; }
+ .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+ .header { background: #4CAF50; color: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+ .input-section { background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+ .todo-list { background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+ .todo-item { padding: 15px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+ .todo-item:last-child { border-bottom: none; }
+ .todo-text { flex: 1; margin-right: 10px; }
+ .todo-actions button { margin-left: 5px; padding: 5px 10px; border: none; border-radius: 4px; cursor: pointer; }
+ .edit-btn { background: #2196F3; color: white; }
+ .delete-btn { background: #f44336; color: white; }
+ .add-btn { background: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; }
+ input[type="text"] { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 10px; }
+ </style>
+</head>
+<body>
+ <div class="container">
+ <!-- 헤더 컴포넌트 -->
+ <div class="header">
+ <h1> 나의 일정 관리</h1>
+ <p id="current-date"></p>
+ </div>
+
+ <!-- 입력 컴포넌트 -->
+ <div class="input-section">
+ <input type="text" id="todo-input" placeholder="새로운 일정을 입력하세요...">
+ <button class="add-btn" onclick="addTodo()">일정 추가</button>
+ </div>
+
+ <!-- 리스트 컴포넌트 -->
+ <div class="todo-list" id="todo-list">
+  <!-- 동적으로 생성될 일정 항목들 -->
+</div>
+ </div>
+<script>
+// 애플리케이션 상태 관리
+const TodoApp = {
+ todos: [],
+ currentEditId: null,
+
+ // 초기화 함수
+ init() {
+ this.displayCurrentDate();
+ this.loadTodos();
+ this.bindEvents();
+ },
+
+ // 현재 날짜 표시
+ displayCurrentDate() {
+ const now = new Date();
+ const dateString = now.toLocaleDateString('ko-KR', {
+ year: 'numeric',
+ month: 'long',
+ day: 'numeric',
+ weekday: 'long'
+ });
+ document.getElementById('current-date').textContent = dateString;
+ },
+
+ // 이벤트 바인딩
+ bindEvents() {
+ const input = document.getElementById('todo-input');
+ input.addEventListener('keypress', (e) => {
+ if (e.key === 'Enter') {
+ this.addTodo();
+ }
+ });
+ },
+
+ // 일정 추가
+ addTodo() {
+ const input = document.getElementById('todo-input');
+ const text = input.value.trim();
+
+ if (!text) {
+ alert('일정을 입력해주세요!');
+ return;
+ }
+
+ const todo = {
+ id: Date.now(),
+ text: text,
+ completed: false,
+ createdAt: new Date()
+ };
+
+ this.todos.push(todo);
+ input.value = '';
+ this.saveTodos();
+ this.renderTodos();
+ },
+
+ // 일정 수정
+ editTodo(id) {
+ const todo = this.todos.find(t => t.id === id);
+ if (!todo) return;
+
+ const newText = prompt('일정을 수정하세요:', todo.text);
+ if (newText && newText.trim()) {
+ todo.text = newText.trim();
+ this.saveTodos();
+ this.renderTodos();
+ }
+ },
+
+ // 일정 삭제
+ deleteTodo(id) {
+ if (confirm('정말로 이 일정을 삭제하시겠습니까?')) {
+ this.todos = this.todos.filter(t => t.id !== id);
+ this.saveTodos();
+ this.renderTodos();
+ }
+ },
+
+ // 일정 완료 토글
+ toggleComplete(id) {
+ const todo = this.todos.find(t => t.id === id);
+ if (todo) {
+ todo.completed = !todo.completed;
+ this.saveTodos();
+ this.renderTodos();
+ }
+ },
+
+ // 일정 목록 렌더링
+ renderTodos() {
+ const container = document.getElementById('todo-list');
+
+ if (this.todos.length === 0) {
+ container.innerHTML = `
+ <div class="todo-item" style="justify-content: center; color: #999;">
+ 아직 등록된 일정이 없습니다. 새로운 일정을 추가해보세요!
+ </div>
+ `;
+ return;
+ }
+
+ container.innerHTML = this.todos
+ .map(todo => this.createTodoItemHTML(todo))
+ .join('');
+ },
+
+ // 개별 일정 아이템 HTML 생성
+ createTodoItemHTML(todo) {
+ const completedStyle = todo.completed ?
+ 'text-decoration: line-through; color: #999;' : '';
+
+ return `
+ <div class="todo-item">
+ <div class="todo-text" style="${completedStyle}">
+ <input type="checkbox" ${todo.completed ? 'checked' : ''}
+ onchange="TodoApp.toggleComplete(${todo.id})"
+ style="margin-right: 10px;">
+ ${todo.text}
+ </div>
+ <div class="todo-actions">
+ <button class="edit-btn" onclick="TodoApp.editTodo(${todo.id})">
+ 수정
+ </button>
+ <button class="delete-btn" onclick="TodoApp.deleteTodo(${todo.id})">
+ 삭제
+ </button>
+ </div>
+ </div>
+ `;
+ },
+
+ // 로컬 스토리지에 저장
+ saveTodos() {
+ localStorage.setItem('todos', JSON.stringify(this.todos));
+ },
+
+ // 로컬 스토리지에서 불러오기
+ loadTodos() {
+ const saved = localStorage.getItem('todos');
+ if (saved) {
+ this.todos = JSON.parse(saved);
+ }
+ this.renderTodos();
+ }
+};
+
+// 페이지 로드 시 앱 초기화
+document.addEventListener('DOMContentLoaded', () => {
+ TodoApp.init();
+});
+
+// 전역 함수 (HTML에서 호출용)
+function addTodo() {
+ TodoApp.addTodo();
+}
+
+// TodoApp 객체에 추가 메서드들
+TodoApp.filterTodos = function(filter) {
+ let filteredTodos = [];
+
+ switch(filter) {
+ case 'completed':
+ filteredTodos = this.todos.filter(t => t.completed);
+ break;
+ case 'active':
+ filteredTodos = this.todos.filter(t => !t.completed);
+ break;
+ default:
+ filteredTodos = this.todos;
+ }
+
+ this.renderFilteredTodos(filteredTodos);
+};
+
+TodoApp.renderFilteredTodos = function(todos) {
+ const container = document.getElementById('todo-list');
+
+ if (todos.length === 0) {
+ container.innerHTML = `
+ <div class="todo-item" style="justify-content: center; color: #999;">
+ 해당하는 일정이 없습니다.
+ </div>
+ `;
+ return;
+ }
+
+ container.innerHTML = todos
+ .map(todo => this.createTodoItemHTML(todo))
+ .join('');
+};
+
+</script>
+
+
+</body>
+</html>
+
+<!--
+복잡한 기능을 작은 컴포넌트로 나누어 개발
+- 각 컴포넌트의 책임을 명확히 분리
+- 재사용 가능한 함수들로 코드 구조화
+- 로컬 스토리지를 활용한 데이터 영속성
+
+-->

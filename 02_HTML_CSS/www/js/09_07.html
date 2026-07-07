@@ -1,0 +1,75 @@
+<!--
+조건문 for문-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>반복문 연습</title>
+</head>
+<body>
+    <h1>반복문 결과</h1>
+    <div id="result"></div>
+
+    <script>
+
+
+for (let i = 5; i >= 1; i--) {
+    console.log(i + "초 후 시작!");
+}
+
+// 짝수만 출력
+for (let i = 2; i <= 10; i += 2) {
+    console.log(i + "는 짝수");
+}
+
+// 조건부 실행
+for (let i = 1; i <= 10; i++) {
+    if (i % 3 === 0) {
+        console.log(i + "는 3의 배수!");
+    }
+}
+
+document.getElementById('result').innerHTML = result;
+    </script>
+
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>상품 목록</title>
+    <style>
+        .product {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>상품 목록</h1>
+    <div id="productList"></div>
+
+    <script>
+        let productList = '';
+
+        // 10개의 상품을 생성
+        for (let i = 1; i <= 10; i++) {
+            productList += `
+                <div class="product">
+                    <h3>상품 ${i}</h3>
+                    <p>가격: ${i * 10000}원</p>
+                    <button onclick="alert('상품 ${i} 구매!')">구매하기</button>
+                </div>
+            `;
+        }
+
+        document.getElementById('productList').innerHTML = productList;
+    </script>
+</body>
+</html>

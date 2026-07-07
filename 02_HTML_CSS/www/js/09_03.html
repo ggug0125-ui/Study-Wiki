@@ -1,0 +1,119 @@
+<!-- 크롬 버튼눌러 F12번 눌러 콘솔창의 결과값을 확인해~!!!!-->
+<!--
+Number (숫자)  숫자
+String (문자열) 문자
+Boolean (불린) 참 거짓
+Undefined (정의되지 않음) 변수선언했지만 아직 값이 없다
+Null (널) 값이 없다
+-->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>변수 실습</title>
+</head>
+<body>
+    <h1>변수와 상수 실습</h1>
+<script>
+// Number (숫자) 타입
+let studentAge = 20;
+let height = 175.5;
+let temperature = -5;
+
+console.log(studentAge); // 결과: 20
+console.log(typeof studentAge); // 결과: "number"
+
+// String (문자열) 타입
+let studentName = "김개발";
+let greeting = '안녕하세요!';
+let message = "오늘 온도는 " + temperature + "도입니다.";
+
+console.log(studentName); // 결과: 김개발
+console.log(typeof studentName); // 결과: "string"
+
+// Boolean (불린) 타입
+let isStudent = true;
+let isGraduated = false;
+
+console.log(isStudent); // 결과: true
+console.log(typeof isStudent); // 결과: "boolean"
+
+// Undefined 타입
+let futureJob;
+console.log(futureJob); // 결과: undefined
+console.log(typeof futureJob); // 결과: "undefined"
+
+// Null 타입
+let previousJob = null;
+console.log(previousJob); // 결과: null
+console.log(typeof previousJob); // 결과: "object" (JavaScript의 특이한 점!)
+
+// 다양한 값의 타입 확인해보기
+console.log(typeof 42); // "number"
+console.log(typeof "Hello"); // "string"
+console.log(typeof true); // "boolean"
+console.log(typeof undefined); // "undefined"
+console.log(typeof null); // "object" (주의!)
+
+// 자동 타입 변환 체험
+let score = 85;
+let result = "당신의 점수는 " + score + "점입니다.";
+console.log(result); // "당신의 점수는 85점입니다."
+console.log(typeof result); // "string"
+
+// 숫자와 문자열 구분하기
+let numberValue = 100;
+let stringValue = "100";
+console.log(numberValue + 50); // 150 (숫자 계산)
+console.log(stringValue + 50); // "10050" (문자열 연결)
+
+    // 사용자 정보 관리 시스템
+let userInfo = {
+ name: "김개발", // string
+ age: 20, // number
+ height: 175.8, // number
+ isStudent: true, // boolean
+ graduationYear: null, // null (아직 졸업 안함)
+ favoriteColor: undefined // undefined (아직 정하지 않음)
+};
+
+// 타입별 처리 함수
+function processUserData(user) {
+ console.log("=== 사용자 정보 분석 ===");
+
+ // 문자열 처리
+ if (typeof user.name === "string") {
+ console.log("이름: " + user.name + " (길이: " + user.name.length + "자)");
+ }
+
+ // 숫자 처리
+ if (typeof user.age === "number") {
+ console.log("나이: " + user.age + "세 (성인 여부: " + (user.age >= 20) + ")");
+ }
+
+ // 불린 처리
+ if (typeof user.isStudent === "boolean") {
+ console.log("학생 여부: " + (user.isStudent ? "재학중" : "비학생"));
+ }
+
+ // null과 undefined 처리
+ if (user.graduationYear === null) {
+ console.log("졸업년도: 미정 (재학중)");
+ }
+
+ if (user.favoriteColor === undefined) {
+ console.log("선호색상: 아직 선택하지 않음");
+ }
+}
+
+processUserData(userInfo);
+
+</script>
+
+<!--
+Number: 모든 숫자 (정수, 실수, 음수)
+String: 따옴표로 감싼 텍스트 데이터
+Boolean: true 또는 false
+Undefined: 값이 할당되지 않은 상태
+Null: 의도적으로 비어있음을 나타내는 값
+-->

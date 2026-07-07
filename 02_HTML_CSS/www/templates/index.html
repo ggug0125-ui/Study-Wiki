@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>김개발의 개발 블로그</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<header>
+    <h1>김개발의 개발 블로그</h1>
+    <p>웹 개발의 모든 것을 함께 배워요!</p>
+</header>
+
+<main>
+    {% for post in posts %}
+    <section class="post">
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.date }} | 조회수: {{ post.views }}</p>
+        <p>{{ post.desc }}</p>
+    </section>
+    {% endfor %}
+</main>
+
+</body>
+</html>

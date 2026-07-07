@@ -1,0 +1,74 @@
+<!--
+가상 요소(Pseudo-elements)는 HTML에 실제로 존재하지 않지만 CSS로 만들어낼 수 있는 요소
+::before: 선택한 요소의 앞쪽에 콘텐츠를 추가
+::after: 선택한 요소의 뒤쪽에 콘텐츠를 추가
+# 기억해야할것
+content 속성은 필수: 빈 문자열("")이라도 반드시 써야 함
+기본적으로 인라인 요소: 크기를 조정하려면 display 속성 변경 필요
+HTML에는 나타나지 않음: 검사 도구에서만 확인 가능
+-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <style>
+
+ .speech-bubble {
+ background-color: #f8f9fa;
+ border: 2px solid #dee2e6;
+ border-radius: 10px;
+ padding: 15px;
+ margin: 20px;
+ position: relative;
+ max-width: 300px;
+ }
+
+ .speech-bubble::after {
+ content: "";
+ position: absolute;
+ bottom: -12px;
+ left: 30px;
+ width: 0;
+ height: 0;
+ border-left: 12px solid transparent;
+ border-right: 12px solid transparent;
+ border-top: 12px solid #f8f9fa;
+ }
+
+ .speech-bubble::before {
+ content: "";
+ position: absolute;
+ bottom: -15px;
+ left: 28px;
+ width: 0;
+ height: 0;
+ border-left: 14px solid transparent;
+ border-right: 14px solid transparent;
+ border-top: 14px solid #dee2e6;
+ }
+</style>
+
+<div class="speech-bubble">
+ 가상 요소를 사용하면 이렇게 멋진 말풍선도 만들 수 있어요!
+</div>
+
+</style>
+
+<a href="#" class="button">다운로드</a>
+
+ </style>
+</head>
+<body>
+ <p class="greeting">안녕하세요!</p>
+</body>
+</html>
+
+
+<!--가상 요소 ::before와 ::after는 HTML을 수정하지 않고도 디자인 요소를 추가할 수 있는 강력한 도구
+
+content 속성은 필수
+- 순수 디자인 목적으로만 사용
+- position과 함께 사용하면 더욱 강력함
+-->

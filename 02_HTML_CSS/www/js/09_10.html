@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>자파 전역 지역변수 스코프</title>
+  <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            color: #374151;
+        }
+        .box {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f3f4f6;
+            border-radius: 8px;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+<h1>변수 스코프(Scope) 예제</h1>
+<div class="box" id="output"></div>
+<script>
+ let output = document.getElementById("output");
+let globalVar = "전역 변수";
+
+function outerFunction() {
+ let outerVar = "외부 함수 변수";
+
+ function innerFunction() {
+ let innerVar = "내부 함수 변수";
+
+ console.log(globalVar); // 전역에서 찾음
+ console.log(outerVar); // 외부 함수에서 찾음
+ console.log(innerVar); // 현재 함수에서 찾음
+ }
+
+ innerFunction();
+ // console.log(innerVar); // 에러! 접근 불가능
+}
+
+outerFunction();
+
+  let message = "전역 메시지";
+
+function showMessage() {
+ let message = "지역 메시지"; // 전역 변수를 가림
+ console.log(message); // 어떤 값이 출력될까요?
+}
+
+showMessage(); // "지역 메시지" 출력
+console.log(message); // "전역 메시지" 출력
+
+
+</script>
+
+
+</body>
+</html>

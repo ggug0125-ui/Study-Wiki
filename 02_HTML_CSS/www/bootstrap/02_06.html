@@ -1,0 +1,155 @@
+<!--
+캐러셀(Carousel)은 여러 개의 이미지나 콘텐츠를 하나의 공간에서 순환하며 보여주는 컴포넌트
+
+아코디언(Accordion)은 여러 개의 패널 중 하나만 열리고 나머지는 접히는 형태의 컴포넌트
+
+-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>캐러셀 실습</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>제품 갤러리</h2>
+
+        <!-- 캐러셀 시작 -->
+        <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+            <!-- 인디케이터 -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="2"></button>
+            </div>
+
+            <!-- 슬라이드 내용 -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://via.placeholder.com/800x400/007bff/ffffff?text=Product+1" class="d-block w-100" alt="제품 1">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>스마트폰</h5>
+                        <p>최신 기술이 적용된 스마트폰입니다.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://via.placeholder.com/800x400/28a745/ffffff?text=Product+2" class="d-block w-100" alt="제품 2">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>노트북</h5>
+                        <p>고성능 프로세서가 탑재된 노트북입니다.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://via.placeholder.com/800x400/dc3545/ffffff?text=Product+3" class="d-block w-100" alt="제품 3">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>태블릿</h5>
+                        <p>휴대성과 성능을 모두 갖춘 태블릿입니다.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 이전/다음 버튼 -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+                <span class="visually-hidden">이전</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+                <span class="visually-hidden">다음</span>
+            </button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+<div class="container mt-5">
+    <h2>자주 묻는 질문 (FAQ)</h2>
+
+    <div class="accordion" id="faqAccordion">
+        <!-- 첫 번째 질문 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                    배송은 얼마나 걸리나요?
+                </button>
+            </h2>
+            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    <strong>일반 배송은 2-3일</strong>, 당일 배송은 오후 6시 이전 주문 시 당일 배송이 가능합니다.
+                    제주도 및 도서산간 지역은 추가 1-2일이 소요될 수 있습니다.
+                </div>
+            </div>
+        </div>
+
+        <!-- 두 번째 질문 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                    교환/환불은 어떻게 하나요?
+                </button>
+            </h2>
+            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    상품 수령 후 <strong>7일 이내</strong>에 교환/환불 신청이 가능합니다.
+                    단, 상품이 훼손되지 않은 상태여야 하며, 고객센터(1588-1234)로 연락 주시면 됩니다.
+                </div>
+            </div>
+        </div>
+
+        <!-- 세 번째 질문 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                    회원가입 혜택이 있나요?
+                </button>
+            </h2>
+            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    신규 회원가입 시 <strong>10% 할인 쿠폰</strong>과 적립금 5,000원을 드립니다.
+                    또한 생일 쿠폰, 등급별 추가 혜택 등 다양한 혜택을 받으실 수 있습니다.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- fade 효과가 있는 캐러셀 -->
+<div id="fadeCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000">
+    <!-- 내용은 동일 -->
+</div>
+
+<script>
+// JavaScript로 캐러셀 제어
+document.addEventListener('DOMContentLoaded', function() {
+    const carousel = new bootstrap.Carousel('#productCarousel', {
+        interval: 5000,  // 5초마다 자동 전환
+        wrap: true,      // 마지막 슬라이드 후 첫 번째로 돌아가기
+        touch: true      // 터치 스와이프 지원
+    });
+
+    // 마우스 오버 시 일시정지
+    document.getElementById('productCarousel').addEventListener('mouseenter', function() {
+        carousel.pause();
+    });
+
+    // 마우스 아웃 시 재시작
+    document.getElementById('productCarousel').addEventListener('mouseleave', function() {
+        carousel.cycle();
+    });
+});
+</script>
+
+</body>
+</html>
+
+
+<!--
+캐러셀: carousel slide 클래스와 data-bs-ride="carousel" 속성 필수
+아코디언: accordion 컨테이너 안에 accordion-item 구조
+접근성: visually-hidden 클래스로 스크린 리더 지원
+반응형: 모바일에서는 캐러셀 캡션이 자동으로 숨겨짐
+-->

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- 올바른 사용 -->
+<main>
+ <h1>오늘의 뉴스</h1>
+ <article>...</article>
+</main>
+
+<!-- 잘못된 사용 - main은 하나만! -->
+<main>첫 번째 메인</main>
+<main>두 번째 메인</main>
+
+
+  <!--main 태그는 웹페이지의 주요 내용을 담는 컨테이너-->
+
+  <!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <title>김개발의 개발 블로그</title>
+</head>
+<body>
+ <header>
+ <h1>김개발의 개발 일기</h1>
+ <nav>
+ <ul>
+ <li><a href="#home">홈</a></li>
+ <li><a href="#about">소개</a></li>
+ <li><a href="#posts">글 목록</a></li>
+ </ul>
+ </nav>
+ </header>
+
+ <!-- 여기서부터가 이 페이지의 핵심 내용! -->
+ <main>
+ <h2>HTML5 시맨틱 태그 완전 정복</h2>
+ <p>오늘은 HTML5의 시맨틱 태그에 대해 알아보겠습니다...</p>
+
+ <section>
+ <h3>시맨틱 태그란?</h3>
+ <p>의미를 가진 태그들을 말합니다...</p>
+ </section>
+
+ <section>
+ <h3>왜 사용해야 할까요?</h3>
+ <p>검색 엔진 최적화와 접근성 향상을 위해...</p>
+ </section>
+ </main>
+
+ <footer>
+ <p>&copy; 2024 김개발. All rights reserved.</p>
+ </footer>
+</body>
+</html>
+
+
+  <!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>main 태그 실습</title>
+ <style>
+ body {
+ font-family: Arial, sans-serif;
+ max-width: 800px;
+ margin: 0 auto;
+ padding: 20px;
+ }
+ header {
+ background-color: #f0f0f0;
+ padding: 20px;
+ margin-bottom: 20px;
+ }
+ main {
+ background-color: #ffffff;
+ border: 2px solid #007bff;
+ padding: 30px;
+ margin: 20px 0;
+ }
+ footer {
+ background-color: #f0f0f0;
+ padding: 20px;
+ margin-top: 20px;
+ text-align: center;
+ }
+ </style>
+</head>
+<body>
+ <header>
+ <h1>웹 개발 학습 블로그</h1>
+ </header>
+
+ <main>
+ <h2>첫 번째 HTML 페이지 만들기</h2>
+ <p>안녕하세요! 오늘은 HTML의 기초에 대해 알아보겠습니다.</p>
+ <p>HTML은 웹페이지의 구조를 만드는 마크업 언어입니다.</p>
+ </main>
+
+ <footer>
+ <p>© 2024 웹 개발 학습 블로그</p>
+ </footer>
+</body>
+</html>
+
+
+  <main>
+ <article>
+ <header>
+ <h2>JavaScript 변수 선언 방법</h2>
+ <p>작성일: 2024년 3월 15일</p>
+ </header>
+
+ <section>
+ <h3>var, let, const의 차이점</h3>
+ <p>JavaScript에서 변수를 선언하는 방법은 세 가지가 있습니다.</p>
+
+ <h4>1. var 키워드</h4>
+ <pre><code>var name = "김개발";
+console.log(name); // 김개발</code></pre>
+
+ <h4>2. let 키워드</h4>
+ <pre><code>let age = 25;
+age = 26; // 재할당 가능
+console.log(age); // 26</code></pre>
+
+ <h4>3. const 키워드</h4>
+ <pre><code>const PI = 3.14159;
+// PI = 3.14; // 오류! 재할당 불가능</code></pre>
+ </section>
+
+ <section>
+ <h3>언제 어떤 키워드를 사용할까?</h3>
+ <ul>
+ <li><strong>const</strong>: 값이 변하지 않을 때 (기본 선택)</li>
+ <li><strong>let</strong>: 값이 변할 수 있을 때</li>
+ <li><strong>var</strong>: 특별한 경우가 아니면 사용 지양</li>
+ </ul>
+ </section>
+ </article>
+</main>
+
+
+
+  <main>
+ <section id="intro">
+ <h2>안녕하세요, 김개발입니다! </h2>
+ <p>정보통신공학과 학생이며, 웹 개발에 열정을 가지고 있습니다.</p>
+ </section>
+
+ <section id="skills">
+ <h3>보유 기술</h3>
+ <div class="skill-list">
+ <span class="skill">HTML5</span>
+ <span class="skill">CSS3</span>
+ <span class="skill">JavaScript</span>
+ <span class="skill">React</span>
+ </div>
+ </section>
+
+ <section id="projects">
+ <h3>주요 프로젝트</h3>
+ <div class="project">
+ <h4>반응형 포트폴리오 웹사이트</h4>
+ <p>HTML5, CSS3, JavaScript를 활용한 개인 포트폴리오</p>
+ </div>
+ </section>
+
+ <section id="contact">
+ <h3>연락처</h3>
+ <p>이메일: kimdev@example.com</p>
+ <p>깃허브: github.com/kimdev</p>
+ </section>
+</main>
+
+
+
+  <!--main 태그는 웹페이지의 주요 내용을 담는 컨테이너
+페이지당 하나만 사용 가능
+고유한 내용만 포함 (반복되는 헤더, 푸터 등은 제외)
+접근성 향상에 중요한 역할-->

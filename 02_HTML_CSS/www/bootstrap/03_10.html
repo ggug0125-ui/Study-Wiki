@@ -1,0 +1,160 @@
+<!--
+갤러리의 핵심 구성 요소:
+
+썸네일 그리드: 작은 크기의 미리보기 이미지들을 격자 형태로 배치
+라이트박스: 썸네일 클릭 시 큰 화면으로 이미지를 보여주는 오버레이
+네비게이션: 이전/다음 이미지로 이동할 수 있는 컨트롤
+-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지 갤러리</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .gallery-item {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        .gallery-item img {
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-5">
+        <h2 class="text-center mb-4">포트폴리오 갤러리</h2>
+
+        <!-- 갤러리 그리드 -->
+        <div class="row g-3" id="gallery">
+            <div class="col-lg-4 col-md-6">
+                <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal"
+                     data-image="https://picsum.photos/800/600?random=1"
+                     data-title="프로젝트 1">
+                    <img src="https://picsum.photos/400/300?random=1"
+                         class="img-fluid w-100" alt="프로젝트 1">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal"
+                     data-image="https://picsum.photos/800/600?random=2"
+                     data-title="프로젝트 2">
+                    <img src="https://picsum.photos/400/300?random=2"
+                         class="img-fluid w-100" alt="프로젝트 2">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal"
+                     data-image="https://picsum.photos/800/600?random=3"
+                     data-title="프로젝트 3">
+                    <img src="https://picsum.photos/400/300?random=3"
+                         class="img-fluid w-100" alt="프로젝트 3">
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- 라이트박스 모달 -->
+<div class="modal fade" id="imageModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content bg-dark">
+            <div class="modal-header border-0">
+                <h5 class="modal-title text-white" id="imageTitle">이미지 제목</h5>
+                <button type="button" class="btn-close btn-close-white"
+                        data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center p-0">
+                <img id="modalImage" src="" class="img-fluid" alt="">
+            </div>
+            <div class="modal-footer border-0 justify-content-between">
+                <button type="button" class="btn btn-outline-light" id="prevBtn">
+                    ← 이전
+                </button>
+                <span class="text-white" id="imageCounter">1 / 3</span>
+                <button type="button" class="btn btn-outline-light" id="nextBtn">
+                    다음 →
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+$(document).ready(function() {
+    let currentImageIndex = 0;
+    let images = [];
+
+    // 갤러리 이미지 정보 수집
+    $('.gallery-item').each(function(index) {
+        images.push({
+            src: $(this).data('image'),
+            title: $(this).data('title'),
+            index: index
+        });
+    });
+
+    // 썸네일 클릭 시 모달 열기
+    $('.gallery-item').click(function() {
+        currentImageIndex = $(this).closest('.col-lg-4, .col-md-6').index();
+        showImage(currentImageIndex);
+    });
+
+    // 이미지 표시 함수
+    function showImage(index) {
+        const image = images[index];
+        $('#modalImage').attr('src', image.src);
+        $('#imageTitle').text(image.title);
+        $('#imageCounter').text(`${index + 1} / ${images.length}`);
+
+        // 버튼 상태 업데이트
+        $('#prevBtn').prop('disabled', index === 0);
+        $('#nextBtn').prop('disabled', index === images.length - 1);
+    }
+
+    // 이전 이미지
+    $('#prevBtn').click(function() {
+        if (currentImageIndex > 0) {
+            currentImageIndex--;
+            showImage(currentImageIndex);
+        }
+    });
+
+    // 다음 이미지
+    $('#nextBtn').click(function() {
+        if (currentImageIndex < images.length - 1) {
+            currentImageIndex++;
+            showImage(currentImageIndex);
+        }
+    });
+
+    // 키보드 네비게이션
+    $(document).keydown(function(e) {
+        if ($('#imageModal').hasClass('show')) {
+            if (e.key === 'ArrowLeft') {
+                $('#prevBtn').click();
+            } else if (e.key === 'ArrowRight') {
+                $('#nextBtn').click();
+            } else if (e.key === 'Escape') {
+                $('#imageModal').modal('hide');
+            }
+        }
+    });
+});
+</script>
+
+</body>
+</html>
+
+<!--
+핵심 포인트:
+- 반응형 그리드로 다양한 화면 크기 대응
+- 모달을 활용한 라이트박스 구현
+- jQuery로 동적 이미지 전환과 키보드 네비게이션 추가
+-->

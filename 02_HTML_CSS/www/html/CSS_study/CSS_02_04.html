@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 선택자 실습</title>
+  <link rel = "stylesheet" href="../css/CSS_02_04.css">
+    <style>
+     /* 타입 선택자 */
+h1 {
+    color: green;
+}
+
+/* ID 선택자 - 이것이 우선됩니다! */
+#main-title {
+    color: red;
+}
+
+/* 클래스 선택자 */
+.highlight {
+    background-color: yellow;
+    color: purple;
+}
+
+/* 타입 선택자 */
+p {
+    color: blue;
+}
+
+
+    </style>
+</head>
+<body>
+    <h1 id="main-title">웹 개발 학습 일지</h1>   <!-- id 는 CSS파일에 # 을 찾는다-->
+    <h2>오늘의 학습 내용</h2>
+    <p class="highlight">CSS 선택자는 정말 중요합니다!</p>  <!-- 클래스는 . (점)을 찾는다-->
+    <p>다양한 선택자를 배워보겠습니다.</p>
+    <div class="highlight"> <!-- 클래스는 . (점)을 찾는다-->
+        <span>이 부분도 강조되어야 합니다.</span>
+    </div>
+    <ul>
+        <li>전체 선택자</li>
+        <li>타입 선택자</li>
+        <li class="highlight">클래스 선택자</li> <!-- 클래스는 . (점)을 찾는다-->
+        <li>ID 선택자</li>
+    </ul>
+</body>
+</html>

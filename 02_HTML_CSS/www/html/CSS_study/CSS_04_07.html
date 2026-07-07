@@ -1,0 +1,97 @@
+<!--
+CSS Grid는 2차원 레이아웃 시스템
+ Grid는 행(row)과 열(column)을 동시에 제어
+
+ Grid Container: display: grid가 적용된 부모 요소
+- Grid Item: Grid Container의 직접적인 자식 요소들
+- Grid Line: 격자를 구성하는 선들 (가로선, 세로선)
+- Grid Track: 두 Grid Line 사이의 공간 (행 또는 열)
+- Grid Cell: 행과 열이 만나는 개별 칸
+- Grid Area: 하나 이상의 Grid Cell로 구성된 영역
+
+-->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Grid 기초 실습</title>
+ <style>
+
+ .website-layout {
+ display: grid;
+ grid-template-columns: 200px 1fr 150px; /* 사이드바, 메인, 광고 */
+ grid-template-rows: 80px 1fr 60px; /* 헤더, 콘텐츠, 푸터 */
+ gap: 10px;
+ height: 100vh; /* 화면 전체 높이 */
+ padding: 10px;
+}
+
+.header {
+ grid-column: 1 / -1; /* 첫 번째 열부터 마지막 열까지 */
+ background-color: #333;
+ color: white;
+ display: flex;
+ align-items: center;
+ padding: 0 20px;
+}
+
+.sidebar {
+ background-color: #f4f4f4;
+ padding: 20px;
+}
+
+.main-content {
+ background-color: white;
+ padding: 20px;
+ border: 1px solid #ddd;
+}
+
+.ads {
+ background-color: #ffe6e6;
+ padding: 10px;
+ text-align: center;
+}
+
+.footer {
+ grid-column: 1 / -1; /* 모든 열에 걸쳐 배치 */
+ background-color: #666;
+ color: white;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+
+
+ </style>
+</head>
+<body>
+<div class="website-layout">
+ <header class="header">웹사이트 헤더</header>
+ <aside class="sidebar">
+ <h3>사이드바</h3>
+ <ul>
+ <li>메뉴 1</li>
+ <li>메뉴 2</li>
+ <li>메뉴 3</li>
+ </ul>
+ </aside>
+ <main class="main-content">
+ <h1>메인 콘텐츠</h1>
+ <p>여기에 주요 내용이 들어갑니다.</p>
+ </main>
+ <aside class="ads">광고 영역</aside>
+ <footer class="footer">푸터</footer>
+</div>
+
+
+</body>
+</html>
+
+<!--
+CSS Grid는 2차원 레이아웃 시스템으로, 행과 열을 동시에 제어할 수 있습니다.
+display: grid로 Grid Container를 만들고, grid-template-columns와 grid-template-rows로 격자를 정의합니다.
+fr 단위를 사용하면 사용 가능한 공간을 비율로 나눌 수 있습니다.
+gap 속성으로 격자 사이의 간격을 조절할 수 있습니다.
+grid-column과 grid-row 속성으로 아이템이 차지할 영역을 지정할 수 있습니다.
+-->

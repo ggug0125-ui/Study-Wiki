@@ -1,0 +1,267 @@
+<!--
+데스크톱 (1920×1080 이상): 큰 화면, 마우스 조작
+노트북 (1366×768 ~ 1920×1080): 중간 화면, 터치패드/마우스
+태블릿 (768×1024 ~ 1024×768): 중간 화면, 터치 조작
+스마트폰 (360×640 ~ 414×896): 작은 화면, 터치 조작
+반응형 웹 디자인의 핵심 원리
+-->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>반응형 웹사이트 첫걸음</title>
+ <style>
+ * {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ }
+
+ .container {
+ width: 100%;
+ max-width: 1200px;
+ margin: 0 auto;
+ padding: 20px;
+ }
+
+ .header {
+ background-color: #3498db;
+ color: white;
+ text-align: center;
+ padding: 30px 0;
+ margin-bottom: 20px;
+ }
+
+ .content {
+ background-color: #ecf0f1;
+ padding: 30px;
+ margin-bottom: 20px;
+ border-radius: 8px;
+ }
+
+ .footer {
+ background-color: #2c3e50;
+ color: white;
+ text-align: center;
+ padding: 20px 0;
+ }
+     /* 태블릿 크기 (768px 이하) */
+@media screen and (max-width: 768px) {
+ .container {
+ padding: 15px;
+ }
+
+ .header h1 {
+ font-size: 24px;
+ }
+
+ .content {
+ padding: 20px;
+ }
+}
+
+/* 스마트폰 크기 (480px 이하) */
+@media screen and (max-width: 480px) {
+ .container {
+ padding: 10px;
+ }
+
+ .header {
+ padding: 20px 0;
+ }
+
+ .header h1 {
+ font-size: 20px;
+ }
+
+ .content {
+ padding: 15px;
+ }
+
+ .content h2 {
+ font-size: 18px;
+ }
+}
+
+ </style>
+</head>
+<body>
+ <div class="container">
+ <header class="header">
+ <h1>반응형 웹사이트</h1>
+ <p>모든 기기에서 완벽하게!</p>
+ </header>
+
+ <main class="content">
+ <h2>환영합니다!</h2>
+ <p>이 웹사이트는 데스크톱, 태블릿, 스마트폰 모든 기기에서 최적화되어 보입니다.</p>
+ </main>
+
+ <footer class="footer">
+ <p>&copy; 2024 반응형 웹사이트. 김개발 제작.</p>
+ </footer>
+ </div>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>김개발의 포트폴리오</title>
+ <style>
+ * {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ }
+
+ body {
+ font-family: 'Arial', sans-serif;
+ line-height: 1.6;
+ }
+
+ .container {
+ width: 100%;
+ max-width: 1200px;
+ margin: 0 auto;
+ padding: 0 20px;
+ }
+
+ /* 네비게이션 */
+ nav {
+ background-color: #2c3e50;
+ padding: 15px 0;
+ }
+
+ nav ul {
+ list-style: none;
+ display: flex;
+ justify-content: center;
+ }
+
+ nav li {
+ margin: 0 20px;
+ }
+
+ nav a {
+ color: white;
+ text-decoration: none;
+ font-weight: bold;
+ }
+
+ /* 메인 섹션들 */
+ .section {
+ padding: 60px 0;
+ }
+
+ .hero {
+ background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+ color: white;
+ text-align: center;
+ }
+
+ .hero h1 {
+ font-size: 48px;
+ margin-bottom: 20px;
+ }
+
+ .cards {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+ gap: 30px;
+ margin-top: 40px;
+ }
+
+ .card {
+ background: white;
+ padding: 30px;
+ border-radius: 10px;
+ box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+ }
+
+ /* 반응형 미디어 쿼리 */
+ @media screen and (max-width: 768px) {
+ nav ul {
+ flex-direction: column;
+ text-align: center;
+ }
+
+ nav li {
+ margin: 10px 0;
+ }
+
+ .hero h1 {
+ font-size: 32px;
+ }
+
+ .cards {
+ grid-template-columns: 1fr;
+ gap: 20px;
+ }
+ }
+
+ @media screen and (max-width: 480px) {
+ .container {
+ padding: 0 15px;
+ }
+
+ .hero h1 {
+ font-size: 24px;
+ }
+
+ .section {
+ padding: 40px 0;
+ }
+ }
+ </style>
+</head>
+<body>
+ <nav>
+ <div class="container">
+ <ul>
+ <li><a href="#home">홈</a></li>
+ <li><a href="#about">소개</a></li>
+ <li><a href="#projects">프로젝트</a></li>
+ <li><a href="#contact">연락처</a></li>
+ </ul>
+ </div>
+ </nav>
+
+ <section class="hero section">
+ <div class="container">
+ <h1>김개발의 포트폴리오</h1>
+ <p>정보통신공학과 학생, 웹 개발자를 꿈꾸다</p>
+ </div>
+ </section>
+
+ <section class="section">
+ <div class="container">
+ <div class="cards">
+ <div class="card">
+ <h3>HTML/CSS</h3>
+ <p>웹의 기본 구조와 스타일링을 완벽하게 구사합니다.</p>
+ </div>
+ <div class="card">
+ <h3>JavaScript</h3>
+ <p>동적인 웹사이트 제작을 위한 핵심 언어입니다.</p>
+ </div>
+ <div class="card">
+ <h3>반응형 디자인</h3>
+ <p>모든 기기에서 완벽한 사용자 경험을 제공합니다.</p>
+ </div>
+ </div>
+ </div>
+ </section>
+</body>
+</html>
+
+<!--
+반응형 웹 디자인은 하나의 웹사이트가 모든 기기에서 최적화되어 보이도록 하는 기술입니다.
+유연한 단위(%,em,rem)와 미디어 쿼리를 활용하여 구현합니다.
+모바일 퍼스트 접근법으로 작은 화면부터 설계하는 것이 효과적입니다.
+그리드 시스템을 활용하면 복잡한 레이아웃도 쉽게 반응형으로 만들 수 있습니다.
+-->

@@ -1,0 +1,143 @@
+<!--
+속성 조작, 요소의 특성을 마음대로 바꾸기
+
+getAttribute(속성명): 속성 값을 읽어오기
+setAttribute(속성명, 새값): 속성 값을 설정하기
+
+-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <title>속성 조작 실습</title>
+</head>
+<body>
+ <h2>이미지 갤러리</h2>
+ <img id="mainImage" src="image1.jpg" alt="메인 이미지" width="300">
+ <br><br>
+ <button onclick="changeImage('image1.jpg')">이미지 1</button>
+ <button onclick="changeImage('image2.jpg')">이미지 2</button>
+ <button onclick="changeImage('image3.jpg')">이미지 3</button>
+
+ <script>
+ function changeImage(newSrc) {
+ const image = document.getElementById('mainImage');
+
+ // 현재 이미지 경로 확인
+ const currentSrc = image.getAttribute('src');
+ console.log('이전 이미지:', currentSrc);
+
+ // 새로운 이미지로 변경
+ image.setAttribute('src', newSrc);
+ console.log('새로운 이미지:', newSrc);
+ }
+ </script>
+</body>
+</html>
+
+<div id="linkContainer">
+ <h3>추천 사이트</h3>
+ <a id="recommendLink" href="https://www.google.com" target="_blank">
+ 구글 바로가기
+ </a>
+ <br><br>
+ <button onclick="changeSite('google')">구글</button>
+ <button onclick="changeSite('naver')">네이버</button>
+ <button onclick="changeSite('github')">깃허브</button>
+</div>
+
+<script>
+function changeSite(site) {
+ const link = document.getElementById('recommendLink');
+
+ // 사이트별 정보 객체
+ const siteInfo = {
+ google: {
+ url: 'https://www.google.com',
+ text: '구글 바로가기',
+ target: '_blank'
+ },
+ naver: {
+ url: 'https://www.naver.com',
+ text: '네이버 바로가기',
+ target: '_self'
+ },
+ github: {
+ url: 'https://www.github.com',
+ text: '깃허브 바로가기',
+ target: '_blank'
+ }
+ };
+
+ // 여러 속성을 한번에 변경
+ const info = siteInfo[site];
+ link.setAttribute('href', info.url);
+ link.setAttribute('target', info.target);
+ link.textContent = info.text;
+
+ console.log(`${site} 사이트로 변경됨`);
+}
+</script>
+
+<div id="loginForm">
+ <h3>로그인 방식 선택</h3>
+ <select onchange="changeLoginType(this.value)">
+ <option value="email">이메일 로그인</option>
+ <option value="phone">휴대폰 로그인</option>
+ <option value="id">아이디 로그인</option>
+ </select>
+ <br><br>
+
+ <input type="text" id="loginInput"
+ placeholder="이메일을 입력하세요"
+ maxlength="50">
+ <br><br>
+
+ <div id="inputInfo">이메일 형식으로 입력해주세요.</div>
+</div>
+
+<script>
+function changeLoginType(type) {
+ const input = document.getElementById('loginInput');
+ const info = document.getElementById('inputInfo');
+
+ // 로그인 타입별 설정
+ const typeSettings = {
+ email: {
+ placeholder: '이메일을 입력하세요 (예: user@example.com)',
+ type: 'email',
+ maxlength: '50',
+ infoText: '이메일 형식으로 입력해주세요.'
+ },
+ phone: {
+ placeholder: '휴대폰 번호를 입력하세요 (예: 010-1234-5678)',
+ type: 'tel',
+ maxlength: '13',
+ infoText: '하이픈(-)을 포함해서 입력해주세요.'
+ },
+ id: {
+ placeholder: '아이디를 입력하세요 (영문, 숫자 조합)',
+ type: 'text',
+ maxlength: '20',
+ infoText: '영문자와 숫자만 사용 가능합니다.'
+ }
+ };
+
+ const setting = typeSettings[type];
+
+ // 입력 필드 속성 변경
+ input.setAttribute('placeholder', setting.placeholder);
+ input.setAttribute('type', setting.type);
+ input.setAttribute('maxlength', setting.maxlength);
+
+ // 안내 텍스트 변경
+ info.textContent = setting.infoText;
+
+ // 기존 입력값 초기화
+ input.value = '';
+
+ console.log(`${type} 로그인 모드로 변경`);
+}
+</script>
+

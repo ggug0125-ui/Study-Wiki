@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>실전 프로젝트(함수,객체)</title>
+</head>
+<h1> 함수와 객체로 완성하는 애플리케이션 </h1>
+<body>
+<script>
+
+</script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나만의 할 일 관리 앱</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .app-container {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .input-section {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        #todoInput {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        #addBtn {
+            padding: 12px 20px;
+            margin-left: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .todo-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #007bff;
+        }
+        .todo-item.completed {
+            opacity: 0.6;
+            text-decoration: line-through;
+            border-left-color: #28a745;
+        }
+        .todo-text {
+            flex: 1;
+            margin: 0 15px;
+        }
+        .btn {
+            padding: 8px 12px;
+            margin: 0 5px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .btn-complete { background: #28a745; color: white; }
+        .btn-delete { background: #dc3545; color: white; }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <h1>📝 나만의 할 일 관리</h1>
+        <div class="input-section">
+            <input type="text" id="todoInput" placeholder="할 일을 입력하세요...">
+            <button id="addBtn">추가</button>
+        </div>
+        <div id="todoList"></div>
+        <div id="stats"></div>
+    </div>
+
+    <script>
+       // 할 일 관리 객체
+const TodoManager = {
+    // 데이터 저장소
+    todos: [],
+    nextId: 1,
+
+    // 할 일 추가 함수
+    addTodo: function(text) {
+        if (!text || text.trim() === '') {
+            alert('할 일을 입력해주세요!');
+            return false;
+        }
+
+        const newTodo = {
+            id: this.nextId++,
+            text: text.trim(),
+            completed: false,
+            createdAt: new Date()
+        };
+
+        this.todos.push(newTodo);
+        this.renderTodos();
+        this.updateStats();
+        return true;
+    },
+
+    // 할 일 완료/미완료 토글
+    toggleTodo: function(id) {
+        const todo = this.todos.find(todo => todo.id === id);
+        if (todo) {
+            todo.completed = !todo.completed;
+            this.renderTodos();
+            this.updateStats();
+        }
+    },
+
+    // 할 일 삭제
+    deleteTodo: function(id) {
+        if (confirm('정말 삭제하시겠습니까?')) {
+            this.todos = this.todos.filter(todo => todo.id !== id);
+            this.renderTodos();
+            this.updateStats();
+        }
+    },
+
+    // 할 일 목록 화면에 표시
+    renderTodos: function() {
+        const todoList = document.getElementById('todoList');
+
+        if (this.todos.length === 0) {
+            todoList.innerHTML = '<p style="text-align: center; color: #666;">아직 할 일이 없습니다. 새로운 할 일을 추가해보세요!</p>';
+            return;
+        }
+
+        let html = '';
+        this.todos.forEach(todo => {
+            html += `
+                <div class="todo-item ${todo.completed ? 'completed' : ''}">
+                    <span class="todo-text">${todo.text}</span>
+                    <button class="btn btn-complete" onclick="TodoManager.toggleTodo(${todo.id})">
+                        ${todo.completed ? '취소' : '완료'}
+                    </button>
+                    <button class="btn btn-delete" onclick="TodoManager.deleteTodo(${todo.id})">
+                        삭제
+                    </button>
+                </div>
+            `;
+        });
+
+        todoList.innerHTML = html;
+    },
+
+    // 통계 정보 업데이트
+    updateStats: function() {
+        const total = this.todos.length;
+        const completed = this.todos.filter(todo => todo.completed).length;
+        const remaining = total - completed;
+
+        const statsDiv = document.getElementById('stats');
+        statsDiv.innerHTML = `
+            <div style="margin-top: 20px; padding: 15px; background: #e9ecef; border-radius: 5px;">
+                <strong>📊 현황:</strong>
+                전체 ${total}개 | 완료 ${completed}개 | 남은 일 ${remaining}개
+            </div>
+        `;
+    },
+
+    // 초기화 함수
+    init: function() {
+        // 추가 버튼 이벤트
+        document.getElementById('addBtn').addEventListener('click', () => {
+            const input = document.getElementById('todoInput');
+            if (this.addTodo(input.value)) {
+                input.value = '';
+            }
+        });
+
+        // 엔터키 이벤트
+        document.getElementById('todoInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const input = document.getElementById('todoInput');
+                if (this.addTodo(input.value)) {
+                    input.value = '';
+                }
+            }
+        });
+
+        // 초기 화면 렌더링
+        this.renderTodos();
+        this.updateStats();
+    }
+};
+
+// 페이지 로드 완료 후 앱 시작
+document.addEventListener('DOMContentLoaded', function() {
+    TodoManager.init();
+});
+
+      // TodoManager 객체에 저장/로드 기능 추가
+TodoManager.saveToStorage = function() {
+    localStorage.setItem('myTodos', JSON.stringify({
+        todos: this.todos,
+        nextId: this.nextId
+    }));
+};
+
+TodoManager.loadFromStorage = function() {
+    const saved = localStorage.getItem('myTodos');
+    if (saved) {
+        const data = JSON.parse(saved);
+        this.todos = data.todos || [];
+        this.nextId = data.nextId || 1;
+
+        // 날짜 객체 복원
+        this.todos.forEach(todo => {
+            todo.createdAt = new Date(todo.createdAt);
+        });
+    }
+};
+
+// 기존 함수들 수정 (저장 기능 추가)
+const originalAddTodo = TodoManager.addTodo;
+TodoManager.addTodo = function(text) {
+    const result = originalAddTodo.call(this, text);
+    if (result) this.saveToStorage();
+    return result;
+};
+
+const originalToggleTodo = TodoManager.toggleTodo;
+TodoManager.toggleTodo = function(id) {
+    originalToggleTodo.call(this, id);
+    this.saveToStorage();
+};
+
+const originalDeleteTodo = TodoManager.deleteTodo;
+TodoManager.deleteTodo = function(id) {
+    originalDeleteTodo.call(this, id);
+    this.saveToStorage();
+};
+
+// init 함수 수정
+const originalInit = TodoManager.init;
+TodoManager.init = function() {
+    this.loadFromStorage(); // 저장된 데이터 로드
+    originalInit.call(this);
+};
+
+    </script>
+</body>
+</html>

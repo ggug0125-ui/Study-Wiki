@@ -1,0 +1,114 @@
+<!--
+모바일 퍼스트
+가장 작은 화면부터 시작해서 점진적으로 큰화면으로 확장해나가는 설계방법
+
+1. 성능 최적화
+- 모바일은 데스크톱보다 제한적인 환경
+- 작은 화면에서 동작하면 큰 화면에서도 빠르게 동작
+- 불필요한 요소들을 자연스럽게 제거하게 됨
+
+2. 콘텐츠 우선순위 명확화
+- 작은 화면에서는 정말 중요한 것만 보여줘야 함
+- 핵심 콘텐츠와 기능에 집중하게 됨
+- 사용자 경험(UX)이 더 명확해짐
+
+3. 개발 효율성
+- CSS에서 min-width를 사용하여 점진적 확장
+- 기본 스타일에서 시작해서 추가하는 방식
+- 코드가 더 깔끔하고 유지보수가 쉬움
+-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>모바일 퍼스트 카페 메뉴</title>
+ <style>
+ /* 모바일 기본 스타일 (320px 이상) */
+ * {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ }
+
+ body {
+ font-family: 'Arial', sans-serif;
+ line-height: 1.6;
+ color: #333;
+ }
+
+ .container {
+ max-width: 100%;
+ padding: 0 15px;
+ }
+
+ header {
+ background: #2c3e50;
+ color: white;
+ padding: 1rem 0;
+ text-align: center;
+ }
+
+ .menu-item {
+ background: white;
+ border: 1px solid #ddd;
+ margin: 10px 0;
+ padding: 15px;
+ border-radius: 5px;
+ }
+
+ .menu-item h3 {
+ color: #2c3e50;
+ margin-bottom: 5px;
+ }
+
+ .price {
+ font-weight: bold;
+ color: #e74c3c;
+ font-size: 1.2em;
+ }
+
+ .menu-image {
+ width: 100%;
+ height: 200px;
+ object-fit: cover;
+ border-radius: 5px;
+ margin-bottom: 10px;
+ }
+ </style>
+</head>
+<body>
+ <div class="container">
+ <header>
+ <h1> 개발자 카페</h1>
+ <p>코딩하며 마시는 커피</p>
+ </header>
+
+ <main>
+ <div class="menu-item">
+ <img src="https://via.placeholder.com/300x200/8e44ad/ffffff?text=Americano" alt="아메리카노" class="menu-image">
+ <h3>아메리카노</h3>
+ <p>깔끔하고 진한 맛의 기본 커피</p>
+ <div class="price">3,500원</div>
+ </div>
+
+ <div class="menu-item">
+ <img src="https://via.placeholder.com/300x200/3498db/ffffff?text=Latte" alt="라떼" class="menu-image">
+ <h3>카페라떼</h3>
+ <p>부드러운 우유거품과 에스프레소의 조화</p>
+ <div class="price">4,500원</div>
+ </div>
+ </main>
+ </div>
+</body>
+</html>
+
+<!--
+모바일 퍼스트의 핵심 원칙:
+- 작은 화면부터 시작: 320px부터 시작해서 점진적 확장
+- min-width 미디어 쿼리 사용: @media (min-width: 768px)
+- 점진적 향상: 기본 기능에서 시작해서 화면이 커질수록 기능 추가
+- 성능 우선: 모바일에서 빠르면 데스크톱에서도 빠름
+-->
+

@@ -1,0 +1,162 @@
+<!--
+이벤트 처리 기초, 사용자 상호작용 감지하기
+
+click: 마우스 클릭
+keydown/keyup: 키보드 입력
+mouseover/mouseout: 마우스 호버
+submit: 폼 제출
+load: 페이지 로딩 완료
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>이벤트 처리 기초</title>
+</head>
+<body>
+ <button id="myButton">클릭해보세요!</button>
+ <p id="message">여기에 메시지가 나타납니다</p>
+
+ <script>
+ // 1. 버튼 요소 선택
+ const button = document.getElementById('myButton');
+ const message = document.getElementById('message');
+
+ // 2. 클릭 이벤트 리스너 등록
+ button.addEventListener('click', function() {
+ message.textContent = '버튼이 클릭되었습니다!';
+ message.style.color = 'blue';
+ });
+ </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+ <title>다양한 이벤트</title>
+ <style>
+ .highlight { background-color: yellow; }
+ .container { margin: 20px; padding: 20px; border: 1px solid #ccc; }
+ </style>
+</head>
+<body>
+ <div class="container">
+ <button id="clickBtn">클릭 이벤트</button>
+ <button id="hoverBtn">마우스 올려보세요</button>
+ <input type="text" id="textInput" placeholder="여기에 입력하세요">
+ <div id="result">결과가 여기에 표시됩니다</div>
+ </div>
+
+ <script>
+ const clickBtn = document.getElementById('clickBtn');
+ const hoverBtn = document.getElementById('hoverBtn');
+ const textInput = document.getElementById('textInput');
+ const result = document.getElementById('result');
+
+ // 클릭 이벤트
+ clickBtn.addEventListener('click', function() {
+ result.textContent = '클릭 버튼이 눌렸습니다!';
+ });
+
+ // 마우스 호버 이벤트
+ hoverBtn.addEventListener('mouseover', function() {
+ this.classList.add('highlight');
+ result.textContent = '마우스가 버튼 위에 있습니다';
+ });
+
+ hoverBtn.addEventListener('mouseout', function() {
+ this.classList.remove('highlight');
+ result.textContent = '마우스가 버튼에서 벗어났습니다';
+ });
+
+ // 키보드 입력 이벤트
+ textInput.addEventListener('keyup', function() {
+ result.textContent = `입력한 내용: ${this.value}`;
+ });
+ </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+ <title>실용적인 이벤트 처리</title>
+ <style>
+ .hidden { display: none; }
+ .show { display: block; }
+ .error { color: red; border: 2px solid red; }
+ .success { color: green; border: 2px solid green; }
+ </style>
+</head>
+<body>
+ <div>
+ <h3>간단한 로그인 폼</h3>
+ <form id="loginForm">
+ <input type="text" id="username" placeholder="사용자명" required>
+ <input type="password" id="password" placeholder="비밀번호" required>
+ <button type="submit">로그인</button>
+ </form>
+
+ <div id="toggleContent" class="hidden">
+ <p>숨겨진 내용입니다! 토글 버튼으로 보이거나 숨길 수 있어요.</p>
+ </div>
+
+ <button id="toggleBtn">내용 보기/숨기기</button>
+ <div id="feedback"></div>
+ </div>
+
+ <script>
+ const loginForm = document.getElementById('loginForm');
+ const username = document.getElementById('username');
+ const password = document.getElementById('password');
+ const toggleBtn = document.getElementById('toggleBtn');
+ const toggleContent = document.getElementById('toggleContent');
+ const feedback = document.getElementById('feedback');
+
+ // 폼 제출 이벤트
+ loginForm.addEventListener('submit', function(event) {
+ event.preventDefault(); // 페이지 새로고침 방지
+
+ if (username.value === 'admin' && password.value === '1234') {
+ feedback.textContent = '로그인 성공!';
+ feedback.className = 'success';
+ } else {
+ feedback.textContent = '로그인 실패! 다시 시도하세요.';
+ feedback.className = 'error';
+ }
+ });
+
+ // 토글 버튼 이벤트
+ toggleBtn.addEventListener('click', function() {
+ if (toggleContent.classList.contains('hidden')) {
+ toggleContent.classList.remove('hidden');
+ toggleContent.classList.add('show');
+ this.textContent = '내용 숨기기';
+ } else {
+ toggleContent.classList.remove('show');
+ toggleContent.classList.add('hidden');
+ this.textContent = '내용 보기';
+ }
+ });
+
+ // 실시간 입력 검증
+ username.addEventListener('input', function() {
+ if (this.value.length < 3) {
+ this.style.borderColor = 'red';
+ } else {
+ this.style.borderColor = 'green';
+ }
+ });
+ </script>
+</body>
+</html>
+
+
+<!--
+이벤트: 사용자 행동이나 브라우저 상태 변화
+addEventListener(): 이벤트 감지기 등록
+this: 이벤트가 발생한 요소 자신
+event.preventDefault(): 기본 동작 방지
+-->

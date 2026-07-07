@@ -1,0 +1,9 @@
+kkk|김동동|0000|user|False
+hhh|이동동|0000|manager|True
+ggg|박동동|0000|manager|True
+aaa|최동동|0000|admin|True
+ljj|이재정|0000|user|True
+oooo|ooooo|0000|admin|True
+pppp|aaaa|0000|admin|True
+kkw|김기원|1111|manager|True
+lhj|임효정|0000|admin|True

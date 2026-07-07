@@ -1,0 +1,65 @@
+<!-- 조건문 만들어 보기
+if 문 -->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>조건문 실습</title>
+</head>
+<body>
+ <h1>나이 확인 프로그램</h1>
+ <script>
+ let score = 85;
+
+if (score >= 90) {
+ console.log("A학점: 훌륭합니다!");
+} else if (score >= 80) {
+ console.log("B학점: 잘했습니다!");
+} else if (score >= 70) {
+ console.log("C학점: 보통입니다.");
+} else if (score >= 60) {
+ console.log("D학점: 좀 더 노력하세요.");
+} else {
+ console.log("F학점: 재시험이 필요합니다.");
+}
+
+ </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+ <title>로그인 시스템</title>
+</head>
+<body>
+ <h1>간단한 로그인</h1>
+ <input type="text" id="username" placeholder="아이디를 입력하세요">
+ <input type="password" id="password" placeholder="비밀번호를 입력하세요">
+ <button onclick="checkLogin()">로그인</button>
+ <p id="result"></p>
+
+ <script>
+ function checkLogin() {
+ let username = document.getElementById('username').value;
+ let password = document.getElementById('password').value;
+ let result = document.getElementById('result');
+
+ if (username === 'admin' && password === '1234') {
+ result.textContent = '로그인 성공! 환영합니다.';
+ result.style.color = 'green';
+ }
+ else if (username === '' || password === '') {
+ result.textContent = '아이디와 비밀번호를 모두 입력해주세요.';
+ result.style.color = 'orange';
+ }
+ else {
+ result.textContent = '아이디 또는 비밀번호가 틀렸습니다.';
+ result.style.color = 'red';
+ }
+ }
+ </script>
+</body>
+</html>

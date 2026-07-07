@@ -1,0 +1,70 @@
+<!--
+Flexbox와 Grid의 역할 분담:
+- 헤더(Flexbox): 로고와 네비게이션을 수평으로 정렬하고 공간을 균등 분배
+- 메인(Grid): 다양한 크기의 콘텐츠 블록을 2차원으로 배치
+- 푸터(Flexbox): 연락처, 링크 등을 깔끔하게 정렬
+-->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>모던 웹사이트</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 헤더: Flexbox로 네비게이션 정렬 -->
+    <header class="header">
+        <div class="logo">
+            <h1>TechCorp</h1>
+        </div>
+        <nav class="nav">
+            <a href="#home">홈</a>
+            <a href="#about">소개</a>
+            <a href="#services">서비스</a>
+            <a href="#contact">연락처</a>
+        </nav>
+    </header>
+
+    <!-- 메인: Grid로 콘텐츠 배치 -->
+    <main class="main">
+        <section class="hero">
+            <h2>혁신적인 기술 솔루션</h2>
+            <p>우리와 함께 미래를 만들어가세요</p>
+        </section>
+        <section class="services">
+            <div class="service-card">
+                <h3>웹 개발</h3>
+                <p>현대적인 웹사이트 제작</p>
+            </div>
+            <div class="service-card">
+                <h3>모바일 앱</h3>
+                <p>사용자 친화적인 앱 개발</p>
+            </div>
+            <div class="service-card">
+                <h3>클라우드</h3>
+                <p>안정적인 클라우드 서비스</p>
+            </div>
+        </section>
+        <aside class="sidebar">
+            <h3>최신 뉴스</h3>
+            <ul>
+                <li>새로운 프로젝트 시작</li>
+                <li>기술 블로그 업데이트</li>
+                <li>팀 멤버 충원</li>
+            </ul>
+        </aside>
+    </main>
+
+    <!-- 푸터: Flexbox로 정보 정렬 -->
+    <footer class="footer">
+        <div class="footer-info">
+            <p>&copy; 2024 TechCorp. All rights reserved.</p>
+        </div>
+        <div class="footer-links">
+            <a href="#privacy">개인정보처리방침</a>
+            <a href="#terms">이용약관</a>
+        </div>
+    </footer>
+</body>
+</html>

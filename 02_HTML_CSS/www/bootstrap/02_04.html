@@ -1,0 +1,117 @@
+<!--
+카드 헤더: 제목이나 탭 메뉴가 들어가는 상단 영역
+- 카드 바디: 주요 내용이 들어가는 본문 영역
+- 카드 푸터: 액션 버튼이나 부가 정보가 들어가는 하단 영역
+-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>부트스트랩 카드 실습</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">블로그 포스트</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">2024년 1월 15일</h6>
+                        <p class="card-text">부트스트랩으로 웹사이트를 만드는 방법에 대해 알아봅시다. 이 글에서는 카드 컴포넌트의 활용법을 중심으로 설명합니다.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-primary">더 읽기</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+    <div class="card">
+        <img src="https://via.placeholder.com/400x200" class="card-img-top" alt="블로그 이미지">
+        <div class="card-body">
+            <h5 class="card-title">웹 개발 시작하기</h5>
+            <p class="card-text">웹 개발의 기초부터 실전까지, 단계별로 학습할 수 있는 완벽한 가이드입니다.</p>
+            <p class="card-text"><small class="text-muted">3일 전 작성</small></p>
+        </div>
+        <div class="card-body">
+            <a href="#" class="card-link">읽기</a>
+            <a href="#" class="card-link">공유</a>
+        </div>
+    </div>
+</div>
+
+<div class="card-group">
+    <div class="card">
+        <img src="https://via.placeholder.com/400x200" class="card-img-top" alt="HTML">
+        <div class="card-body">
+            <h5 class="card-title">HTML 기초</h5>
+            <p class="card-text">웹 페이지의 구조를 만드는 HTML의 기본 개념을 학습합니다.</p>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">초급 • 2시간</small>
+        </div>
+    </div>
+    <div class="card">
+        <img src="https://via.placeholder.com/400x200" class="card-img-top" alt="CSS">
+        <div class="card-body">
+            <h5 class="card-title">CSS 스타일링</h5>
+            <p class="card-text">웹 페이지를 아름답게 꾸미는 CSS의 다양한 기능들을 익혀봅시다.</p>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">중급 • 4시간</small>
+        </div>
+    </div>
+    <div class="card">
+        <img src="https://via.placeholder.com/400x200" class="card-img-top" alt="JavaScript">
+        <div class="card-body">
+            <h5 class="card-title">JavaScript 동작</h5>
+            <p class="card-text">웹 페이지에 생동감을 불어넣는 JavaScript 프로그래밍을 시작해보세요.</p>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">고급 • 8시간</small>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">학습 진도</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                HTML 기초
+                <span class="badge bg-success rounded-pill">완료</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                CSS 스타일링
+                <span class="badge bg-warning rounded-pill">진행중</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                JavaScript 기초
+                <span class="badge bg-secondary rounded-pill">대기</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                부트스트랩 활용
+                <span class="badge bg-secondary rounded-pill">대기</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>
+
+<!--
+card, card-header, card-body, card-footer로 구조화
+- card-img-top으로 이미지를 카드에 완벽하게 통합
+- card-group으로 여러 카드의 높이를 동일하게 유지
+- 리스트 그룹과 결합하여 구조화된 정보 표현
+-->

@@ -1,0 +1,102 @@
+<!--
+다크 모드의 핵심 개념
+테마 속성: data-bs-theme="dark" 또는 data-bs-theme="light"
+CSS 변수 활용: 색상값들이 테마에 따라 자동으로 변경
+상속 구조: 부모 요소에 설정하면 자식 요소들이 자동으로 적용
+-->
+
+<!DOCTYPE html>
+<html lang="ko" data-bs-theme="light" id="html-theme">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>다크 모드 구현</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h3 class="mb-0">테마 전환 데모</h3>
+                        <button class="btn btn-outline-secondary" id="theme-toggle">
+                            🌙 다크 모드
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">다크 모드 테스트</h5>
+                        <p class="card-text">
+                            이 카드는 테마에 따라 자동으로 색상이 변경됩니다.
+                            버튼을 클릭해서 다크/라이트 모드를 전환해보세요!
+                        </p>
+                        <div class="alert alert-info">
+                            <strong>팁:</strong> 부트스트랩의 모든 컴포넌트가 자동으로 테마를 따릅니다.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+  // 테마 전환 기능 구현
+class ThemeManager {
+    constructor() {
+        this.htmlElement = document.getElementById('html-theme');
+        this.toggleButton = document.getElementById('theme-toggle');
+        this.currentTheme = 'light';
+
+        // 초기화
+        this.init();
+    }
+
+    init() {
+        // 저장된 테마 불러오기
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        this.setTheme(savedTheme);
+
+        // 버튼 이벤트 연결
+        this.toggleButton.addEventListener('click', () => {
+            this.toggleTheme();
+        });
+
+        // 시스템 테마 변경 감지
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+                this.setTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+    }
+
+    setTheme(theme) {
+        this.currentTheme = theme;
+        this.htmlElement.setAttribute('data-bs-theme', theme);
+        this.updateButtonText();
+
+        // 테마 저장
+        localStorage.setItem('theme', theme);
+    }
+
+    toggleTheme() {
+        const newTheme = this.currentTheme === 'light' ? 'dark' : 'light';
+        this.setTheme(newTheme);
+    }
+
+    updateButtonText() {
+        const icon = this.currentTheme === 'light' ? '🌙' : '☀️';
+        const text = this.currentTheme === 'light' ? '다크 모드' : '라이트 모드';
+        this.toggleButton.innerHTML = `${icon} ${text}`;
+    }
+}
+
+
+// 페이지 로드 시 테마 매니저 초기화
+document.addEventListener('DOMContentLoaded', () => {
+    new ThemeManager();
+});
+
+
+</script>
+
+</body>
+</html>

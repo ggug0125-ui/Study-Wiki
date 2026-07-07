@@ -1,0 +1,179 @@
+<!--
+드롭다운(Dropdown)
+우산펼치듯 클릭하면 아래로 메뉴가 펼져지는 컴포넌트
+
+툴팁(Tooltip)
+마우스 올렸을때 작은 설명창
+
+-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>드롭다운과 툴팁</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>사용자 메뉴</h2>
+
+        <!-- 기본 드롭다운 -->
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                내 계정
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">내 정보</a></li>
+                <li><a class="dropdown-item" href="#">설정</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">로그아웃</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4">
+            <h5>분할 버튼 드롭다운</h5>
+            <div class="btn-group">
+                <button type="button" class="btn btn-success">액션</button>
+                <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="visually-hidden">토글 드롭다운</span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">저장</a></li>
+                    <li><a class="dropdown-item" href="#">다른 이름으로 저장</a></li>
+                    <li><a class="dropdown-item" href="#">내보내기</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <h5>위쪽으로 열리는 드롭업</h5>
+            <div class="btn-group dropup">
+                <button type="button" class="btn btn-warning dropdown-toggle"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                    드롭업
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">옵션 1</a></li>
+                    <li><a class="dropdown-item" href="#">옵션 2</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <h5>오른쪽으로 열리는 드롭엔드</h5>
+            <div class="btn-group dropend">
+                <button type="button" class="btn btn-info dropdown-toggle"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                    드롭엔드
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">메뉴 1</a></li>
+                    <li><a class="dropdown-item" href="#">메뉴 2</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container mt-5">
+    <h2>툴팁 예제</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <p>아래 버튼들에 마우스를 올려보세요!</p>
+
+            <!-- 기본 툴팁들 -->
+            <button type="button" class="btn btn-primary me-2"
+                    data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="위쪽에 나타나는 툴팁">
+                위쪽 툴팁
+            </button>
+
+            <button type="button" class="btn btn-success me-2"
+                    data-bs-toggle="tooltip" data-bs-placement="right"
+                    title="오른쪽에 나타나는 툴팁">
+                오른쪽 툴팁
+            </button>
+
+            <button type="button" class="btn btn-warning me-2"
+                    data-bs-toggle="tooltip" data-bs-placement="bottom"
+                    title="아래쪽에 나타나는 툴팁">
+                아래쪽 툴팁
+            </button>
+
+            <button type="button" class="btn btn-danger me-2"
+                    data-bs-toggle="tooltip" data-bs-placement="left"
+                    title="왼쪽에 나타나는 툴팁">
+                왼쪽 툴팁
+            </button>
+        </div>
+    </div>
+
+    <!-- HTML 툴팁 -->
+    <div class="mt-4">
+        <h5>HTML 콘텐츠가 포함된 툴팁</h5>
+        <button type="button" class="btn btn-outline-primary"
+                data-bs-toggle="tooltip" data-bs-html="true"
+                title="<strong>굵은 글씨</strong>와 <em>기울임</em>이 포함된 툴팁">
+            HTML 툴팁
+        </button>
+    </div>
+</div>
+
+<script>
+// 툴팁 초기화 (필수!)
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl)
+})
+</script>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">MyWebsite</a>
+
+        <div class="navbar-nav ms-auto">
+            <!-- 알림 버튼 (툴팁 포함) -->
+            <button class="btn btn-outline-light me-2"
+                    data-bs-toggle="tooltip" data-bs-placement="bottom"
+                    title="새로운 알림이 3개 있습니다">
+                🔔 <span class="badge bg-danger">3</span>
+            </button>
+
+            <!-- 사용자 드롭다운 -->
+            <div class="dropdown">
+                <button class="btn btn-outline-light dropdown-toggle" type="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                    👤 김개발
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><h6 class="dropdown-header">계정 관리</h6></li>
+                    <li><a class="dropdown-item" href="#">내 프로필</a></li>
+                    <li><a class="dropdown-item" href="#">계정 설정</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-danger" href="#">로그아웃</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+</body>
+</html>
+
+<!--
+드롭다운: data-bs-toggle="dropdown" 속성으로 간단히 구현
+- 툴팁: data-bs-toggle="tooltip" + JavaScript 초기화 필수
+- 다양한 방향 설정: dropup, dropend, dropstart 클래스 활용
+-->
+

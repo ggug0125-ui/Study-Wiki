@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>함수 반환값, 결과</title>
+<body>
+<script>
+/// 기본적인 return 사용법
+
+function add(a, b) {
+ return a + b; // 계산 결과를 반환
+}
+
+let result = add(5, 3); // 8이 result에 저장됨
+console.log(result); // 8 출력
+
+// return이 없는 함수 (undefined 반환)
+
+function greetWithoutReturn(name) {
+ console.log("안녕하세요, " + name + "님!");
+ // return이 없으면 undefined가 반환됨
+}
+
+// return이 있는 함수
+function greetWithReturn(name) {
+ return "안녕하세요, " + name + "님!";
+}
+
+let message1 = greetWithoutReturn("김개발"); // undefined
+let message2 = greetWithReturn("김개발"); // "안녕하세요, 김개발님!"
+
+
+// 원의 넓이를 계산하는 함수
+function calculateCircleArea(radius) {
+ let area = 3.14159 * radius * radius;
+ return area; // 계산 결과를 반환
+}
+
+// 함수 호출하고 결과 받기
+let circleArea = calculateCircleArea(5);
+console.log("반지름 5인 원의 넓이: " + circleArea);
+
+// 직접 계산에 사용하기
+let totalArea = calculateCircleArea(3) + calculateCircleArea(4);
+console.log("두 원의 넓이 합: " + totalArea);
+
+// 문자열 반환
+function createWelcomeMessage(name, age) {
+ return `안녕하세요! ${name}님, ${age}세시군요!`;
+}
+
+// 불린값 반환
+function isAdult(age) {
+ return age >= 18;
+}
+
+// 배열 반환
+function getScoreInfo(scores) {
+ let total = 0;
+ for (let score of scores) {
+ total += score;
+ }
+ let average = total / scores.length;
+ return [total, average]; // 배열 형태로 반환
+}
+
+// 사용 예시
+let welcome = createWelcomeMessage("김개발", 20);
+let isKimAdult = isAdult(20);
+let [totalScore, avgScore] = getScoreInfo([85, 90, 78, 92]);
+
+console.log(welcome); // "안녕하세요! 김개발님, 20세시군요!"
+console.log(isKimAdult); // true
+console.log("총점: " + totalScore + ", 평균: " + avgScore);
+
+// 학점 계산 함수 (조건부 return)
+function calculateGrade(score) {
+ if (score >= 90) {
+ return "A";
+ } else if (score >= 80) {
+ return "B";
+ } else if (score >= 70) {
+ return "C";
+ } else if (score >= 60) {
+ return "D";
+ } else {
+ return "F";
+ }
+ // 이 아래 코드는 절대 실행되지 않음 (return 후 함수 종료)
+ console.log("이 코드는 실행되지 않습니다");
+}
+
+// 사용자 정보 검증 함수
+function validateUser(username, password) {
+ if (!username) {
+ return "사용자명을 입력해주세요";
+ }
+ if (!password) {
+ return "비밀번호를 입력해주세요";
+ }
+ if (password.length < 6) {
+ return "비밀번호는 6자 이상이어야 합니다";
+ }
+ return "로그인 성공!";
+}
+
+// 활용 예시
+let grade = calculateGrade(85);
+console.log("학점: " + grade); // "B"
+
+let loginResult = validateUser("kimdev", "123456");
+console.log(loginResult); // "로그인 성공!"
+
+let errorResult = validateUser("", "123");
+console.log(errorResult); // "사용자명을 입력해주세요"
+</script>
+</body>
+</html>
+
+<!--
+return문은 함수의 결과를 호출한 곳으로 돌려주는 역할을 합니다
+return을 만나면 함수 실행이 즉시 종료됩니다
+어떤 타입의 값이든 반환할 수 있습니다 (숫자, 문자열, 배열, 객체 등)
+return이 없는 함수는 undefined를 반환합니다
+-->

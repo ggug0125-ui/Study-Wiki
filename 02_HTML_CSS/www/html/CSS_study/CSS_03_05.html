@@ -1,0 +1,91 @@
+<!--
+/* margin의 기본 문법 */
+margin: 값; /* 모든 방향 동일 */
+margin: 상하 좌우; /* 상하, 좌우 각각 설정 */
+margin: 상 좌우 하; /* 상, 좌우, 하 각각 설정 */
+margin: 상 우 하 좌; /* 시계 방향으로 각각 설정 */
+
+/* 개별 방향 설정 */
+margin-top: 값; /* 위쪽 여백 */
+margin-right: 값; /* 오른쪽 여백 */
+margin-bottom: 값; /* 아래쪽 여백 */
+margin-left: 값; /* 왼쪽 여백 */
+-->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Border 기초 실습</title>
+ <style>
+  .card {
+ width: 200px;
+ height: 100px;
+ background-color: #f0f8ff;
+ border: 2px solid #4169e1;
+ padding: 10px;
+ margin: 20px; /* 모든 방향에 20px 여백 */
+ }
+
+ .card-special {
+ width: 200px;
+ height: 100px;
+ background-color: #ffe4e1;
+ border: 2px solid #ff69b4;
+ padding: 10px;
+
+ /* 방향별로 다른 margin 적용 */
+ margin-top: 30px; /* 위쪽 30px */
+ margin-right: 10px; /* 오른쪽 10px */
+ margin-bottom: 40px; /* 아래쪽 40px */
+ margin-left: 50px; /* 왼쪽 50px */
+}
+
+/* 또는 축약형으로 */
+.card-short {
+ margin: 30px 10px 40px 50px; /* 상 우 하 좌 순서 */
+}
+
+
+  /* 중앙 정렬을 위한 margin auto */
+.center-box {
+ width: 300px;
+ height: 100px;
+ background-color: #e6ffe6;
+ border: 2px solid #32cd32;
+ margin: 0 auto; /* 좌우 자동 여백으로 중앙 정렬 */
+}
+
+/* 특정 방향만 여백 제거 */
+.no-top-margin {
+ margin: 0 20px 20px 20px; /* 위쪽 여백만 0 */
+}
+
+/* 음수 margin으로 요소 겹치기 */
+.overlap-box {
+ margin-top: -10px; /* 위 요소와 10px 겹침 */
+ background-color: #fff8dc;
+ border: 2px solid #daa520;
+}
+
+
+ </style>
+ <div style="margin-bottom: 30px; background: #ffb6c1;">
+ 위 요소 (margin-bottom: 30px)
+</div>
+<div style="margin-top: 20px; background: #98fb98;">
+ 아래 요소 (margin-top: 20px)
+</div>
+
+</head>
+<body>
+ <div class="card">카드 1</div>
+ <div class="card">카드 2</div>
+ <div class="card">카드 3</div>
+</body>
+</html>
+
+<!--margin: 요소 외부의 투명한 여백 공간
+4방향 설정: top, right, bottom, left 개별 또는 축약형 설정
+margin auto: 블록 요소의 중앙 정렬에 활용
+margin 상쇄: 세로 방향 인접 요소들의 margin이 겹칠 때 큰 값만 적용-->

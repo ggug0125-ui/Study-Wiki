@@ -1,0 +1,190 @@
+<!--
+z-index는 웹페이지에서 요소들의 겹침 순서(쌓임 순서)를 제어하는 CSS 속성
+.element {
+ z-index: 10; /* 숫자가 클수록 앞에 나타남 */
+}
+
+z-index의 핵심 규칙
+숫자가 클수록 앞에 표시됩니다
+- z-index: 1보다 z-index: 10이 앞에 나타남
+- 음수 값도 사용 가능 (z-index: -1)
+
+position이 설정된 요소에만 적용됩니다
+- position: static(기본값)에는 z-index가 작동하지 않음
+- relative, absolute, fixed, sticky에서만 동작
+
+같은 z-index 값을 가진 경우
+- HTML에서 나중에 작성된 요소가 앞에 표시됨
+
+-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>z-index 실습</title>
+ <style>
+ .container {
+ position: relative;
+ width: 400px;
+ height: 300px;
+ margin: 50px auto;
+ border: 2px solid #333;
+ }
+
+ .box1 {
+ position: absolute;
+ top: 50px;
+ left: 50px;
+ width: 150px;
+ height: 100px;
+ background-color: #ff6b6b;
+ border: 2px solid #333;
+ z-index: 3; /* 가장 앞에 */
+}
+
+.box2 {
+ position: absolute;
+ top: 100px;
+ left: 100px;
+ width: 150px;
+ height: 100px;
+ background-color: #4ecdc4;
+ border: 2px solid #333;
+ z-index: 1; /* 가장 뒤에 */
+}
+
+.box3 {
+ position: absolute;
+ top: 150px;
+ left: 150px;
+ width: 150px;
+ height: 100px;
+ background-color: #45b7d1;
+ border: 2px solid #333;
+ z-index: 2; /* 중간에 */
+}
+
+ </style>
+</head>
+<body>
+ <div class="container">
+ <div class="box1">박스 1</div>
+ <div class="box2">박스 2</div>
+ <div class="box3">박스 3</div>
+ </div>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>드롭다운 메뉴</title>
+ <style>
+ .navbar {
+ background-color: #333;
+ padding: 0;
+ margin: 0;
+ }
+
+ .nav-item {
+ display: inline-block;
+ position: relative;
+ }
+
+ .nav-link {
+ display: block;
+ color: white;
+ text-decoration: none;
+ padding: 15px 20px;
+ }
+
+ .nav-link:hover {
+ background-color: #555;
+ }
+
+ .dropdown-menu {
+ position: absolute;
+ top: 100%;
+ left: 0;
+ background-color: white;
+ border: 1px solid #ddd;
+ min-width: 200px;
+ display: none;
+ z-index: 1000; /* 다른 요소들보다 앞에 */
+ }
+
+ .dropdown-item {
+ display: block;
+ color: #333;
+ text-decoration: none;
+ padding: 10px 15px;
+ border-bottom: 1px solid #eee;
+ }
+
+ .dropdown-item:hover {
+ background-color: #f8f9fa;
+ }
+
+ .nav-item:hover .dropdown-menu {
+ display: block;
+ }
+
+ .content {
+ height: 200px;
+ background-color: #f0f0f0;
+ padding: 20px;
+ position: relative;
+ z-index: 1; /* 낮은 z-index */
+ }
+ </style>
+</head>
+<body>
+ <nav class="navbar">
+ <div class="nav-item">
+ <a href="#" class="nav-link">홈</a>
+ </div>
+ <div class="nav-item">
+ <a href="#" class="nav-link">서비스</a>
+ <div class="dropdown-menu">
+ <a href="#" class="dropdown-item">웹 개발</a>
+ <a href="#" class="dropdown-item">앱 개발</a>
+ <a href="#" class="dropdown-item">디자인</a>
+ <a href="#" class="dropdown-item">컨설팅</a>
+ </div>
+ </div>
+ <div class="nav-item">
+ <a href="#" class="nav-link">회사소개</a>
+ </div>
+ <div class="nav-item">
+ <a href="#" class="nav-link">연락처</a>
+ </div>
+ </nav>
+
+ <div class="content">
+ <h2>메인 콘텐츠 영역</h2>
+ <p>드롭다운 메뉴가 이 영역 위에 제대로 나타나는지 확인해보세요!</p>
+ </div>
+</body>
+</html>
+
+
+<!--
+드롭다운 메뉴의 z-index: 1000으로 설정
+- 콘텐츠 영역의 z-index: 1로 설정
+- 메뉴에 마우스를 올리면 드롭다운이 콘텐츠 위에 정상적으로 표시됨
+
+z-index는 웹페이지의 3차원 공간에서 요소들의 겹침 순서를 제어하는 강력한 도구입니다.
+숫자가 클수록 앞에 나타나며, position이 설정된 요소에만 적용
+
+핵심 체크포인트:
+1. z-index는 position과 함께 사용해야 동작합니다
+2. 숫자가 클수록 앞에 표시됩니다
+3. 드롭다운 메뉴, 모달창 등에서 필수적으로 사용됩니다
+
+
+-->

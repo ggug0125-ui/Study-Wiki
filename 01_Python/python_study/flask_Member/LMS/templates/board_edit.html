@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h2>게시글 수정</h2>
+
+<form method="post">
+    <div>
+        <input type="text" name="title"
+               value="{{ board.title }}" required>
+    </div>
+
+    <div>
+        <textarea name="content" rows="10" required>
+{{ board.content }}
+        </textarea>
+    </div>
+
+    <button type="submit">수정 완료</button>
+</form>
+
+{% endblock %}

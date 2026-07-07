@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>커스텀 부트스트랩</title>
+    <!-- 컴파일된 커스텀 CSS 사용 -->
+    <link href="css/custom.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-primary">커스텀 부트스트랩 테마</h1>
+        <button class="btn btn-primary me-2">Primary 버튼</button>
+        <button class="btn btn-secondary me-2">Secondary 버튼</button>
+        <button class="btn btn-custom">커스텀 버튼</button>
+
+        <div class="card mt-4">
+            <div class="card-body">
+                <h5 class="card-title">카드 제목</h5>
+                <p class="card-text">둥근 모서리가 적용된 카드입니다.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>브랜드 테마 테스트</title>
+    <link rel="stylesheet" href="bootstrap/custom.css">
+</head>
+<body>
+    <div class="brand-header text-center">
+        <h1>우리 회사 브랜드 테마</h1>
+    </div>
+
+    <div class="container mt-4">
+        <button class="btn btn-primary me-2">Primary 버튼</button>
+        <button class="btn btn-secondary me-2">Secondary 버튼</button>
+        <button class="btn btn-success me-2">Success 버튼</button>
+
+        <div class="alert alert-primary mt-3">
+            Primary 색상이 적용된 알림입니다!
+        </div>
+    </div>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>믹스인과 유틸리티 활용</title>
+    <link href="custom.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container py-5">
+        <!-- 그라데이션 텍스트 -->
+        <h1 class="gradient-text-primary text-center mb-4">
+            믹스인과 유틸리티의 힘
+        </h1>
+
+        <!-- 글래스모피즘 카드 -->
+        <div class="glass-card shadow-soft mb-4">
+            <h3>글래스모피즘 효과</h3>
+            <p>투명하고 현대적인 디자인을 구현했습니다.</p>
+        </div>
+
+        <!-- 그라데이션 버튼들 -->
+        <div class="text-center">
+            <button class="btn btn-gradient-primary me-3">
+                그라데이션 버튼
+            </button>
+            <button class="btn btn-outline-primary animate-normal">
+                애니메이션 버튼
+            </button>
+        </div>
+
+        <!-- 엘리베이티드 카드 -->
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <div class="card-elevated p-4">
+                    <h5>호버 효과 카드</h5>
+                    <p>마우스를 올려보세요!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<!-- 커스텀 부트스트랩 적용 예제 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>최적화된 부트스트랩</title>
+    <!-- 커스텀 부트스트랩 CSS (약 50KB로 축소!) -->
+    <link href="css/custom-bootstrap.min.css" rel="stylesheet">
+
+    <!-- 성능 최적화를 위한 추가 설정 -->
+    <link rel="preload" href="css/custom-bootstrap.min.css" as="style">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+</head>
+<body>
+    <!-- 동일한 HTML 구조 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">우리 사이트</a>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">메인 콘텐츠</h5>
+                        <p class="card-text">로딩 속도가 훨씬 빨라졌습니다!</p>
+                        <button class="btn btn-primary">더 보기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 성능 측정 스크립트 -->
+    <script>
+        // 페이지 로딩 시간 측정
+        window.addEventListener('load', function() {
+            const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+            console.log(`페이지 로딩 시간: ${loadTime}ms`);
+        });
+    </script>
+</body>
+</html>

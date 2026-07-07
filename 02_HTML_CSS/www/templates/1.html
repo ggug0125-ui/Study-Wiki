@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MBC 아카데미 LMS</title>
+
+  <style>
+    @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css");
+
+    :root{
+      --bg: #f6e7d6;          /* 바깥 배경(베이지톤) */
+      --card: rgba(255,255,255,.92);
+      --stroke: rgba(17,24,39,.08);
+      --text: #111827;
+      --muted: rgba(17,24,39,.55);
+      --shadow: 0 18px 55px rgba(17,24,39,.12);
+      --accent: #f2e94e;      /* MBC 노랑 */
+      --accent2: #111827;     /* 버튼 포커스용 */
+      --btn: rgba(17,24,39,.06);
+      --btnHover: rgba(17,24,39,.10);
+      --radius: 18px;
+    }
+
+    *{ box-sizing: border-box; }
+    body{
+      margin:0;
+      font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(1200px 500px at 20% 10%, rgba(255,255,255,.7), transparent 60%),
+                  radial-gradient(1000px 600px at 80% 90%, rgba(255,255,255,.55), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 28px;
+    }
+
+    .frame{
+      width: min(1080px, 100%);
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      min-height: 560px;
+    }
+
+    /* 큰 배경 타이포: MBC */
+    .bg-typo{
+      position:absolute;
+      inset: 0;
+      pointer-events:none;
+      user-select:none;
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+      padding-bottom: 36px;
+      opacity: .95;
+    }
+    .bg-typo span{
+      font-weight: 900;
+      letter-spacing: -0.06em;
+      font-size: clamp(140px, 20vw, 360px);
+      line-height: .85;
+      color: var(--accent);
+      mix-blend-mode: multiply;
+      filter: saturate(1.05);
+      transform: translateY(18px);
+      white-space: nowrap;
+    }
+
+    /* 헤더 */
+    header{
+      position:relative;
+      z-index: 3;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 22px 26px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .brand-badge{
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: var(--accent);
+      box-shadow: 0 10px 24px rgba(242,233,78,.35);
+      display:grid;
+      place-items:center;
+      font-weight: 900;
+    }
+    .brand small{
+      display:block;
+      font-weight: 600;
+      color: var(--muted);
+      margin-top: 2px;
+      letter-spacing: 0;
+    }
+
+    .header-actions{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+    }
+    .btn{
+      border: 1px solid rgba(17,24,39,.10);
+      background: rgba(255,255,255,.75);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .08s ease, background .15s ease, border-color .15s ease;
+    }
+    .btn:hover{ background: rgba(255,255,255,.95); border-color: rgba(17,24,39,.18); }
+    .btn:active{ transform: translateY(1px); }
+    .btn.primary{
+      background: var(--text);
+      color: white;
+      border-color: rgba(17,24,39,.18);
+    }
+    .btn.primary:hover{ background: rgba(17,24,39,.92); }
+
+    /* 메인 콘텐츠 */
+    main{
+      position:relative;
+      z-index: 3;
+      padding: 34px 26px 34px;
+      display:flex;
+      flex-direction: column;
+      gap: 22px;
+      align-items:flex-start;
+    }
+
+    .kicker{
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    h1{
+      margin: 0;
+      font-size: clamp(28px, 3.2vw, 44px);
+      line-height: 1.12;
+      letter-spacing: -0.04em;
+    }
+
+    .highlight{
+      position: relative;
+      display:inline-block;
+    }
+    .highlight::after{
+      content:"";
+      position:absolute;
+      left:-6px;
+      right:-6px;
+      bottom: 4px;
+      height: 0.55em;
+      background: rgba(242,233,78,.85);
+      z-index: -1;
+      border-radius: 8px;
+      transform: rotate(-1deg);
+    }
+
+    .category-row{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .chip{
+      border: 1px solid rgba(17,24,39,.12);
+      background: rgba(255,255,255,.70);
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-weight: 800;
+      cursor:pointer;
+      transition: background .15s ease, transform .08s ease, border-color .15s ease;
+    }
+    .chip:hover{
+      background: rgba(17,24,39,.06);
+      border-color: rgba(17,24,39,.18);
+    }
+    .chip:active{ transform: translateY(1px); }
+
+    .footer-nav{
+      position:absolute;
+      left: 26px;
+      right: 26px;
+      bottom: 22px;
+      z-index: 3;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .next{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+    }
+    .next .btn.primary{
+      padding: 10px 16px;
+      border-radius: 14px;
+    }
+
+    /* 데모용: 관리자 토글 */
+    .admin-toggle{
+      position:absolute;
+      top: 86px;
+      right: 26px;
+      z-index: 4;
+      font-size: 12px;
+      opacity: .9;
+    }
+    .admin-toggle .btn{
+      padding: 8px 10px;
+      border-radius: 10px;
+      font-weight: 800;
+    }
+
+    @media (max-width: 640px){
+      main{ padding-top: 18px; }
+      .footer-nav{ left: 18px; right: 18px; }
+      header{ padding: 18px; }
+      main{ padding-left: 18px; padding-right: 18px; }
+      .admin-toggle{ top: 78px; right: 18px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="frame">
+    <div class="bg-typo" aria-hidden="true">
+      <span>MBC</span>
+    </div>
+
+    <header>
+      <div class="brand">
+        <div class="brand-badge">M</div>
+        <div>
+          MBC 아카데미
+          <small>LMS Program</small>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button class="btn" id="loginBtn">로그인</button>
+        <button class="btn primary" id="signupBtn">회원가입</button>
+      </div>
+    </header>
+
+    <!-- 데모용: 관리자 토글 버튼(실제에선 제거하고, 로그인 로직에서 isAdmin만 세팅) -->
+    <div class="admin-toggle">
+      <button class="btn" id="toggleAdminBtn">관리자 토글(데모)</button>
+    </div>
+
+    <main>
+      <div class="kicker">Main / Home</div>
+
+      <h1>
+        <span class="highlight">Welcome aboard.</span><br/>
+        MBC Academy Program
+      </h1>
+
+      <div class="category-row" id="categoryRow">
+        <button class="chip" data-route="members">회원관리</button>
+        <button class="chip" data-route="scores">성적관리</button>
+        <button class="chip" data-route="board_free">자유게시판</button>
+        <button class="chip" data-route="board_data">자료실</button>
+        <button class="chip" data-route="shop">쇼핑몰</button>
+        <!-- 관리자페이지는 JS에서 조건부로 추가 -->
+      </div>
+    </main>
+
+    <div class="footer-nav">
+      <div>© MBC Academy</div>
+      <div class="next">
+        <span>메뉴를 선택하세요</span>
+        <button class="btn primary" id="nextBtn">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // =========================
+    // 상태(예: 로그인 후 role 값)
+    // =========================
+    let isAdmin = false; // 로그인 성공 시: (member.role === 'admin') 이런 식으로 세팅
+
+    const categoryRow = document.getElementById("categoryRow");
+    const toggleAdminBtn = document.getElementById("toggleAdminBtn");
+
+    function renderAdminMenu(){
+      const exists = document.getElementById("adminMenuChip");
+
+      if(isAdmin && !exists){
+        const btn = document.createElement("button");
+        btn.className = "chip";
+        btn.id = "adminMenuChip";
+        btn.dataset.route = "admin";
+        btn.textContent = "관리자페이지";
+        categoryRow.appendChild(btn); // "마지막에 추가"
+      }
+
+      if(!isAdmin && exists){
+        exists.remove();
+      }
+    }
+
+    // 데모용 토글 (실제에선 로그인 로직에서 isAdmin만 세팅하고 renderAdminMenu() 호출)
+    toggleAdminBtn.addEventListener("click", () => {
+      isAdmin = !isAdmin;
+      renderAdminMenu();
+    });
+
+    // 메뉴 클릭 예시
+    categoryRow.addEventListener("click", (e) => {
+      const target = e.target.closest("button[data-route]");
+      if(!target) return;
+
+      const route = target.dataset.route;
+      alert(`이동: ${route} (여기에 화면 전환/라우팅 연결하면 됨)`);
+    });
+
+    // 헤더 버튼 예시
+    document.getElementById("loginBtn").addEventListener("click", () => {
+      alert("로그인 화면으로 이동");
+      // 로그인 성공 후:
+      // isAdmin = (member.role === 'admin');
+      // renderAdminMenu();
+    });
+
+    document.getElementById("signupBtn").addEventListener("click", () => {
+      alert("회원가입 화면으로 이동");
+    });
+
+    document.getElementById("nextBtn").addEventListener("click", () => {
+      alert("다음 단계(예: 기본 안내/대시보드)로 이동");
+    });
+
+    // 초기 1회 렌더
+    renderAdminMenu();
+  </script>
+</body>
+</html>

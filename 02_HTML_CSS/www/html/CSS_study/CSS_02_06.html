@@ -1,0 +1,128 @@
+<!--
+1. 자손 선택자 (Descendant Selector)
+- 문법: 부모요소 자손요소
+- 의미: 부모 요소 안에 있는 모든 자손 요소를 선택
+- 비유: "김씨 집안의 모든 후손들"
+
+2. 자식 선택자 (Child Selector)
+- 문법: 부모요소 > 자식요소
+- 의미: 부모 요소의 직접적인 자식 요소만 선택
+- 비유: "김씨의 직계 자녀들만"
+
+3. 인접 형제 선택자 (Adjacent Sibling)
+- 문법: 요소1 + 요소2
+- 의미: 요소1 바로 다음에 오는 요소2를 선택
+- 비유: "첫째 바로 다음의 둘째"
+
+4. 일반 형제 선택자 (General Sibling)
+- 문법: 요소1 ~ 요소2
+- 의미: 요소1 이후에 오는 모든 형제 요소2를 선택
+- 비유: "첫째 이후의 모든 형제들"-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <title>관계 선택자 실습</title>
+ <style>
+ /* 메뉴 네비게이션 스타일링 */
+.main-nav ul {
+ display: flex;
+ padding: 0;
+ margin: 0;
+}
+
+.main-nav > ul > li {
+ background-color: #333;
+ color: white;
+ padding: 10px 20px;
+}
+
+.main-nav li:hover {
+ background-color: #555;
+}
+
+/* 서브메뉴는 다른 스타일 */
+.main-nav li ul li {
+ background-color: #666;
+ font-size: 14px;
+}
+
+/* 제목 다음 첫 문단 강조 */
+.content h3 + p {
+ font-size: 18px;
+ color: #2c3e50;
+}
+
+/* 폼 요소 스타일링 */
+.form-group label + input {
+ margin-left: 10px;
+ padding: 5px;
+ border: 1px solid #ddd;
+}
+
+ </style>
+</head>
+<body>
+ <nav>
+ <ul>
+ <li>홈</li>
+ <li>서비스
+ <ul>
+ <li>웹개발</li>
+ <li>앱개발</li>
+ </ul>
+ </li>
+ <li>연락처</li>
+ </ul>
+ </nav>
+
+ <h2>관계 선택자란?</h2>
+ <p>이 문단은 h2 바로 다음에 있어서 파란색으로 표시됩니다.</p>
+ <p>이 문단은 h2 이후에 있어서 왼쪽 여백이 있습니다.</p>
+ <div>중간에 다른 요소</div>
+ <p>이 문단도 h2 이후에 있어서 왼쪽 여백이 있습니다.</p>
+</body>
+</html>
+
+<div class="article-container">
+ <article>
+ <h2>첫 번째 기사</h2>
+ <p class="intro">이것은 소개 문단입니다.</p>
+ <p>이것은 본문 문단입니다.</p>
+ <div class="meta">
+ <span>작성자: 김개발</span>
+ <span>날짜: 2024-01-15</span>
+ </div>
+ </article>
+ /* 복합 관계 선택자 활용 */
+.article-container article:first-child h2 {
+ color: #e74c3c;
+}
+
+.article-container article h2 + p.intro {
+ background-color: #ecf0f1;
+ padding: 10px;
+ border-left: 4px solid #3498db;
+}
+
+.article-container article .intro ~ p {
+ text-indent: 20px;
+ line-height: 1.6;
+}
+
+.meta span + span {
+ margin-left: 15px;
+}
+
+.meta span + span:before {
+ content: " | ";
+ color: #bdc3c7;
+}
+
+ <article>
+ <h2>두 번째 기사</h2>
+ <p class="intro">또 다른 소개 문단입니다.</p>
+ <p>또 다른 본문 문단입니다.</p>
+ </article>
+</div>

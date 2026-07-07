@@ -1,0 +1,162 @@
+<!--
+DOM 공부
+
+HTML 문서를 아파트 건물이라고 생각해보세요.
+
+document: 건물 전체 (최상위 객체)
+html: 건물의 기초 구조
+head, body: 각각의 층
+div, p, span: 각 방들
+텍스트, 속성: 방 안의 가구들
+
+
+DOM의 핵심 특징
+트리 구조: 부모-자식 관계로 연결
+실시간 반영: JavaScript로 변경하면 즉시 화면에 적용
+양방향 소통: HTML → JavaScript, JavaScript → HTML 모두 가능
+
+-->
+
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+ <title>DOM 첫 만남</title>
+
+</head>
+<body>
+ <h1 id="title">DOM 학습 중...</h1>
+ <p id="message">여기에 메시지가 나타날 예정입니다.</p>
+ <button onclick="changeContent()">마법 버튼</button>
+
+ <script>
+ function changeContent() {
+ // DOM을 통해 요소 찾기
+ const title = document.getElementById('title');
+ const message = document.getElementById('message');
+
+ // 내용 변경하기
+ title.textContent = ' DOM 마스터가 되었습니다!';
+ message.textContent = '버튼을 클릭해서 내용이 바뀌었어요!';
+ message.style.color = 'blue';
+ message.style.fontSize = '18px';
+ }
+ </script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+ <title>DOM 첫 만남</title>
+
+</head>
+<body>
+ <div class="container">
+ <h2>상품 목록</h2>
+ <div class="product">사과 - 3,000원</div>
+ <div class="product">바나나 - 2,000원</div>
+ <div class="product">오렌지 - 4,000원</div>
+ </div>
+
+ <button onclick="highlightProducts()">상품 강조하기</button>
+
+ <script>
+ function highlightProducts() {
+ // 여러 요소 선택하는 다양한 방법
+ const container = document.querySelector('.container');
+ const products = document.querySelectorAll('.product');
+
+ // 컨테이너 스타일 변경
+ container.style.backgroundColor = '#f0f0f0';
+ container.style.padding = '20px';
+
+ // 모든 상품에 스타일 적용
+ products.forEach(function(product, index) {
+ product.style.backgroundColor = '#ffeb3b';
+ product.style.padding = '10px';
+ product.style.margin = '5px';
+ product.style.borderRadius = '5px';
+ });
+ }
+ </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+ <title>DOM 첫 만남</title>
+
+</head>
+<body>
+ <div style="text-align: center; margin-top: 50px;">
+ <h1> 장바구니</h1>
+ <p>상품 개수: <span id="count">0</span>개</p>
+ <button onclick="addItem()">상품 추가</button>
+ <button onclick="removeItem()">상품 제거</button>
+ <button onclick="resetCart()">장바구니 비우기</button>
+
+ <div id="status" style="margin-top: 20px; font-weight: bold;"></div>
+ </div>
+
+ <script>
+ let itemCount = 0;
+
+ function addItem() {
+ itemCount++;
+ updateDisplay();
+ }
+
+ function removeItem() {
+ if (itemCount > 0) {
+ itemCount--;
+ updateDisplay();
+ }
+ }
+
+ function resetCart() {
+ itemCount = 0;
+ updateDisplay();
+ }
+
+ function updateDisplay() {
+ // DOM 요소 찾기
+ const countElement = document.getElementById('count');
+ const statusElement = document.getElementById('status');
+
+ // 개수 업데이트
+ countElement.textContent = itemCount;
+
+ // 상태 메시지 업데이트
+ if (itemCount === 0) {
+ statusElement.textContent = '장바구니가 비어있습니다.';
+ statusElement.style.color = 'gray';
+ } else if (itemCount < 5) {
+ statusElement.textContent = '더 담아보세요!';
+ statusElement.style.color = 'blue';
+ } else {
+ statusElement.textContent = '장바구니가 가득해요!';
+ statusElement.style.color = 'red';
+ }
+ }
+
+ // 페이지 로드 시 초기 상태 설정
+ updateDisplay();
+ </script>
+</body>
+</html>
+
+
+<!--
+document.getElementById(): ID로 요소 찾기
+- document.querySelector(): CSS 선택자로 요소 찾기
+- textContent: 텍스트 내용 변경
+- style: CSS 스타일 변경
+-->

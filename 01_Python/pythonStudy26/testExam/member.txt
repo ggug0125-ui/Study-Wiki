@@ -1,0 +1,4 @@
+lhj|0000|임효정|admin|True
+aaa|0000|이동동|manager|True
+bbb|0000|김동동|user|True
+ccc|0000|박동동|user|True

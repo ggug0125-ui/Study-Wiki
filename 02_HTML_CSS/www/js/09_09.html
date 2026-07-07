@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>학생객체정보</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+    }
+    h1 {
+        color: #2c3e50;
+    }
+    .info {
+        margin-top: 20px;
+        line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+<h1>학생 정보 출력</h1>
+<div class="info" id="output"></div>
+
+<script>
+  // 학생 객체 생성
+  let student = {
+   name: "김개발",
+   age: 20,
+   major: "정보통신공학과",
+   gpa: 3.8,
+   hobbies: ["코딩", "게임", "독서"]
+  };
+
+  // 속성 접근하기
+  console.log("이름:", student.name); // 김개발
+  console.log("나이:", student.age); // 20
+  console.log("전공:", student["major"]); // 정보통신공학과
+  console.log("첫 번째 취미:", student.hobbies[0]); // 코딩
+
+    // 기존 속성 수정
+  student.age = 21;
+  student.gpa = 4.0;
+
+  // 새로운 속성 추가
+  student.email = "kimdev@example.com";
+  student.phone = "010-1234-5678";
+
+  // 속성 삭제
+  delete student.phone;
+
+  console.log(student);
+  // 결과: { name: "김개발", age: 21, major: "정보통신공학과", gpa: 4.0, hobbies: [...], email: "kimdev@example.com" }
+
+
+</script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>학생 객체 메서드</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+    }
+    h1 {
+        color: #1f2937;
+    }
+    .box {
+        margin-top: 20px;
+        line-height: 1.8;
+        background: #f9fafb;
+        padding: 15px;
+        border-radius: 8px;
+        width: fit-content;
+    }
+  </style>
+</head>
+<body>
+<h1> 학생 객체 메서드 실행 결과 </h1>
+<div class="box" id="output"></div>
+
+<script>
+  let student = {
+      name: "김개발",
+      age: 20,
+      major: "정보통신공학과",
+      gpa: 3.8,
+
+ // 메서드 정의
+ introduce: function() {
+ return `안녕하세요! 저는 ${this.name}이고, ${this.major}를 전공하고 있습니다.`;
+ },
+
+ study: function(subject) {
+ return `${this.name}이(가) ${subject}를 공부하고 있습니다.`;
+ },
+
+ updateGPA: function(newGPA) {
+ this.gpa = newGPA;
+ return `GPA가 ${this.gpa}로 업데이트되었습니다.`;
+ }
+};
+let output = document.getElementById("output");
+
+    output.innerHTML += student.introduce() + "<br>";
+    output.innerHTML += student.study("JavaScript") + "<br>";
+    output.innerHTML += student.updateGPA(4.2) + "<br>";
+    output.innerHTML += `현재 GPA: ${student.gpa}`;
+// 메서드 호출
+console.log(student.introduce());
+console.log(student.study("JavaScript"));
+console.log(student.updateGPA(4.2));
+
+</script>
+
+
+</body>
+</html>
+
+<!--
+객체는 {} 중괄호로 생성합니다
+- 속성 접근: 객체.속성명 또는 객체["속성명"]
+- 객체는 속성과 메서드를 모두 가질 수 있습니다
+- this 키워드로 객체 자신을 참조합니다
+-->

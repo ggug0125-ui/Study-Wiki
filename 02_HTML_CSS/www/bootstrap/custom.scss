@@ -1,0 +1,103 @@
+// 1. 브랜드 색상 정의 (부트스트랩 import 전에!)
+$primary: #ff6b35;      // 오렌지 계열
+$secondary: #2c3e50;    // 진한 회색
+$success: #27ae60;      // 초록색
+$warning: #f39c12;      // 노란색
+$danger: #e74c3c;       // 빨간색
+
+// 2. 부트스트랩 import
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+
+// 3. 추가 커스텀 스타일
+.brand-header {
+  background: linear-gradient(135deg, $primary, $secondary);
+  color: white;
+  padding: 2rem;
+}
+// 그라데이션 버튼 만들기
+.btn-gradient-primary {
+  @include button-variant(
+    $background: linear-gradient(45deg, $primary, lighten($primary, 15%)),
+    $border: $primary,
+    $hover-background: linear-gradient(45deg, darken($primary, 5%), $primary),
+    $hover-border: darken($primary, 5%)
+  );
+}
+
+// 커스텀 카드 스타일
+.card-elevated {
+  @include box-shadow(0 8px 25px rgba(0,0,0,0.15));
+  @include border-radius(12px);
+  border: none;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    @include box-shadow(0 12px 35px rgba(0,0,0,0.2));
+  }
+}
+
+// 글래스모피즘 효과 믹스인
+@mixin glassmorphism($blur: 10px, $opacity: 0.1) {
+  background: rgba(255, 255, 255, $opacity);
+  backdrop-filter: blur($blur);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  @include border-radius(16px);
+}
+
+// 반응형 폰트 사이즈 믹스인
+@mixin responsive-font($min-size, $max-size) {
+  font-size: clamp(#{$min-size}rem, 4vw, #{$max-size}rem);
+}
+
+// 사용 예시
+.hero-title {
+  @include responsive-font(1.5, 3.5);
+  font-weight: bold;
+}
+
+.glass-card {
+  @include glassmorphism(15px, 0.15);
+  padding: 2rem;
+}
+
+// utilities 맵에 새로운 유틸리티 추가
+$utilities: map-merge(
+  $utilities,
+  (
+    // 그라데이션 텍스트
+    "gradient-text": (
+      property: background,
+      class: gradient-text,
+      values: (
+        primary: linear-gradient(45deg, #{$primary}, #{lighten($primary, 20%)}),
+        success: linear-gradient(45deg, #{$success}, #{lighten($success, 20%)}),
+        warning: linear-gradient(45deg, #{$warning}, #{lighten($warning, 20%)})
+      )
+    ),
+    // 커스텀 그림자
+    "shadow-custom": (
+      property: box-shadow,
+      class: shadow,
+      values: (
+        soft: 0 4px 15px rgba(0,0,0,0.1),
+        medium: 0 8px 25px rgba(0,0,0,0.15),
+        hard: 0 12px 35px rgba(0,0,0,0.2)
+      )
+    ),
+    // 애니메이션 지속시간
+    "animation-duration": (
+      property: animation-duration,
+      class: animate,
+      values: (
+        fast: 0.2s,
+        normal: 0.3s,
+        slow: 0.5s
+      )
+    )
+  )
+);
+

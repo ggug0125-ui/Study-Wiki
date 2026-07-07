@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>CSS 연결 방법 실습</title>
+    <!-- ******* 외부 스타일 외부파일 연결********-->
+    <link rel ="stylesheet" href="../css/CSS_02_01.CSS">
+    <!--  rel연결           땡긴다 외부파일을   (같은 폴더에 위치에 있어야한다) 상위폴더 ../ 파일명/ 위치찾아주기-->
+
+        <!-- ******* 내부 스타일 ********-->
+        <style>
+         h1 {
+         color: blue;
+         text-align: center;
+         }
+         p {
+         background-color: lightgray;
+         padding: 10px;
+         }
+         </style>
+</head>
+<body>
+ <h1>CSS 연결 방법 테스트</h1>
+ <!--******** 인라인 스타일********-->
+ <p style="color: red; font-size: 18px; font-weight: bold;">첫 번째 문단입니다.</p>
+
+ <p>두 번째 문단입니다.</p>
+ <p>세 번째 문단입니다.</p>
+</body>
+</html>

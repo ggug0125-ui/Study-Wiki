@@ -1,0 +1,122 @@
+<!--
+주요 디스플레이 클래스들:
+- .d-none: 요소를 완전히 숨김 (무대에서 퇴장)
+- .d-block: 블록 레벨로 표시 (한 줄 전체 차지)
+- .d-inline: 인라인으로 표시 (텍스트처럼 나란히)
+- .d-flex: 플렉스박스로 표시 (유연한 배치)
+
+위치 유틸리티는 요소를 페이지의 어느 위치에 고정하거나 상대적으로 배치할지 결정합니다.
+GPS처럼 정확한 좌표를 지정하는 것과 비슷합니다.
+
+주요 위치 클래스들:
+- .position-static: 기본 위치 (자연스러운 흐름)
+- .position-relative: 원래 위치 기준으로 상대 배치
+- .position-absolute: 부모 요소 기준으로 절대 배치
+- .position-fixed: 화면 기준으로 고정 배치
+- .position-sticky: 스크롤에 따라 고정되는 배치
+-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>디스플레이 유틸리티 실습</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>디스플레이 유틸리티 테스트</h2>
+
+        <!-- 기본 디스플레이 -->
+        <div class="bg-primary text-white p-2 d-block mb-2">블록 레벨 (d-block)</div>
+      <!--       한줄 전체 차지함              자동 줄바꿈 발생 -->
+        <span class="bg-success text-white p-2 d-inline-block">인라인 블록 1</span>
+      <!--            녹색        글자 흰색   간격2   한줄에 블럭배치 가능           -->
+        <span class="bg-warning text-dark p-2 d-inline-block">인라인 블록 2</span>
+       <!--            노랑        글자 흰색  안쪽여백2   한줄에 블럭배치 가능           -->
+
+        <!-- 숨김/보임 -->
+        <div class="bg-info text-white p-2 d-none mb-2">숨겨진 요소 (d-none)</div>
+        <div class="bg-secondary text-white p-2 mb-2">보이는 요소</div>
+
+        <!-- 플렉스 디스플레이 -->
+        <div class="d-flex gap-2 mb-3">
+          <!--      d-flex 는 이순간부터 자식들이 가로로 나란히 배치한다~~ -->
+          <!--             gap-2 자식들 사이 간격 -->
+          <!--                   mb-3 플렉스 묵음 전체 아래쪽 여백 -->
+            <div class="bg-danger text-white p-2 flex-fill">플렉스 아이템 1</div>
+          <!--            빨간색      글자흰색  간격2 남은공간 채우기 -->
+            <div class="bg-success text-white p-2 flex-fill">플렉스 아이템 2</div>
+            <div class="bg-primary text-white p-2 flex-fill">플렉스 아이템 3</div>
+        </div>
+    </div>
+<div class="container mt-4">
+    <h2>반응형 디스플레이</h2>
+
+    <!-- 모바일에서만 보임 -->
+    <div class="bg-primary text-white p-3 mb-2 d-block d-md-none">
+        📱 모바일에서만 보이는 메시지
+    </div>
+
+    <!-- 태블릿 이상에서만 보임 -->
+    <div class="bg-success text-white p-3 mb-2 d-none d-md-block">
+        💻 태블릿/데스크톱에서만 보이는 광고
+    </div>
+
+    <!-- 데스크톱에서만 보임 -->
+    <div class="bg-warning text-dark p-3 mb-2 d-none d-lg-block">
+        🖥️ 데스크톱에서만 보이는 상세 정보
+    </div>
+
+    <!-- 반응형 플렉스 -->
+    <div class="d-block d-md-flex gap-2">
+        <div class="bg-info text-white p-2 mb-2 mb-md-0">카드 1</div>
+        <div class="bg-secondary text-white p-2 mb-2 mb-md-0">카드 2</div>
+        <div class="bg-dark text-white p-2">카드 3</div>
+    </div>
+</div>
+<div class="container-fluid position-relative" style="height: 100vh;">
+    <!-- 고정 헤더 -->
+    <nav class="position-fixed top-0 start-0 w-100 bg-dark text-white p-3" style="z-index: 1000;">
+        <div class="container">
+            <h4 class="mb-0">고정 헤더 (position-fixed)</h4>
+        </div>
+    </nav>
+
+    <!-- 메인 콘텐츠 -->
+    <div class="container pt-5 mt-4">
+        <div class="position-relative bg-light p-4 mb-4" style="height: 200px;">
+            <h5>상대 위치 컨테이너 (position-relative)</h5>
+
+            <!-- 절대 위치 요소들 -->
+            <div class="position-absolute top-0 start-0 bg-primary text-white p-2">
+                좌상단 (top-0 start-0)
+            </div>
+            <div class="position-absolute top-0 end-0 bg-success text-white p-2">
+                우상단 (top-0 end-0)
+            </div>
+            <div class="position-absolute bottom-0 start-50 translate-middle-x bg-warning text-dark p-2">
+                하단 중앙 (bottom-0 start-50)
+            </div>
+        </div>
+
+        <!-- 스티키 요소 -->
+        <div class="position-sticky top-0 bg-info text-white p-3 mb-3" style="z-index: 100;">
+            📌 스크롤하면 상단에 고정되는 스티키 헤더
+        </div>
+
+        <!-- 긴 콘텐츠 (스크롤 테스트용) -->
+        <div class="bg-light p-4">
+            <h5>긴 콘텐츠</h5>
+            <p>스크롤을 내려보세요. 스티키 헤더가 상단에 고정됩니다.</p>
+            <div style="height: 1000px; background: linear-gradient(to bottom, #f8f9fa, #e9ecef);">
+                <p class="pt-4">스크롤 테스트를 위한 긴 영역...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

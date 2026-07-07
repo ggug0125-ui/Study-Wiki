@@ -1,0 +1,52 @@
+<!--
+width와 height 속성의 이해
+width 속성은 요소의 가로 크기를, height 속성은 세로 크기를 결정
+
+다양한 크기 단위들
+웹에서는 여러 단위를 사용해 크기를 지정할 수 있습니다.
+
+px (픽셀): 절대적인 크기 width: 300px
+% (퍼센트): 부모 요소에 대한 상대적 크기 width: 50%
+em: 현재 요소의 글자 크기 기준 width: 10em
+rem: 루트 요소의 글자 크기 기준 width: 15rem
+vw/vh: 뷰포트(화면) 크기 기준 width: 50vw
+-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <title>콘텐츠 영역 실습</title>
+ <style>
+ .card-container {
+ width: 100%;
+ max-width: 400px; /* 최대 너비 제한 */
+ margin: 0 auto; /* 가운데 정렬 */
+}
+
+.card {
+ width: 100%;
+ min-height: 200px; /* 최소 높이 보장 */
+ padding: 20px;
+ background-color: #fff;
+ border: 1px solid #ddd;
+ border-radius: 8px;
+ box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+
+ </style>
+    <div class="card-container">
+ <div class="card">
+ <h3>상품 카드</h3>
+ <p>이 카드는 반응형으로 만들어졌습니다.</p>
+ </div>
+</div>
+
+</head>
+<body>
+ <div class="content-box">
+ 이것이 콘텐츠 영역입니다!
+ </div>
+</body>
+</html>

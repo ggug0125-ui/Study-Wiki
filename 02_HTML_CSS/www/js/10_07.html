@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <title>객체 심화 </title>
+</head>
+<body>
+ <script>
+   // 기본적인 객체 메소드 정의
+const user = {
+ name: "김개발",
+ age: 20,
+ email: "kimdev@example.com",
+
+ // 메소드 정의 방법 1: 함수 표현식
+ introduce: function() {
+ return `안녕하세요! 저는 ${this.name}입니다.`;
+ },
+
+ // 메소드 정의 방법 2: 단축 문법 (ES6+)
+ getAge() {
+ return `저는 ${this.age}살입니다.`;
+ },
+
+ // 메소드 정의 방법 3: 화살표 함수 (주의: this 동작이 다름)
+ getEmail: () => {
+ // 화살표 함수에서는 this가 제대로 동작하지 않음
+ return "이메일 정보";
+ }
+};
+const calculator = {
+ result: 0,
+
+ add(number) {
+ this.result += number; // this는 calculator 객체를 가리킴
+ return this; // 메소드 체이닝을 위해 자기 자신을 반환
+ },
+
+ subtract(number) {
+ this.result -= number;
+ return this;
+ },
+
+ multiply(number) {
+ this.result *= number;
+ return this;
+ },
+
+ getResult() {
+ return this.result;
+ },
+
+ reset() {
+ this.result = 0;
+ return this;
+ }
+};
+
+// 사용자 정보를 관리하는 객체 생성
+const userManager = {
+ users: [],
+
+ // 사용자 추가 메소드
+ addUser(name, email) {
+ const newUser = {
+ id: this.users.length + 1,
+ name: name,
+ email: email,
+ createdAt: new Date()
+ };
+ this.users.push(newUser);
+ console.log(`${name}님이 등록되었습니다.`);
+ return this;
+ },
+
+ // 사용자 조회 메소드
+ findUser(name) {
+ return this.users.find(user => user.name === name);
+ },
+
+ // 전체 사용자 수 조회
+ getUserCount() {
+ return this.users.length;
+ },
+
+ // 사용자 목록 출력
+ listUsers() {
+ console.log("=== 사용자 목록 ===");
+ this.users.forEach(user => {
+ console.log(`${user.id}. ${user.name} (${user.email})`);
+ });
+ return this;
+ }
+};
+
+// 사용 예시
+userManager
+ .addUser("김개발", "kim@dev.com")
+ .addUser("이디자인", "lee@design.com")
+ .listUsers();
+
+console.log("총 사용자 수:", userManager.getUserCount());
+
+// 게임 캐릭터 객체 생성
+const gameCharacter = {
+ name: "용사",
+ level: 1,
+ hp: 100,
+ maxHp: 100,
+ exp: 0,
+
+ // 레벨업 메소드
+ levelUp() {
+ this.level++;
+ this.maxHp += 20;
+ this.hp = this.maxHp; // 레벨업 시 체력 완전 회복
+ this.exp = 0;
+ console.log(` 레벨업! 현재 레벨: ${this.level}`);
+ return this;
+ },
+
+ // 경험치 획득 메소드
+ gainExp(amount) {
+ this.exp += amount;
+ console.log(`경험치 +${amount} (현재: ${this.exp}/100)`);
+
+ if (this.exp >= 100) {
+ this.levelUp();
+ }
+ return this;
+ },
+
+ // 데미지 받기 메소드
+ takeDamage(damage) {
+ this.hp -= damage;
+ if (this.hp < 0) this.hp = 0;
+
+ console.log(` ${damage} 데미지! 남은 체력: ${this.hp}/${this.maxHp}`);
+
+ if (this.hp === 0) {
+ console.log(" 게임 오버!");
+ }
+ return this;
+ },
+
+ // 상태 확인 메소드
+ showStatus() {
+ console.log(`
+=== ${this.name} 상태 ===
+레벨: ${this.level}
+체력: ${this.hp}/${this.maxHp}
+경험치: ${this.exp}/100
+ `);
+ return this;
+ }
+};
+
+// 게임 플레이 시뮬레이션
+gameCharacter
+ .showStatus()
+ .gainExp(50)
+ .takeDamage(30)
+ .gainExp(60) // 레벨업 발생
+ .showStatus();
+
+// 고급 쇼핑카트 객체
+const shoppingCart = {
+ items: [],
+
+ // 상품 추가 메소드
+ addItem(name, price, quantity = 1) {
+ const existingItem = this.items.find(item => item.name === name);
+
+ if (existingItem) {
+ existingItem.quantity += quantity;
+ console.log(`${name} 수량이 ${quantity}개 추가되었습니다.`);
+ } else {
+ this.items.push({ name, price, quantity });
+ console.log(`${name}이(가) 장바구니에 추가되었습니다.`);
+ }
+ return this;
+ },
+
+ // 상품 제거 메소드
+ removeItem(name) {
+ const index = this.items.findIndex(item => item.name === name);
+ if (index !== -1) {
+ this.items.splice(index, 1);
+ console.log(`${name}이(가) 장바구니에서 제거되었습니다.`);
+ }
+ return this;
+ },
+
+ // 총 금액 계산 메소드
+ getTotalPrice() {
+ return this.items.reduce((total, item) => {
+ return total + (item.price * item.quantity);
+ }, 0);
+ },
+
+ // 장바구니 내용 출력 메소드
+ showCart() {
+ console.log("\n=== 장바구니 내용 ===");
+ if (this.items.length === 0) {
+ console.log("장바구니가 비어있습니다.");
+ return this;
+ }
+
+ this.items.forEach(item => {
+ console.log(`${item.name} - ${item.price}원 x ${item.quantity}개 = ${item.price * item.quantity}원`);
+ });
+ console.log(`총 금액: ${this.getTotalPrice()}원`);
+ return this;
+ },
+
+ // 장바구니 비우기 메소드
+ clearCart() {
+ this.items = [];
+ console.log("장바구니가 비워졌습니다.");
+ return this;
+ }
+};
+
+// 쇼핑 시뮬레이션
+shoppingCart
+ .addItem("노트북", 1200000, 1)
+ .addItem("마우스", 50000, 2)
+ .addItem("키보드", 80000, 1)
+ .showCart()
+ .removeItem("마우스")
+ .showCart();
+
+ </script>
+</body>
+</html>

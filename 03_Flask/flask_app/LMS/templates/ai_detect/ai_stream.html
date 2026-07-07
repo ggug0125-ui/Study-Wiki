@@ -1,0 +1,232 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card shadow-lg bg-dark text-white border-0">
+                <div class="card-header bg-primary d-flex justify-content-between align-items-center">
+                    <span><i class="bi bi-eye"></i> AI Real-time Monitor</span>
+                    <span id="status" class="badge bg-success">Connected</span>
+                </div>
+                <div class="card-body p-0 text-center" style="background: #000;">
+                    <img id="cameraView" style="width: 100%; min-height: 450px; object-fit: contain;">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm mb-3">
+                <div class="card-header fw-bold bg-light">감시 설정</div>
+                <div class="card-body">
+                    <label class="form-label small text-muted">감시할 객체명 (예: person, laptop, cell phone)</label>
+                    <div class="input-group">
+                        <input type="text" id="targetInput" class="form-control" placeholder="객체 입력...">
+                        <button class="btn btn-danger" onclick="setTarget()">설정</button>
+                    </div>
+                    <div id="currentTarget" class="mt-2 text-primary small fw-bold">현재 감시 중: 없음</div>
+                </div>
+            </div>
+
+            <div class="card shadow-sm mb-3">
+                <div class="card-header fw-bold bg-light d-flex justify-content-between align-items-center">
+                    <span>COM 연결</span>
+                    <span id="serialStatus" class="badge bg-secondary">Disconnected</span>
+                </div>
+                <div class="card-body">
+                    <label class="form-label small text-muted">포트 / 속도</label>
+                    <div class="input-group mb-2">
+                        <input type="text" id="serialPortInput" class="form-control" value="COM3" placeholder="COM3">
+                        <input type="number" id="serialBaudrateInput" class="form-control" value="9600" placeholder="9600">
+                    </div>
+                    <div class="d-flex gap-2 mb-2">
+                        <button class="btn btn-sm btn-primary flex-fill" onclick="connectSerial()">연결</button>
+                        <button class="btn btn-sm btn-outline-secondary flex-fill" onclick="disconnectSerial()">해제</button>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="serialMessageInput" class="form-control" placeholder="전송 메시지...">
+                        <button class="btn btn-sm btn-outline-danger" onclick="sendSerial()">전송</button>
+                    </div>
+                    <div id="serialPorts" class="mt-2 text-muted small">사용 가능 포트: 확인 중...</div>
+                </div>
+            </div>
+
+            <div class="card shadow-sm">
+                <div class="card-header fw-bold bg-light d-flex justify-content-between">
+                    <span>탐지 로그 (Alert)</span>
+                    <button class="btn btn-sm btn-outline-secondary" onclick="clearLogs()" style="font-size: 0.7rem;">비우기</button>
+                </div>
+                <div id="alertLog" class="card-body p-0" style="height: 380px; overflow-y: auto; background: #f8f9fa;">
+                    <div class="text-center text-muted mt-5 small" id="emptyMsg">탐지 기록이 없습니다.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+
+<script>
+    // 소켓 연결
+    const socket = io({
+        transports: ['websocket'],
+        upgrade: false
+    });
+
+    // 실시간 프레임 수신
+    socket.on('ai_frame', function(data) {
+        if (data.image) {
+            const imgTag = document.getElementById("cameraView");
+            if (imgTag) {
+                imgTag.src = "data:image/jpeg;base64," + data.image;
+            }
+        }
+    });
+
+    // 탐지 알림 수신
+    socket.on('detection_alert', function(data) {
+        const alertLog = document.getElementById("alertLog");
+        const emptyMsg = document.getElementById("emptyMsg");
+
+        if (emptyMsg) {
+            emptyMsg.style.display = 'none';
+        }
+
+        const logEntry = document.createElement("div");
+        logEntry.className = "p-2 border-bottom bg-white fw-bold text-dark";
+        logEntry.style.fontSize = "0.85rem";
+        logEntry.style.borderLeft = "4px solid #dc3545";
+
+        logEntry.innerHTML = `
+            <span class="badge bg-danger me-1">ALERT</span>
+            <span class="text-muted small">[${data.time}]</span>
+            <span class="ms-1">${data.label.toUpperCase()}</span> 포착됨!
+        `;
+
+        alertLog.prepend(logEntry);
+
+        if (alertLog.children.length > 20) {
+            alertLog.removeChild(alertLog.lastChild);
+        }
+    });
+
+    // COM 상태 수신
+    socket.on('serial_status', function(data) {
+        const status = document.getElementById("serialStatus");
+        const ports = document.getElementById("serialPorts");
+        const portInput = document.getElementById("serialPortInput");
+        const baudrateInput = document.getElementById("serialBaudrateInput");
+
+        if (data.port) {
+            portInput.value = data.port;
+        }
+
+        if (data.baudrate) {
+            baudrateInput.value = data.baudrate;
+        }
+
+        if (data.connected) {
+            status.className = "badge bg-success";
+            status.innerText = "Connected";
+        } else {
+            status.className = "badge bg-secondary";
+            status.innerText = "Disconnected";
+        }
+
+        if (data.available_ports && data.available_ports.length > 0) {
+            ports.innerText = "사용 가능 포트: " + data.available_ports.join(", ");
+        } else {
+            ports.innerText = "사용 가능 포트: 없음";
+        }
+    });
+
+    // 감시 타겟 설정
+    function setTarget() {
+        const input = document.getElementById("targetInput");
+        const display = document.getElementById("currentTarget");
+        const target = input.value.trim().toLowerCase();
+
+        if (!target) {
+            alert("감시할 객체명을 입력하세요!");
+            return;
+        }
+
+        socket.emit('set_detection_target', { target: target });
+
+        display.innerText = "현재 감시 중: " + target;
+        display.classList.replace("text-primary", "text-danger");
+
+        input.value = "";
+        console.log("Target updated to:", target);
+    }
+
+    // COM 연결
+    function connectSerial() {
+        const port = document.getElementById("serialPortInput").value.trim();
+        const baudrate = Number(document.getElementById("serialBaudrateInput").value || 9600);
+
+        if (!port) {
+            alert("COM 포트를 입력하세요. 예: COM3");
+            return;
+        }
+
+        socket.emit('serial_connect', { port: port, baudrate: baudrate });
+    }
+
+    // COM 연결 해제
+    function disconnectSerial() {
+        socket.emit('serial_disconnect');
+    }
+
+    // COM 메시지 전송
+    function sendSerial() {
+        const input = document.getElementById("serialMessageInput");
+        const message = input.value.trim();
+
+        if (!message) {
+            alert("전송할 메시지를 입력하세요.");
+            return;
+        }
+
+        socket.emit('serial_send', { message: message });
+        input.value = "";
+    }
+
+    // 엔터키 입력 시 설정
+    document.getElementById("targetInput").addEventListener("keypress", function(e) {
+        if (e.key === "Enter") setTarget();
+    });
+
+    // 로그 비우기
+    function clearLogs() {
+        const alertLog = document.getElementById("alertLog");
+        alertLog.innerHTML = '<div class="text-center text-muted mt-5 small" id="emptyMsg">탐지 기록이 없습니다.</div>';
+    }
+
+    // 연결 상태 표시
+    socket.on('connect', () => {
+        document.getElementById("status").className = "badge bg-success";
+        document.getElementById("status").innerText = "Connected";
+    });
+
+    socket.on('disconnect', () => {
+        document.getElementById("status").className = "badge bg-secondary";
+        document.getElementById("status").innerText = "Disconnected";
+    });
+</script>
+
+<style>
+    /* 로그 영역 스크롤바 꾸미기 */
+    #alertLog::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    #alertLog::-webkit-scrollbar-thumb {
+        background: #ccc;
+        border-radius: 10px;
+    }
+
+    .alert-item {
+        transition: all 0.3s ease;
+    }
+</style>
+{% endblock %}

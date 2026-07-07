@@ -1,0 +1,89 @@
+<!--
+JavaScript로 CSS를 자유자재로 다루기
+-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <title>스타일 조작 연습</title>
+</head>
+<body>
+ <button id="toggleButton">토글 버튼</button>
+
+<script>
+ const toggleButton = document.getElementById('toggleButton');
+ let isActive = false;
+
+ toggleButton.addEventListener('click', function() {
+ if (isActive) {
+ // 원래 상태로 복원
+ toggleButton.style.backgroundColor = '';
+ toggleButton.style.color = '';
+ toggleButton.style.transform = '';
+ } else {
+ // 활성화 상태로 변경
+ toggleButton.style.backgroundColor = 'purple';
+ toggleButton.style.color = 'white';
+ toggleButton.style.transform = 'scale(1.1)';
+ }
+ isActive = !isActive;
+ });
+</script>
+
+
+ </script>
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <title>스타일 조작 연습</title>
+</head>
+<body>
+ <div id="colorBox" style="width: 200px; height: 200px; border: 2px solid black; margin: 20px;">
+ 클릭해보세요!
+</div>
+<button id="randomButton">랜덤 색상 변경</button>
+
+<script>
+ const colorBox = document.getElementById('colorBox');
+ const randomButton = document.getElementById('randomButton');
+
+ // 랜덤 색상 생성 함수
+ function getRandomColor() {
+ const letters = '0123456789ABCDEF';
+ let color = '#';
+ for (let i = 0; i < 6; i++) {
+ color += letters[Math.floor(Math.random() * 16)];
+ }
+ return color;
+ }
+
+ randomButton.addEventListener('click', function() {
+ const randomColor = getRandomColor();
+
+ colorBox.style.backgroundColor = randomColor;
+ colorBox.style.color = 'white';
+ colorBox.style.textAlign = 'center';
+ colorBox.style.lineHeight = '200px';
+ colorBox.style.fontSize = '18px';
+ colorBox.style.fontWeight = 'bold';
+ colorBox.textContent = randomColor;
+ });
+</script>
+
+</body>
+</html>
+
+
+<!--
+element.style.속성명 = '값' 형태로 스타일 변경
+CSS 속성명을 카멜케이스로 변환 (background-color → backgroundColor)
+인라인 스타일로 적용되어 높은 우선순위를 가짐
+빈 문자열 할당으로 스타일 제거 가능
+-->

@@ -1,0 +1,6 @@
+ljj|이재정|0000|user|False
+kkk|김동동|0000|manager|False
+hhh|ddd|0000|manager|False
+ggg|ssss|0000|manager|False
+kkw|김기원|0000|admin|False
+aaa|ggg|0000|admin|True

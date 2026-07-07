@@ -1,0 +1,95 @@
+<!--Flex Container (부모 요소)
+- display: flex를 적용받은 요소
+- 마치 상자의 틀 역할
+- 내부 요소들의 배치 방식을 결정
+
+2. Flex Items (자식 요소)
+- Flex Container의 직접적인 자식 요소들
+- 상자 안의 내용물들
+- Container의 규칙에 따라 자동으로 배치됨
+
+Flex Container: 택배 상자 자체
+Flex Items: 상자 안에 들어갈 물건들
+Main Axis: 물건들이 나열되는 주된 방향 (가로 또는 세로)
+Cross Axis: 주축에 수직인 방향 -->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Flexbox 기초</title>
+ <style>
+ .full-navbar {
+ display: flex;
+ justify-content: space-between; /* 요소들을 양 끝과 가운데로 분산 */
+ align-items: center; /* 세로 중앙 정렬 */
+ background-color: #333;
+ padding: 1rem 2rem;
+ color: white;
+}
+
+.logo {
+ font-size: 1.5rem;
+ font-weight: bold;
+ color: #4CAF50;
+}
+
+.nav-menu {
+ display: flex; /* 메뉴 내부도 Flexbox로 */
+ gap: 1rem; /* 항목 간 간격 */
+}
+
+.nav-item {
+ color: white;
+ text-decoration: none;
+ padding: 0.5rem 1rem;
+ border-radius: 4px;
+ transition: background-color 0.3s;
+}
+
+.nav-item:hover {
+ background-color: #555;
+}
+
+.login-btn {
+ background-color: #4CAF50;
+ color: white;
+ padding: 0.5rem 1rem;
+ text-decoration: none;
+ border-radius: 4px;
+ border: 2px solid #4CAF50;
+ transition: all 0.3s;
+}
+
+.login-btn:hover {
+ background-color: transparent;
+ color: #4CAF50;
+}
+
+ </style>
+</head>
+<body>
+ <nav class="full-navbar">
+ <div class="logo">MyWebsite</div>
+ <div class="nav-menu">
+ <a href="#" class="nav-item">홈</a>
+ <a href="#" class="nav-item">소개</a>
+ <a href="#" class="nav-item">서비스</a>
+ <a href="#" class="nav-item">연락처</a>
+ </div>
+ <div class="auth-buttons">
+ <a href="#" class="login-btn">로그인</a>
+ </div>
+</nav>
+
+</body>
+</html>
+
+<!--
+Flexbox는 1차원 레이아웃 - 한 방향으로만 요소를 배치
+Flex Container (display: flex)와 Flex Items의 관계
+flex-direction으로 배치 방향 결정 (row/column)
+justify-content로 주축 방향 정렬
+align-items로 교차축 방향 정렬
+-->

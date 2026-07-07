@@ -1,0 +1,138 @@
+<!--
+인풋 그룹(Input Group)
+입력 필드와 함께 텍스트, 아이콘, 버튼 등을 하나의 그룹으로 묶어서
+더 직관적이고 기능적인 입력 인터페이스를 만드는 부트스트랩 컴포넌트
+
+애드온(Addon)은 인풋 그룹의 핵심 요소로, 입력 필드의 앞이나 뒤에 추가되는 보조 요소
+텍스트 애드온: 단위나 접두어 표시 (예: @, $, 원)
+아이콘 애드온: 시각적 힌트 제공 (예: 검색 아이콘, 사용자 아이콘)
+버튼 애드온: 즉시 실행 가능한 액션 (예: 검색 버튼, 복사 버튼)
+
+-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인풋 그룹 실습</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h3>기본 인풋 그룹</h3>
+
+        <!-- 가격 입력 -->
+        <div class="input-group mb-3">
+            <input type="number" class="form-control" placeholder="가격을 입력하세요">
+            <span class="input-group-text">원</span>
+        </div>
+
+        <!-- 이메일 입력 -->
+        <div class="input-group mb-3">
+            <span class="input-group-text">@</span>
+            <input type="text" class="form-control" placeholder="사용자명">
+        </div>
+
+        <!-- URL 입력 -->
+        <div class="input-group mb-3">
+            <span class="input-group-text">https://</span>
+            <input type="text" class="form-control" placeholder="도메인 입력">
+        </div>
+    </div>
+
+<div class="container mt-5">
+    <h3>고급 인풋 그룹</h3>
+
+    <!-- 검색창 with 아이콘 -->
+    <div class="input-group mb-3">
+        <span class="input-group-text">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg>
+        </span>
+        <input type="text" class="form-control" placeholder="검색어를 입력하세요">
+        <button class="btn btn-primary" type="button">검색</button>
+    </div>
+
+    <!-- 파일 업로드 -->
+    <div class="input-group mb-3">
+        <input type="file" class="form-control" id="fileInput">
+        <label class="input-group-text" for="fileInput">파일 선택</label>
+    </div>
+
+    <!-- 드롭다운과 함께 -->
+    <div class="input-group mb-3">
+        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+            카테고리
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">전자제품</a></li>
+            <li><a class="dropdown-item" href="#">의류</a></li>
+            <li><a class="dropdown-item" href="#">도서</a></li>
+        </ul>
+        <input type="text" class="form-control" placeholder="상품명 입력">
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<div class="container mt-5">
+    <h3>실무형 인풋 그룹</h3>
+
+    <!-- 전화번호 입력 -->
+    <div class="input-group mb-3">
+        <span class="input-group-text">📞</span>
+        <select class="form-select" style="max-width: 100px;">
+            <option>010</option>
+            <option>011</option>
+            <option>016</option>
+        </select>
+        <span class="input-group-text">-</span>
+        <input type="text" class="form-control" placeholder="1234" maxlength="4">
+        <span class="input-group-text">-</span>
+        <input type="text" class="form-control" placeholder="5678" maxlength="4">
+    </div>
+
+    <!-- 쿠폰 코드 입력 -->
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="쿠폰 코드 입력" id="couponCode">
+        <button class="btn btn-success" type="button" onclick="applyCoupon()">적용</button>
+        <button class="btn btn-outline-secondary" type="button" onclick="clearCoupon()">초기화</button>
+    </div>
+
+    <!-- 크기별 입력 -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">Small</span>
+                <input type="text" class="form-control">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="input-group input-group-lg mb-3">
+                <span class="input-group-text">Large</span>
+                <input type="text" class="form-control">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function applyCoupon() {
+    const code = document.getElementById('couponCode').value;
+    if (code.trim()) {
+        alert(`쿠폰 코드 "${code}"가 적용되었습니다!`);
+    } else {
+        alert('쿠폰 코드를 입력해주세요.');
+    }
+}
+
+function clearCoupon() {
+    document.getElementById('couponCode').value = '';
+}
+</script>
+
+</body>
+</html>

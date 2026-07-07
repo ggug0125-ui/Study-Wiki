@@ -1,0 +1,4 @@
+kkw|0000|김기원|admin|True
+lhj|0000|임효정|admin|True
+ghk|0000|이동동|user|True
+aaa|0000|박동동|user|False

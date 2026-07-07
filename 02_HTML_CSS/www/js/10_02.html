@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>회원가입 검증 예제</title>
+<body>
+<script>
+// 함수 정의 - name은 매개변수
+function greetUser(name) {
+ console.log("안녕하세요, " + name + "님!");
+}
+
+// 함수 호출 - "김개발"은 인수
+greetUser("김개발"); // 출력: 안녕하세요, 김개발님!
+greetUser("박멘토"); // 출력: 안녕하세요, 박멘토님!
+
+// 두 개의 매개변수를 가진 함수
+function introduce(name, age) {
+ console.log("제 이름은 " + name + "이고, 나이는 " + age + "살입니다.");
+}
+
+// 함수 호출 시 순서대로 인수 전달
+introduce("김개발", 20); // 출력: 제 이름은 김개발이고, 나이는 20살입니다.
+introduce("이디자인", 22); // 출력: 제 이름은 이디자인이고, 나이는 22살입니다.
+
+// 기본값이 있는 함수
+function greetWithTime(name, time = "좋은 하루") {
+ console.log("안녕하세요, " + name + "님! " + time + " 되세요!");
+}
+
+greetWithTime("김개발"); // 출력: 안녕하세요, 김개발님! 좋은 하루 되세요!
+greetWithTime("박멘토", "좋은 저녁"); // 출력: 안녕하세요, 박멘토님! 좋은 저녁 되세요!
+
+// 여러 연산을 하는 함수들
+function subtract(num1, num2) {
+ return num1 - num2;
+}
+
+function multiply(num1, num2) {
+ return num1 * num2;
+}
+
+function divide(num1, num2) {
+ if (num2 !== 0) {
+ return num1 / num2;
+ } else {
+ return "0으로 나눌 수 없습니다!";
+ }
+}
+
+// 테스트해보기
+console.log("빼기:", subtract(10, 4)); // 출력: 빼기: 6
+console.log("곱하기:", multiply(3, 7)); // 출력: 곱하기: 21
+console.log("나누기:", divide(15, 3)); // 출력: 나누기: 5
+console.log("나누기:", divide(10, 0)); // 출력: 나누기: 0으로 나눌 수 없습니다!
+
+ // 사용자 프로필을 출력하는 함수
+function showProfile(name, age, hobby = "독서") {
+ console.log("=== 사용자 프로필 ===");
+ console.log("이름: " + name);
+ console.log("나이: " + age + "살");
+ console.log("취미: " + hobby);
+ console.log("==================");
+}
+
+// 다양한 방식으로 호출
+showProfile("김개발", 20); // 취미는 기본값 "독서"
+showProfile("박멘토", 30, "코딩");
+showProfile("이디자인", 25, "그림 그리기");
+
+
+</script>
+
+
+
+
+</body>
+</html>
+
+<!--
+매개변수: 함수 정의 시 괄호 안의 변수명 (빈 그릇)
+인수: 함수 호출 시 실제 전달하는 값 (실제 재료)
+순서 중요: 인수는 매개변수 순서대로 전달됨
+기본값: 인수가 없을 때 사용할 값을 미리 설정 가능
+-->

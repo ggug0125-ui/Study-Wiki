@@ -1,0 +1,344 @@
+<!--
+Container Queries는 컨테이너의 크기에 따라 스타일을 변경하는 CSS 기법
+
+미디어 쿼리 vs 컨테이너 쿼리
+미디어 쿼리의 한계:
+- 전체 화면 크기만 감지
+- 같은 화면에서도 컨테이너마다 다른 레이아웃이 필요한 경우 대응 어려움
+- 컴포넌트 재사용성 떨어짐
+
+컨테이너 쿼리의 장점:
+- 개별 컨테이너 크기에 반응
+- 진정한 컴포넌트 기반 반응형 디자인
+- 더 세밀하고 유연한 제어 가능
+
+Container Queries 작동 원리
+컨테이너 정의: container-type 속성으로 컨테이너 지정
+쿼리 작성: @container 규칙으로 조건부 스타일 적용
+동적 반응: 컨테이너 크기 변화 시 자동으로 스타일 변경
+
+-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Container Queries 기초</title>
+ <style>
+ /* 컨테이너 정의 */
+ .card-container {
+ container-type: inline-size;
+ container-name: card;
+ border: 2px solid #ddd;
+ padding: 20px;
+ margin: 20px;
+ resize: horizontal;
+ overflow: auto;
+ min-width: 200px;
+ max-width: 100%;
+ }
+
+ .card {
+ background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+ color: white;
+ padding: 20px;
+ border-radius: 10px;
+ text-align: center;
+ }
+
+ .card h3 {
+ margin: 0 0 10px 0;
+ font-size: 1.2em;
+ }
+
+ .card p {
+ margin: 0;
+ font-size: 0.9em;
+ opacity: 0.8;
+ }
+
+ /* 컨테이너 쿼리 */
+ @container card (min-width: 300px) {
+ .card {
+ display: flex;
+ align-items: center;
+ text-align: left;
+ padding: 30px;
+ }
+
+ .card-content {
+ margin-left: 20px;
+ }
+
+ .card h3 {
+ font-size: 1.5em;
+ }
+
+ .card p {
+ font-size: 1em;
+ }
+ }
+
+ @container card (min-width: 500px) {
+ .card {
+ background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+ padding: 40px;
+ }
+
+ .card h3 {
+ font-size: 2em;
+ }
+
+ .card::before {
+ content: "";
+ font-size: 3em;
+ margin-right: 20px;
+ }
+ }
+ </style>
+</head>
+<body>
+ <h1>Container Queries 데모</h1>
+ <p>아래 박스의 오른쪽 모서리를 드래그해서 크기를 변경해보세요!</p>
+
+ <div class="card-container">
+ <div class="card">
+ <div class="card-content">
+ <h3>반응형 카드</h3>
+ <p>컨테이너 크기에 따라 레이아웃이 변경됩니다</p>
+ </div>
+ </div>
+ </div>
+
+ <div class="card-container" style="width: 400px;">
+ <div class="card">
+ <div class="card-content">
+ <h3>중간 크기 카드</h3>
+ <p>이 카드는 400px로 고정되어 있습니다</p>
+ </div>
+ </div>
+ </div>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>실무형 Container Queries</title>
+ <style>
+ body {
+ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ margin: 0;
+ padding: 20px;
+ background-color: #f5f5f5;
+ }
+
+ .layout {
+ display: grid;
+ grid-template-columns: 1fr;
+ gap: 20px;
+ max-width: 1200px;
+ margin: 0 auto;
+ }
+
+ .sidebar {
+ background: #2c3e50;
+ color: white;
+ padding: 20px;
+ border-radius: 10px;
+ }
+
+ .main-content {
+ container-type: inline-size;
+ container-name: main;
+ }
+
+ .product-grid {
+ display: grid;
+ gap: 20px;
+ grid-template-columns: 1fr;
+ }
+
+ .product-card {
+ background: white;
+ border-radius: 10px;
+ overflow: hidden;
+ box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+ transition: transform 0.3s ease;
+ }
+
+ .product-card:hover {
+ transform: translateY(-5px);
+ }
+
+ .product-image {
+ width: 100%;
+ height: 200px;
+ background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ font-size: 3em;
+ }
+
+ .product-info {
+ padding: 20px;
+ }
+
+ .product-title {
+ font-size: 1.2em;
+ font-weight: bold;
+ margin: 0 0 10px 0;
+ color: #2c3e50;
+ }
+
+ .product-price {
+ color: #e74c3c;
+ font-size: 1.1em;
+ font-weight: bold;
+ }
+
+ .product-description {
+ color: #7f8c8d;
+ margin: 10px 0;
+ display: none;
+ }
+
+ /* 컨테이너 쿼리로 그리드 반응형 */
+ @container main (min-width: 400px) {
+ .product-grid {
+ grid-template-columns: repeat(2, 1fr);
+ }
+ }
+
+ @container main (min-width: 600px) {
+ .product-grid {
+ grid-template-columns: repeat(3, 1fr);
+ }
+
+ .product-description {
+ display: block;
+ }
+ }
+
+ @container main (min-width: 800px) {
+ .product-grid {
+ grid-template-columns: repeat(4, 1fr);
+ }
+
+ .product-image {
+ height: 150px;
+ }
+ }
+
+ /* 미디어 쿼리로 전체 레이아웃 */
+ @media (min-width: 768px) {
+ .layout {
+ grid-template-columns: 250px 1fr;
+ }
+ }
+
+ .toggle-sidebar {
+ background: #3498db;
+ color: white;
+ border: none;
+ padding: 10px 20px;
+ border-radius: 5px;
+ cursor: pointer;
+ margin-bottom: 20px;
+ }
+
+ .layout.no-sidebar {
+ grid-template-columns: 1fr;
+ }
+
+ .layout.no-sidebar .sidebar {
+ display: none;
+ }
+ </style>
+</head>
+<body>
+ <button class="toggle-sidebar" onclick="toggleSidebar()">사이드바 토글</button>
+
+ <div class="layout" id="layout">
+ <div class="sidebar">
+ <h3>카테고리</h3>
+ <ul>
+ <li>전자제품</li>
+ <li>의류</li>
+ <li>도서</li>
+ <li>스포츠</li>
+ </ul>
+ </div>
+
+ <div class="main-content">
+ <div class="product-grid">
+ <div class="product-card">
+ <div class="product-image"></div>
+ <div class="product-info">
+ <div class="product-title">스마트폰</div>
+ <div class="product-price">299,000원</div>
+ <div class="product-description">최신 기술이 적용된 스마트폰입니다.</div>
+ </div>
+ </div>
+
+ <div class="product-card">
+ <div class="product-image"></div>
+ <div class="product-info">
+ <div class="product-title">노트북</div>
+ <div class="product-price">899,000원</div>
+ <div class="product-description">고성능 업무용 노트북입니다.</div>
+ </div>
+ </div>
+
+ <div class="product-card">
+ <div class="product-image"></div>
+ <div class="product-info">
+ <div class="product-title">헤드폰</div>
+ <div class="product-price">159,000원</div>
+ <div class="product-description">노이즈 캔슬링 기능이 있는 헤드폰입니다.</div>
+ </div>
+ </div>
+
+ <div class="product-card">
+ <div class="product-image">⌚</div>
+ <div class="product-info">
+ <div class="product-title">스마트워치</div>
+ <div class="product-price">249,000원</div>
+ <div class="product-description">건강 관리 기능이 포함된 스마트워치입니다.</div>
+ </div>
+ </div>
+
+ <div class="product-card">
+ <div class="product-image"></div>
+ <div class="product-info">
+ <div class="product-title">카메라</div>
+ <div class="product-price">1,299,000원</div>
+ <div class="product-description">전문가용 미러리스 카메라입니다.</div>
+ </div>
+ </div>
+
+ <div class="product-card">
+ <div class="product-image"></div>
+ <div class="product-info">
+ <div class="product-title">모니터</div>
+ <div class="product-price">399,000원</div>
+ <div class="product-description">4K 해상도를 지원하는 모니터입니다.</div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <script>
+ function toggleSidebar() {
+ const layout = document.getElementById('layout');
+ layout.classList.toggle('no-sidebar');
+ }
+ </script>
+</body>
+</html>

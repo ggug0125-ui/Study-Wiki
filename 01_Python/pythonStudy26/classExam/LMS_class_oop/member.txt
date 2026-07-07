@@ -1,0 +1,4 @@
+lhj|5678|임효정|manager|True
+ljj|0000|이재정|user|True
+kke|000|임동동|user|True
+kkw|0000|김기원|admin|True

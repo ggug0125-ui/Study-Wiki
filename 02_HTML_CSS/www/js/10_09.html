@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>구조 분해 할당,데이터 추출</title>
+</head>
+<body>
+<script>
+
+
+// 기본 사용법
+const colors = ['빨강', '파랑', '노랑'];
+const [red, blue, yellow] = colors;
+
+console.log(red); // '빨강'
+console.log(blue); // '파랑'
+console.log(yellow); // '노랑'
+
+// 일부만 가져오기
+const numbers = [1, 2, 3, 4, 5];
+const [first, second] = numbers;
+console.log(first); // 1
+console.log(second); // 2
+
+// 요소 건너뛰기
+const fruits = ['사과', '바나나', '오렌지', '포도'];
+const [apple, , orange] = fruits; // 바나나는 건너뛰기
+console.log(apple); // '사과'
+console.log(orange); // '오렌지'
+
+// 기본값 설정
+const data = ['김개발'];
+const [name, age = 25] = data; // age에 기본값 25 설정
+console.log(name); // '김개발'
+console.log(age); // 25
+
+// 나머지 요소 가져오기
+const scores = [95, 87, 92, 78, 84];
+const [highest, ...others] = scores;
+console.log(highest); // 95
+console.log(others); // [87, 92, 78, 84]
+
+// 함수에서 여러 값 반환받기
+function getUserInfo() {
+ return ['김개발', 'kim@example.com', 25];
+}
+
+const [userName, userEmail, userAge] = getUserInfo();
+console.log(`이름: ${userName}, 이메일: ${userEmail}, 나이: ${userAge}`);
+
+// 변수 값 교환하기 (swap)
+let a = 10;
+let b = 20;
+[a, b] = [b, a]; // 한 줄로 값 교환!
+console.log(a); // 20
+console.log(b); // 10
+
+// 문자열을 배열로 분해
+const [year, month, day] = '2024-03-15'.split('-');
+console.log(`년도: ${year}, 월: ${month}, 일: ${day}`);
+
+
+</script>
+</body>
+</html>
+
+<!--
+const [변수1, 변수2] = 배열 형태로 사용
+- 요소 건너뛰기: const [a, , c] = 배열
+- 기본값 설정: const [a, b = 기본값] = 배열
+- 나머지 요소: const [first, ...rest] = 배열
+-->

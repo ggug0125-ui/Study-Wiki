@@ -1,0 +1,214 @@
+<!--article 태그는 독립적으로 배포하거나 재사용할 수 있는 완전한 콘텐츠-->
+
+<!--
+section: "책의 챕터"처럼 전체 맥락에서 의미를 가지는 구역
+article: "잡지의 기사"처럼 그 자체로 완전한 독립적인 콘텐츠
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   <!-- section 예시: 전체 맥락이 필요함 -->
+<section>
+ <h2>1장. HTML 기초</h2>
+ <p>HTML은 웹페이지의 구조를 만드는...</p>
+</section>
+
+<!-- article 예시: 독립적으로 의미가 완전함 -->
+<article>
+ <h2>웹 개발자가 되는 5가지 방법</h2>
+ <p>웹 개발자가 되고 싶다면...</p>
+ <footer>작성자: 김개발</footer>
+</article>
+
+
+
+  <!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>개발 블로그</title>
+ <style>
+ article {
+ max-width: 800px;
+ margin: 20px auto;
+ padding: 20px;
+ border: 1px solid #ddd;
+ border-radius: 8px;
+ background-color: #f9f9f9;
+ }
+
+ article header {
+ border-bottom: 2px solid #333;
+ padding-bottom: 10px;
+ margin-bottom: 20px;
+ }
+
+ article footer {
+ border-top: 1px solid #ccc;
+ padding-top: 10px;
+ margin-top: 20px;
+ font-size: 0.9em;
+ color: #666;
+ }
+ </style>
+</head>
+<body>
+ <main>
+ <article>
+ <header>
+ <h1>HTML5 시맨틱 태그 완전 정복</h1>
+ <p><time datetime="2024-01-15">2024년 1월 15일</time></p>
+ </header>
+
+ <p>HTML5에서 도입된 시맨틱 태그들은 웹페이지의 구조를 더욱 명확하게 표현할 수 있게 해줍니다.</p>
+
+ <h2>주요 시맨틱 태그들</h2>
+ <ul>
+ <li>header: 페이지나 섹션의 머리말</li>
+ <li>nav: 네비게이션 링크</li>
+ <li>main: 주요 콘텐츠</li>
+ <li>article: 독립적인 콘텐츠</li>
+ <li>section: 주제별 구역</li>
+ <li>footer: 바닥글</li>
+ </ul>
+
+ <footer>
+ <p>작성자: 김개발 | 카테고리: HTML</p>
+ </footer>
+ </article>
+ </main>
+</body>
+</html>
+
+
+
+  <!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>학과 공지사항</title>
+ <style>
+ body {
+ font-family: Arial, sans-serif;
+ max-width: 1000px;
+ margin: 0 auto;
+ padding: 20px;
+ }
+
+ article {
+ margin-bottom: 30px;
+ padding: 20px;
+ border-left: 4px solid #007bff;
+ background-color: #f8f9fa;
+ box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+ }
+
+ article h2 {
+ color: #007bff;
+ margin-top: 0;
+ }
+
+ .meta-info {
+ color: #6c757d;
+ font-size: 0.9em;
+ margin-bottom: 15px;
+ }
+
+ .priority-high {
+ border-left-color: #dc3545;
+ }
+
+ .priority-high h2 {
+ color: #dc3545;
+ }
+ </style>
+</head>
+<body>
+ <header>
+ <h1>정보통신공학과 공지사항</h1>
+ </header>
+
+ <main>
+ <article class="priority-high">
+ <h2>[긴급] 기말고사 일정 변경 안내</h2>
+ <div class="meta-info">
+ <time datetime="2024-01-15">2024.01.15</time> |
+ 작성자: 학과사무실 | 조회수: 245
+ </div>
+ <p>기말고사 일정이 다음과 같이 변경되었습니다.</p>
+ <ul>
+ <li>기존: 1월 20일 ~ 1월 25일</li>
+ <li>변경: 1월 22일 ~ 1월 27일</li>
+ </ul>
+ <p>자세한 시간표는 학과 게시판을 확인해주세요.</p>
+ </article>
+
+ <article>
+ <h2>웹 개발 특강 신청 안내</h2>
+ <div class="meta-info">
+ <time datetime="2024-01-12">2024.01.12</time> |
+ 작성자: 박멘토 교수 | 조회수: 189
+ </div>
+ <p>현업 개발자와 함께하는 웹 개발 특강을 개최합니다.</p>
+ <p><strong>일시:</strong> 2024년 1월 25일 오후 2시<br>
+ <strong>장소:</strong> 컴퓨터실습실 A<br>
+ <strong>신청:</strong> 학과 사무실 방문 또는 이메일</p>
+ </article>
+
+ <article>
+ <h2>학과 홈페이지 리뉴얼 완료</h2>
+ <div class="meta-info">
+ <time datetime="2024-01-10">2024.01.10</time> |
+ 작성자: 웹개발팀 | 조회수: 156
+ </div>
+ <p>학과 홈페이지가 새롭게 단장되었습니다. 모바일에서도 편리하게 이용하실 수 있습니다.</p>
+ <p>이용 중 불편한 점이 있으시면 언제든 연락주세요.</p>
+ </article>
+ </main>
+</body>
+</html>
+
+
+
+
+  <article>
+ <header>
+ <h1>웹 개발자 로드맵 2024</h1>
+ <p>작성일: <time datetime="2024-01-15">2024년 1월 15일</time></p>
+ </header>
+
+ <section>
+ <h2>프론트엔드 개발</h2>
+ <p>사용자가 직접 보고 상호작용하는 부분을 개발합니다.</p>
+ <h3>필수 기술</h3>
+ <ul>
+ <li>HTML/CSS</li>
+ <li>JavaScript</li>
+ <li>React 또는 Vue.js</li>
+ </ul>
+ </section>
+
+ <section>
+ <h2>백엔드 개발</h2>
+ <p>서버와 데이터베이스를 다루는 부분을 개발합니다.</p>
+ <h3>필수 기술</h3>
+ <ul>
+ <li>Java 또는 Python</li>
+ <li>Spring 또는 Django</li>
+ <li>데이터베이스 (MySQL, PostgreSQL)</li>
+ </ul>
+ </section>
+
+ <footer>
+ <p>이 글이 도움이 되셨나요? 댓글로 의견을 남겨주세요!</p>
+ </footer>
+</article>
+
+  <!--
+article 태그: 독립적으로 배포/재사용 가능한 완전한 콘텐츠
+구분 기준: "다른 곳에 복사해도 의미가 통하는가?"
+주요 용도: 블로그 포스트, 뉴스 기사, 제품 리뷰, 댓글 등
+구조: header, 본문, footer를 포함할 수 있음-->

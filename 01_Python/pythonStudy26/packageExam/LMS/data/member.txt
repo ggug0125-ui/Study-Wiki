@@ -1,0 +1,14 @@
+kkw|0000|김기원|admin|True
+
+lhj|0000|임효정|manager|True
+
+ljj|0000|이재정|user|True
+
+aaa|0000|kkk|admin|False
+
+bbb|0000|lll|user|True
+
+ccc|0000|jjj|user|True
+
+ggg|0000|jjjj|user|True
+

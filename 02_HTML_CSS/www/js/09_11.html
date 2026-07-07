@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>회원가입 검증 예제</title>
+  <style>
+      {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .success { color: green; }
+        .error { color: red; }
+
+
+  </style>
+</head>
+<body>
+
+<h1> 회원가입 검증 결과 </h1>
+<div id="output"></div>
+<script>
+ function 회원가입검증(userData) {
+ try {
+ // 이름 검증
+ if (!userData.name || userData.name.trim() === "") {
+ throw new Error("이름을 입력해주세요!");
+ }
+
+ // 이메일 검증
+ if (!userData.email || !userData.email.includes("@")) {
+ throw new Error("올바른 이메일 주소를 입력해주세요!");
+ }
+
+ // 나이 검증
+ if (userData.age < 0 || userData.age > 150) {
+ throw new RangeError("올바른 나이를 입력해주세요!");
+ }
+
+ console.log(" 회원가입이 완료되었습니다!");
+ return true;
+
+ } catch (error) {
+ if (error instanceof RangeError) {
+ console.log(" 범위 오류:", error.message);
+ } else {
+ console.log(" 입력 오류:", error.message);
+ }
+ return false;
+ }
+}
+
+// 테스트 해보기
+let 사용자1 = { name: "김개발", email: "kim@example.com", age: 20 };
+let 사용자2 = { name: "", email: "invalid-email", age: -5 };
+
+회원가입검증(사용자1); // 성공
+회원가입검증(사용자2); // 실패
+
+
+
+</script>
+</body>
+</html>

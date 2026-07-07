@@ -1,0 +1,65 @@
+<!--
+rem (root em): 루트 요소(html)의 글자 크기를 기준으로 한 상대 단위
+- 1rem = html 요소의 font-size (보통 16px)
+- 2rem = 32px, 0.5rem = 8px
+
+em: 부모 요소의 글자 크기를 기준으로 한 상대 단위
+- 부모가 16px이면 1em = 16px
+- 부모가 20px이면 1em = 20px
+
+
+-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>반응형 타이포그래피</title>
+ <style>
+ /* 카드 컴포넌트 스타일 */
+.card {
+ border: 1px solid #ddd;
+ border-radius: 8px;
+ padding: 1.5em; /* 부모 font-size에 따라 조절 */
+ margin-bottom: 2rem;
+ font-size: 1rem; /* 기본 크기 */
+}
+
+.card-large {
+ font-size: 1.2rem; /* 카드 전체가 20% 커짐 */
+}
+
+.card-small {
+ font-size: 0.9rem; /* 카드 전체가 10% 작아짐 */
+}
+
+.card h3 {
+ font-size: 1.3em; /* 카드 크기에 비례 */
+ margin-bottom: 0.5em;
+}
+
+.card p {
+ font-size: 1em; /* 카드 크기와 동일 */
+ margin-bottom: 0.8em;
+}
+
+ </style>
+</head>
+<body>
+ <article>
+ <h1>웹 개발의 즐거움</h1>
+ <h2>반응형 디자인이란?</h2>
+ <p>반응형 디자인은 다양한 화면 크기에 맞춰 자동으로 레이아웃이 조절되는 웹 디자인 기법입니다.</p>
+
+ <h3>타이포그래피의 중요성</h3>
+ <p>좋은 타이포그래피는 사용자 경험을 크게 향상시킵니다. 읽기 쉬운 글자 크기와 적절한 줄 간격이 핵심입니다.</p>
+ </article>
+</body>
+</html>
+
+<!--
+반응형 타이포그래피의 핵심은 상대 단위 활용이다.
+rem은 일관된 크기 체계를, em은 유연한 상대 크기를 제공한다.
+미디어 쿼리와 함께 사용하면 모든 화면에서 최적의 가독성을 제공할 수 있다.
+-->

@@ -1,0 +1,114 @@
+<!--
+미디어 쿼리(Media Query)는 이런 변신의 핵심 도구
+"화면이 768px보다 작으면 이렇게, 1024px보다 크면 저렇게"
+
+/* 모바일 우선 접근법 */
+.container {
+ display: flex;
+ flex-direction: column;
+}
+
+/* 태블릿 이상 */
+@media (min-width: 768px) {
+ .container {
+ display: grid;
+ grid-template-columns: 1fr 2fr;
+ }
+}
+
+/* 데스크톱 이상 */
+@media (min-width: 1024px) {
+ .container {
+ grid-template-columns: 1fr 3fr 1fr;
+ }
+}
+-->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>반응형 카드 레이아웃</title>
+ <style>
+.dashboard {
+ padding: 20px;
+}
+
+/* 모바일: 단순한 세로 배치 */
+.stats-grid {
+ display: flex;
+ flex-direction: column;
+ gap: 15px;
+}
+
+.stat-card {
+ background: white;
+ padding: 20px;
+ border-radius: 8px;
+ box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+ text-align: center;
+}
+
+.featured {
+ background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+ color: white;
+}
+
+/* 태블릿: 2x2 그리드 */
+@media (min-width: 768px) {
+ .stats-grid {
+ display: grid;
+ grid-template-columns: repeat(2, 1fr);
+ grid-template-rows: repeat(2, 1fr);
+ }
+
+ .featured {
+ grid-column: span 2;
+ }
+}
+
+/* 데스크톱: 4열 그리드 */
+@media (min-width: 1024px) {
+ .stats-grid {
+ grid-template-columns: repeat(4, 1fr);
+ grid-template-rows: 1fr;
+ }
+
+ .featured {
+ grid-column: span 1;
+ }
+}
+
+ </style>
+</head>
+<body>
+ <div class="dashboard">
+ <div class="stats-grid">
+ <div class="stat-card">
+ <h3>총 방문자</h3>
+ <p class="stat-number">1,234</p>
+ </div>
+ <div class="stat-card">
+ <h3>신규 가입</h3>
+ <p class="stat-number">56</p>
+ </div>
+ <div class="stat-card">
+ <h3>매출</h3>
+ <p class="stat-number">₩789,000</p>
+ </div>
+ <div class="stat-card featured">
+ <h3>이번 달 목표</h3>
+ <p class="stat-number">85%</p>
+ </div>
+ </div>
+</div>
+
+</body>
+</html>
+
+<!--
+미디어 쿼리로 화면 크기별 다른 스타일 적용
+- Mobile First 접근법으로 작은 화면부터 설계
+- Flexbox(1차원)와 Grid(2차원)를 상황에 맞게 조합
+- 반응형 중단점: 768px(태블릿), 1024px(데스크톱)
+-->

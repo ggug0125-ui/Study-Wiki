@@ -1,0 +1,66 @@
+<!--
+flex : 피자를 어떻게 나눠 먹을 지 결정~!! 몇조각 가져 갈꺼야????
+
+
+flex-grow (성장 비율)
+
+여유 공간을 어떤 비율로 나눠 가질지 결정
+숫자가 클수록 더 많은 공간을 차지
+기본값: 0 (크기 변화 없음)
+
+flex-shrink (축소 비율)
+
+공간이 부족할 때 어떤 비율로 줄어들지 결정
+기본값: 1 (동일하게 축소)
+flex-basis (기본 크기)
+크기 조절 전 기본 크기 설정
+기본값: auto (내용 크기에 따라)
+-->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Flex 속성 실습</title>
+ <style>
+ .layout {
+ display: flex;
+ gap: 20px;
+ min-height: 500px;
+}
+
+.sidebar {
+ flex: 0 0 200px; /* 고정 크기 200px */
+ background: #3498db;
+ color: white;
+ padding: 20px;
+}
+
+.content {
+ flex: 1; /* 남은 공간 모두 차지 */
+ background: #ecf0f1;
+ padding: 20px;
+}
+
+.ads {
+ flex: 0 0 150px; /* 고정 크기 150px */
+ background: #e67e22;
+ color: white;
+ padding: 20px;
+}
+
+
+ </style>
+</head>
+<body>
+ <div class="layout">
+ <aside class="sidebar">사이드바</aside>
+ <main class="content">
+ <h1>메인 콘텐츠</h1>
+ <p>여기에 주요 내용이 들어갑니다. flex를 사용하면 사이드바는 고정 크기를 유지하고, 메인 콘텐츠는 나머지 공간을 모두 차지합니다.</p>
+ </main>
+ <aside class="ads">광고 영역</aside>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!--
+justify-content는 Flexbox의 주축 방향 정렬을 담당하는 핵심 속성
+Flexbox는 가로 방향(row)
+justify-content는 가로 배치를 조절
+
+justify-content의 주요 값들:
+
+flex-start (기본값): 시작점에 몰아서 배치 (왼쪽 정렬)
+flex-end: 끝점에 몰아서 배치 (오른쪽 정렬)
+center: 가운데로 모아서 배치 (가운데 정렬)
+space-between: 양 끝에 배치하고 나머지는 균등하게 분배
+space-around: 각 아이템 주변에 동일한 여백 배치
+space-evenly: 모든 간격을 동일하게 배치
+-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>justify-content 실습</title>
+ <style>
+ .container {
+ display: flex;
+ background-color: #f0f0f0;
+ padding: 20px;
+ margin: 10px 0;
+ border: 2px solid #ddd;
+ }
+
+ .item {
+ background-color: #4CAF50;
+ color: white;
+ padding: 15px 20px;
+ margin: 5px;
+ border-radius: 5px;
+ font-weight: bold;
+ }
+ </style>
+</head>
+<body>
+ <h2>justify-content 실습</h2>
+
+ <h3>1. flex-start (기본값)</h3>
+ <div class="container" style="justify-content: flex-start;">
+ <div class="item">아이템 1</div>
+ <div class="item">아이템 2</div>
+ <div class="item">아이템 3</div>
+ </div>
+<!-- 기존 코드 아래에 추가 -->
+<h3>2. flex-end</h3>
+<div class="container" style="justify-content: flex-end;">
+ <div class="item">아이템 1</div>
+ <div class="item">아이템 2</div>
+ <div class="item">아이템 3</div>
+</div>
+
+<h3>3. center</h3>
+<div class="container" style="justify-content: center;">
+ <div class="item">아이템 1</div>
+ <div class="item">아이템 2</div>
+ <div class="item">아이템 3</div>
+</div>
+
+<h3>4. space-between</h3>
+<div class="container" style="justify-content: space-between;">
+ <div class="item">아이템 1</div>
+ <div class="item">아이템 2</div>
+ <div class="item">아이템 3</div>
+</div>
+
+<h3>5. space-around</h3>
+<div class="container" style="justify-content: space-around;">
+ <div class="item">아이템 1</div>
+ <div class="item">아이템 2</div>
+ <div class="item">아이템 3</div>
+</div>
+
+<h3>6. space-evenly</h3>
+<div class="container" style="justify-content: space-evenly;">
+ <div class="item">아이템 1</div>
+ <div class="item">아이템 2</div>
+ <div class="item">아이템 3</div>
+</div>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>justify-content 실습</title>
+ <h3>실전 예제: 네비게이션 메뉴</h3>
+<style>
+ .navbar {
+ display: flex;
+ justify-content: space-between;
+ background-color: #333;
+ padding: 15px 30px;
+ align-items: center;
+ }
+
+ .logo {
+ color: white;
+ font-size: 24px;
+ font-weight: bold;
+ }
+
+ .nav-menu {
+ display: flex;
+ list-style: none;
+ margin: 0;
+ padding: 0;
+ }
+
+ .nav-menu li {
+ margin: 0 15px;
+ }
+
+ .nav-menu a {
+ color: white;
+ text-decoration: none;
+ padding: 10px 15px;
+ border-radius: 5px;
+ transition: background-color 0.3s;
+ }
+
+ .nav-menu a:hover {
+ background-color: #555;
+ }
+
+ .login-btn {
+ background-color: #4CAF50;
+ color: white;
+ padding: 10px 20px;
+ border: none;
+ border-radius: 5px;
+ cursor: pointer;
+ }
+</style>
+
+<nav class="navbar">
+ <div class="logo">MyWebsite</div>
+ <ul class="nav-menu">
+ <li><a href="#">홈</a></li>
+ <li><a href="#">소개</a></li>
+ <li><a href="#">서비스</a></li>
+ <li><a href="#">연락처</a></li>
+ </ul>
+ <button class="login-btn">로그인</button>
+</nav>
+ </head>
+</html>
+
+<!--
+실수: justify-content가 적용되지 않을 때
+- 해결책: 부모 요소에 display: flex가 제대로 적용되었는지 확인
+- 실수: space-between과 space-around의 차이를 모를 때
+- 해결책: space-between은 양 끝에 딱 붙이고, space-around는 양 끝에도 여백을 둠
+
+justify-content는 Flexbox의 주축(기본적으로 가로) 방향 정렬을 담당
+- flex-start, center, flex-end는 기본적인 정렬
+- space-between, space-around, space-evenly는 여백 분배 방식
+-->

@@ -1,0 +1,141 @@
+<!--
+아이콘시스템
+PNG, JPG 같은 이미지 파일을 사용
+
+폰트 아이콘
+문자처럼 취급되는 아이콘
+
+부트스트랩 아이콘의 특징:
+
+1,800개 이상의 다양한 아이콘 제공
+벡터 기반으로 어떤 크기로 확대해도 선명함
+CSS로 자유자유 스타일링 가능
+웹폰트 또는 SVG 형태로 사용 가능
+-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>부트스트랩 아이콘 실습</title>
+    <!-- 부트스트랩 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 부트스트랩 아이콘 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>아이콘 실습</h1>
+    </div>
+
+<div class="container mt-5">
+    <h2>기본 아이콘들</h2>
+    <div class="row">
+        <div class="col-md-3 text-center mb-3">
+            <i class="bi bi-house-door fs-1"></i>
+            <p>홈</p>
+        </div>
+        <div class="col-md-3 text-center mb-3">
+            <i class="bi bi-search fs-1"></i>
+            <p>검색</p>
+        </div>
+        <div class="col-md-3 text-center mb-3">
+            <i class="bi bi-cart fs-1"></i>
+            <p>장바구니</p>
+        </div>
+        <div class="col-md-3 text-center mb-3">
+            <i class="bi bi-person fs-1"></i>
+            <p>사용자</p>
+        </div>
+    </div>
+</div>
+<div class="container mt-5">
+    <h2>아이콘이 있는 버튼들</h2>
+    <div class="d-flex gap-3 flex-wrap">
+        <!-- 아이콘 + 텍스트 버튼 -->
+        <button class="btn btn-primary">
+            <i class="bi bi-download me-2"></i>다운로드
+        </button>
+
+        <button class="btn btn-success">
+            <i class="bi bi-check-circle me-2"></i>완료
+        </button>
+
+        <button class="btn btn-danger">
+            <i class="bi bi-trash me-2"></i>삭제
+        </button>
+
+        <!-- 아이콘만 있는 버튼 -->
+        <button class="btn btn-outline-secondary">
+            <i class="bi bi-heart"></i>
+        </button>
+
+        <button class="btn btn-outline-secondary">
+            <i class="bi bi-share"></i>
+        </button>
+    </div>
+</div>
+<style>
+.icon-large {
+    font-size: 3rem;
+    color: #6f42c1;
+}
+
+.icon-hover:hover {
+    color: #0d6efd;
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+.icon-rotate {
+    animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+</style>
+
+<div class="container mt-5">
+    <h2>스타일링된 아이콘들</h2>
+    <div class="text-center">
+        <i class="bi bi-star-fill icon-large me-4"></i>
+        <i class="bi bi-heart-fill icon-large icon-hover me-4" style="color: #dc3545;"></i>
+        <i class="bi bi-gear-fill icon-large icon-rotate"></i>
+    </div>
+</div>
+<div class="container mt-5">
+    <h2>아이콘 네비게이션</h2>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-bootstrap me-2"></i>MyApp
+            </a>
+
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="#">
+                    <i class="bi bi-house-door me-1"></i>홈
+                </a>
+                <a class="nav-link" href="#">
+                    <i class="bi bi-person me-1"></i>프로필
+                </a>
+                <a class="nav-link" href="#">
+                    <i class="bi bi-gear me-1"></i>설정
+                </a>
+                <a class="nav-link" href="#">
+                    <i class="bi bi-box-arrow-right me-1"></i>로그아웃
+                </a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+</body>
+</html>
+
+<!--부트스트랩 아이콘 CDN 추가로 1,800개 이상의 아이콘 사용 가능
+- bi 클래스와 아이콘 이름으로 간단하게 아이콘 삽입
+- 폰트 크기, 색상, 애니메이션 등 CSS로 자유자유 스타일링
+- 버튼, 네비게이션 등 실제 컴포넌트에 적용 가능 -->

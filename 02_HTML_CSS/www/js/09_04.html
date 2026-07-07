@@ -1,0 +1,81 @@
+<!-- 크롬 버튼눌러 F12번 눌러 콘솔창의 결과값을 확인해~!!!!-->
+<!--
+산술 연산자 (Arithmetic Operators) - 수학계산 기본도구
+할당 연산자 (Assignment Operators) - 변수값을 저장 하거나 기존값 변경
+비교 연산자 (Comparison Operators) - 두값을 비교하는 참 거짓
+-->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>변수 실습</title>
+</head>
+<body>
+    <h1>변수와 상수 실습</h1>
+<script>
+// 기본 산술 연산자들
+let a = 10;
+let b = 3;
+
+console.log("덧셈:", a + b); // 13
+console.log("뺄셈:", a - b); // 7
+console.log("곱셈:", a * b); // 30
+console.log("나눗셈:", a / b); // 3.333...
+console.log("나머지:", a % b); // 1 (10을 3으로 나눈 나머지)
+console.log("거듭제곱:", a ** 2); // 100 (10의 2제곱)
+
+// 문자열과 숫자의 덧셈 (주의!)
+let name = "김개발";
+let age = 20;
+console.log(name + age); // "김개발20" (문자열 연결)
+console.log(age + 5); // 25 (숫자 계산)
+
+// 기본 할당
+let score = 80;
+console.log("초기 점수:", score);
+
+// 복합 할당 연산자들
+score += 10; // score = score + 10과 같음
+console.log("10점 추가:", score); // 90
+
+score -= 5; // score = score - 5와 같음
+console.log("5점 감점:", score); // 85
+
+score *= 2; // score = score * 2와 같음
+console.log("2배 증가:", score); // 170
+
+score /= 2; // score = score / 2와 같음
+console.log("절반으로:", score); // 85
+
+// 증감 연산자
+let count = 0;
+console.log("count++:", count++); // 0 출력 후 1 증가
+console.log("현재 count:", count); // 1
+console.log("++count:", ++count); // 1 증가 후 2 출력
+
+// 비교 연산자들
+let userAge = 20;
+let minAge = 18;
+
+console.log("성인인가요?", userAge >= minAge); // true
+console.log("미성년자인가요?", userAge < minAge); // false
+console.log("정확히 20세인가요?", userAge === 20); // true
+console.log("20세가 아닌가요?", userAge !== 20); // false
+
+// 문자열 비교
+let password = "1234";
+let inputPassword = "1234";
+console.log("비밀번호 일치:", password === inputPassword); // true
+
+// 실무 예제: 할인 조건 확인
+let totalPrice = 50000;
+let isMember = true;
+let freeShipping = totalPrice >= 30000;
+let memberDiscount = isMember && totalPrice >= 20000;
+
+console.log("무료배송 가능:", freeShipping); // true
+console.log("회원할인 적용:", memberDiscount); // true
+
+</script>
+
+<!-- 크롬 버튼눌러 F12번 눌러 콘솔창의 결과값을 확인해~!!!!-->

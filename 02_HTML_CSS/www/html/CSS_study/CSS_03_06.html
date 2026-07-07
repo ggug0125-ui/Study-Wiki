@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <title>Display 속성 실습</title>
+ <style>
+ .demo {
+ background-color: lightblue;
+ padding: 10px;
+ margin: 5px;
+ border: 2px solid navy;
+ }
+ </style>
+</head>
+<body>
+ <div class="demo">블록 요소 (div)</div>
+ <div class="demo">블록 요소 (div)</div>
+
+ <span class="demo">인라인 요소 (span)</span>
+ <span class="demo">인라인 요소 (span)</span>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <title>Display 변경 실습</title>
+ <style>
+ .demo {
+ background-color: lightblue;
+ padding: 10px;
+ margin: 5px;
+ border: 2px solid navy;
+ }
+
+ /* 블록을 인라인으로 변경 */
+ .block-to-inline {
+ display: inline;
+ }
+
+ /* 인라인을 블록으로 변경 */
+ .inline-to-block {
+ display: block;
+ }
+
+ /* 인라인-블록으로 변경 */
+ .to-inline-block {
+ display: inline-block;
+ width: 150px;
+ height: 50px;
+ }
+ </style>
+</head>
+<body>
+ <h3>원래 블록 요소를 인라인으로</h3>
+ <div class="demo block-to-inline">첫 번째</div>
+ <div class="demo block-to-inline">두 번째</div>
+
+ <h3>원래 인라인 요소를 블록으로</h3>
+ <span class="demo inline-to-block">첫 번째</span>
+ <span class="demo inline-to-block">두 번째</span>
+
+ <h3>인라인-블록으로 변경</h3>
+ <div class="demo to-inline-block">박스1</div>
+ <div class="demo to-inline-block">박스2</div>
+ <div class="demo to-inline-block">박스3</div>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <title>네비게이션 메뉴</title>
+ <style>
+ .nav-menu {
+ background-color: #333;
+ padding: 0;
+ margin: 0;
+ }
+
+ .nav-item {
+ display: inline-block;
+ background-color: #333;
+ color: white;
+ padding: 15px 20px;
+ text-decoration: none;
+ border-right: 1px solid #555;
+ }
+
+ .nav-item:hover {
+ background-color: #555;
+ }
+
+ .nav-item:last-child {
+ border-right: none;
+ }
+ </style>
+</head>
+<body>
+ <nav class="nav-menu">
+ <a href="#" class="nav-item">홈</a>
+ <a href="#" class="nav-item">소개</a>
+ <a href="#" class="nav-item">서비스</a>
+ <a href="#" class="nav-item">포트폴리오</a>
+ <a href="#" class="nav-item">연락처</a>
+ </nav>
+</body>
+</html>
+
+<!--
+display: block - 세로 배치, 크기 조절 가능
+display: inline - 가로 배치, 크기 조절 불가능
+display: inline-block - 가로 배치, 크기 조절 가능
+-->
+
+

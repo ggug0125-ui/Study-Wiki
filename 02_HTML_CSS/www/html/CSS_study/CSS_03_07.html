@@ -1,0 +1,248 @@
+<!--
+float 속성은 원래 텍스트 주변에 이미지를 배치하기 위해 만들어졌습니다
+/* float 값들 */
+float: left; /* 왼쪽으로 띄우기 */
+float: right; /* 오른쪽으로 띄우기 */
+float: none; /* 띄우지 않기 (기본값) */
+
+.clear-both {
+ clear: both; /* 양쪽 float 모두 해제 */
+}
+
+-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Float 기초</title>
+ <style>
+ .container {
+ width: 600px;
+ margin: 20px auto;
+ padding: 20px;
+ border: 1px solid #ddd;
+ }
+
+ .floating-image {
+ width: 200px;
+ height: 150px;
+ background-color: #3498db;
+ float: left;
+ margin: 0 20px 20px 0;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ color: white;
+ font-weight: bold;
+ }
+
+ .text-content {
+ text-align: justify;
+ line-height: 1.6;
+ }
+ </style>
+</head>
+<body>
+ <div class="container">
+ <div class="floating-image">이미지</div>
+ <div class="text-content">
+ <p>이것은 float을 사용한 텍스트 감싸기 예제입니다. 파란색 박스가 왼쪽으로 float되어 있고, 텍스트가 그 주변으로 흘러가고 있습니다. 이것이 float의 원래 목적이었습니다.</p>
+ <p>텍스트가 이미지 주변으로 자연스럽게 흘러가는 것을 확인할 수 있습니다. 마치 신문이나 잡지의 레이아웃처럼 말이죠.</p>
+ </div>
+ </div>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Float 레이아웃</title>
+ <style>
+ .container {
+ width: 800px;
+ margin: 20px auto;
+ background-color: #f8f9fa;
+ padding: 20px;
+ }
+
+ .column {
+ width: 200px;
+ height: 200px;
+ margin: 0 20px 20px 0;
+ padding: 20px;
+ background-color: #e9ecef;
+ border: 2px solid #dee2e6;
+ float: left;
+ }
+
+ .column:last-child {
+ margin-right: 0;
+ }
+
+ .column h3 {
+ margin-top: 0;
+ color: #495057;
+ }
+
+ /* float 해제를 위한 clearfix */
+ .clearfix::after {
+ content: "";
+ display: table;
+ clear: both;
+ }
+
+ .footer {
+ background-color: #6c757d;
+ color: white;
+ padding: 20px;
+ text-align: center;
+ margin-top: 20px;
+ }
+ </style>
+</head>
+<body>
+ <div class="container clearfix">
+ <div class="column">
+ <h3>컬럼 1</h3>
+ <p>첫 번째 컬럼의 내용입니다.</p>
+ </div>
+ <div class="column">
+ <h3>컬럼 2</h3>
+ <p>두 번째 컬럼의 내용입니다.</p>
+ </div>
+ <div class="column">
+ <h3>컬럼 3</h3>
+ <p>세 번째 컬럼의 내용입니다.</p>
+ </div>
+ </div>
+
+ <div class="footer">
+ 이것은 푸터입니다. clearfix 덕분에 올바른 위치에 있습니다.
+ </div>
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Float 웹사이트 레이아웃</title>
+ <style>
+ * {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ }
+
+ .container {
+ width: 1000px;
+ margin: 0 auto;
+ background-color: #fff;
+ }
+
+ .header {
+ background-color: #2c3e50;
+ color: white;
+ padding: 20px;
+ text-align: center;
+ }
+
+ .content-wrapper {
+ min-height: 500px;
+ }
+
+ .sidebar {
+ width: 250px;
+ background-color: #ecf0f1;
+ padding: 20px;
+ float: left;
+ }
+
+ .main-content {
+ margin-left: 250px; /* 사이드바 너비만큼 여백 */
+ background-color: #fff;
+ padding: 20px;
+ }
+
+ .footer {
+ background-color: #34495e;
+ color: white;
+ padding: 20px;
+ text-align: center;
+ clear: both; /* float 해제 */
+ }
+
+ .sidebar h3 {
+ color: #2c3e50;
+ margin-bottom: 15px;
+ }
+
+ .sidebar ul {
+ list-style: none;
+ }
+
+ .sidebar li {
+ padding: 8px 0;
+ border-bottom: 1px solid #bdc3c7;
+ }
+
+ .main-content h2 {
+ color: #2c3e50;
+ margin-bottom: 15px;
+ }
+ </style>
+</head>
+<body>
+ <div class="container">
+ <div class="header">
+ <h1>Float 레이아웃 웹사이트</h1>
+ </div>
+
+ <div class="content-wrapper">
+ <div class="sidebar">
+ <h3>메뉴</h3>
+ <ul>
+ <li>홈</li>
+ <li>소개</li>
+ <li>서비스</li>
+ <li>연락처</li>
+ </ul>
+
+ <h3>최근 글</h3>
+ <ul>
+ <li>Float 이해하기</li>
+ <li>CSS 레이아웃 역사</li>
+ <li>모던 CSS 기법</li>
+ </ul>
+ </div>
+
+ <div class="main-content">
+ <h2>메인 콘텐츠 영역</h2>
+ <p>이것은 float을 사용한 전통적인 웹사이트 레이아웃입니다. 사이드바가 왼쪽에 float되어 있고, 메인 콘텐츠가 그 옆에 배치되어 있습니다.</p>
+ <p>이런 방식으로 예전에는 대부분의 웹사이트가 만들어졌습니다. 하지만 지금은 Flexbox나 Grid를 사용하는 것이 더 좋습니다.</p>
+ </div>
+ </div>
+
+ <div class="footer">
+ <p>&copy; 2024 Float 레이아웃 예제</p>
+ </div>
+ </div>
+</body>
+</html>
+
+
+<!--
+정리와 확인
+float은 과거의 레이아웃 기법이지만, 여전히 알아둘 가치가 있습니다. 원래는 텍스트 감싸기 용도였지만, 레이아웃 도구로 활용되었죠.
+
+핵심 포인트
+- float: left/right로 요소를 띄움
+- clear: both로 float 영향 해제
+- clearfix로 부모 요소 높이 문제 해결-->

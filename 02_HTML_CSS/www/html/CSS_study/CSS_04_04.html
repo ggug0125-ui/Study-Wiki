@@ -1,0 +1,135 @@
+<!--
+align-items는 Flexbox의 교차축 정렬을 담당하는 핵심 속성
+
+엘리베이터에 비유해보면, justify-content가 엘리베이터 안에서 사람들이 좌우로 어떻게 서 있을지를 결정한다면,
+align-items는 키가 다른 사람들이 위아래로 어떻게 정렬될지를 결정
+
+stretch (기본값): 아이템들이 컨테이너 높이에 맞춰 늘어남
+flex-start: 교차축의 시작점에 정렬 (위쪽)
+flex-end: 교차축의 끝점에 정렬 (아래쪽)
+center: 교차축의 중앙에 정렬
+baseline: 텍스트 기준선에 맞춰 정렬
+-->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>align-items 실습</title>
+    <style>
+    .card-container {
+        display: flex;
+        align-items: stretch; /* 모든 카드가 같은 높이 */
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .card {
+        flex: 1;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* 카드 내부 내용 중앙 정렬 */
+    }
+
+    .card img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin-bottom: 15px;
+    }
+
+    .card h3 {
+        margin: 0 0 10px 0;
+        color: #333;
+    }
+
+    .card p {
+        text-align: center;
+        color: #666;
+        line-height: 1.5;
+    }
+<style>
+    .navbar {
+        display: flex;
+        align-items: center; /* 로고와 메뉴 세로 중앙 정렬 */
+        justify-content: space-between;
+        padding: 15px 30px;
+        background-color: #2c3e50;
+        color: white;
+    }
+
+    .logo {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .nav-menu {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-menu a {
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .nav-menu a:hover {
+        color: #3498db;
+    }
+
+    .profile-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #3498db;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+
+<nav class="navbar">
+    <div class="logo">MyWebSite</div>
+    <ul class="nav-menu">
+        <li><a href="#">홈</a></li>
+        <li><a href="#">소개</a></li>
+        <li><a href="#">서비스</a></li>
+        <li><a href="#">연락처</a></li>
+        <li>
+            <div class="profile-icon">👤</div>
+        </li>
+    </ul>
+</nav>
+
+</head>
+<body>
+    <h3>stretch (기본값)</h3>
+    <div class="container stretch">
+        <div class="item">아이템 1</div>
+        <div class="item">아이템 2<br>두 줄</div>
+        <div class="item">아이템 3</div>
+    </div>
+
+    <h3>center</h3>
+    <div class="container center">
+        <div class="item">아이템 1</div>
+        <div class="item">아이템 2<br>두 줄</div>
+        <div class="item">아이템 3</div>
+    </div>
+</body>
+</html>
+
+<!--
+stretch: 컨테이너 높이에 맞춰 늘어남 (카드 레이아웃에 유용)
+- center: 세로 중앙 정렬 (네비게이션, 버튼에 자주 사용)
+- flex-start/flex-end: 위쪽/아래쪽 정렬
+-->

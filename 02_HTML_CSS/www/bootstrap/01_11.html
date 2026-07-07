@@ -1,0 +1,126 @@
+<!--
+CSS 사용자 정의 속성은 CSS의 변수 시스템
+
+--으로 시작해서 var()함수
+var(-- primsry-color) 이런식으로 쓰임
+
+-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>사용자 정의 CSS 속성</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    <style>
+.color-picker {
+    margin: var(--spacing-medium);
+    padding: var(--spacing-small);
+}
+
+.theme-demo {
+    background-color: var(--brand-primary);
+    color: white;
+    padding: var(--spacing-large);
+    margin: var(--spacing-medium);
+    border-radius: var(--spacing-small);
+    transition: all 0.3s ease;
+}
+  </style>
+
+  <div class="container">
+    <div class="color-picker">
+      <label for="colorPicker">브랜드 컬러 선택:</label>
+      <input type="color" id="colorPicker" value="#6f42c1">
+      <button onclick="changeTheme()" class="btn btn-primary ms-2">테마 적용</button>
+    </div>
+
+    <div class="theme-demo">
+      이 영역의 색상이 바뀝니다!
+    </div>
+  </div>
+
+  <script>
+    function changeTheme() {
+        const colorPicker = document.getElementById('colorPicker');
+        const selectedColor = colorPicker.value;
+
+        // CSS 변수 값 변경
+        document.documentElement.style.setProperty('--brand-primary', selectedColor);
+
+        console.log('테마 색상이 변경되었습니다:', selectedColor);
+    }
+  </script>
+
+  <style>
+    :root {
+        --theme-primary: #007bff;
+        --theme-secondary: #6c757d;
+        --theme-success: #28a745;
+        --theme-danger: #dc3545;
+        --theme-warning: #ffc107;
+        --theme-info: #17a2b8;
+
+        --border-radius-custom: 0.75rem;
+        --shadow-custom: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .custom-theme-card {
+        background: linear-gradient(135deg, var(--theme-primary), var(--theme-secondary));
+        border-radius: var(--border-radius-custom);
+        box-shadow: var(--shadow-custom);
+        color: white;
+        padding: var(--spacing-large);
+        margin: var(--spacing-medium);
+    }
+
+    .custom-badge {
+        background-color: var(--theme-warning);
+        color: var(--theme-primary);
+        padding: var(--spacing-small);
+        border-radius: var(--border-radius-custom);
+        font-weight: bold;
+    }
+  </style>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="custom-theme-card">
+          <h4>프리미엄 플랜</h4>
+          <p class="mb-3">사용자 정의 속성으로 만든 그라데이션 카드</p>
+          <span class="custom-badge">인기</span>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card" style="border-color: var(--theme-info); border-width: 2px;">
+          <div class="card-body">
+            <h5 class="card-title" style="color: var(--theme-info);">일반 플랜</h5>
+            <p class="card-text">부트스트랩 카드에 사용자 정의 속성 적용</p>
+            <button class="btn"
+                    style="background-color: var(--theme-success); border-color: var(--theme-success); color: white;">
+              선택하기
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</head>
+<body>
+<div class="custom-header">
+  사용자 정의 속성으로 만든 헤더
+</div>
+
+<div class="container">
+  <div class="custom-card">
+    <h3>커스텀 카드</h3>
+    <p>이 카드는 사용자 정의 CSS 속성을 사용합니다.</p>
+    <button class="custom-button">커스텀 버튼</button>
+  </div>
+</div>
+</body>
+</html>

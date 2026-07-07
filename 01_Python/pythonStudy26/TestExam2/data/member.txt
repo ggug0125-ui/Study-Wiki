@@ -1,0 +1,8 @@
+kkw|0000|김기원|admin|True
+
+lhj|0000|임효정|manager|True
+
+ggug01||0000|user|True
+
+ppp|0000|김동동|user|True
+

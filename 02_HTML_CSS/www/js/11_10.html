@@ -1,0 +1,227 @@
+<!--
+폼 입력요소 다루기, 사용자 데이터 처리의 달인
+
+폼(form) 소통창구
+
+모든 입력 요소(<input>, <textarea>, <select> 등)는 value 속성
+-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <title>회원가입 폼</title>
+ <style>
+ .form-container {
+ max-width: 400px;
+ margin: 50px auto;
+ padding: 20px;
+ border: 1px solid #ddd;
+ border-radius: 8px;
+ }
+ .form-group {
+ margin-bottom: 15px;
+ }
+ label {
+ display: block;
+ margin-bottom: 5px;
+ font-weight: bold;
+ }
+ input, select, textarea {
+ width: 100%;
+ padding: 8px;
+ border: 1px solid #ccc;
+ border-radius: 4px;
+ box-sizing: border-box;
+ }
+ button {
+ background-color: #007bff;
+ color: white;
+ padding: 10px 20px;
+ border: none;
+ border-radius: 4px;
+ cursor: pointer;
+ }
+ .result {
+ margin-top: 20px;
+ padding: 10px;
+ background-color: #f8f9fa;
+ border-radius: 4px;
+ }
+ </style>
+</head>
+<body>
+ <div class="form-container">
+ <h2>회원가입</h2>
+ <form id="signupForm">
+ <div class="form-group">
+ <label for="userName">이름:</label>
+ <input type="text" id="userName" name="userName" required>
+ </div>
+
+ <div class="form-group">
+ <label for="userEmail">이메일:</label>
+ <input type="email" id="userEmail" name="userEmail" required>
+ </div>
+
+ <div class="form-group">
+ <label for="userAge">나이:</label>
+ <input type="number" id="userAge" name="userAge" min="1" max="120">
+ </div>
+
+ <div class="form-group">
+ <label>성별:</label>
+ <input type="radio" id="male" name="gender" value="남성">
+ <label for="male" style="display: inline; margin-left: 5px;">남성</label>
+ <input type="radio" id="female" name="gender" value="여성">
+ <label for="female" style="display: inline; margin-left: 5px;">여성</label>
+ </div>
+
+ <div class="form-group">
+ <label for="userCity">거주지역:</label>
+ <select id="userCity" name="userCity">
+ <option value="">선택해주세요</option>
+ <option value="서울">서울</option>
+ <option value="부산">부산</option>
+ <option value="대구">대구</option>
+ <option value="인천">인천</option>
+ <option value="경기">경기</option>
+ </select>
+ </div>
+
+ <div class="form-group">
+ <input type="checkbox" id="agree" name="agree">
+ <label for="agree" style="display: inline; margin-left: 5px;">개인정보 처리방침에 동의합니다</label>
+ </div>
+
+ <button type="button" onclick="processForm()">가입하기</button>
+ </form>
+
+ <div id="result" class="result" style="display: none;"></div>
+ </div>
+
+ <script>
+ function processForm() {
+ // 각 입력 요소의 값 가져오기
+ const name = document.getElementById('userName').value;
+ const email = document.getElementById('userEmail').value;
+ const age = document.getElementById('userAge').value;
+ const city = document.getElementById('userCity').value;
+ const isAgreed = document.getElementById('agree').checked;
+
+ // 라디오 버튼에서 선택된 값 찾기
+ const genderRadios = document.getElementsByName('gender');
+ let gender = '';
+ for (let radio of genderRadios) {
+ if (radio.checked) {
+ gender = radio.value;
+ break;
+ }
+ }
+
+
+function showMessage(text, type) {
+ let messageDiv = document.getElementById('message');
+ if (!messageDiv) {
+ messageDiv = document.createElement('div');
+ messageDiv.id = 'message';
+ document.querySelector('.form-container').appendChild(messageDiv);
+ }
+
+ messageDiv.textContent = text;
+ messageDiv.className = type === 'error' ? 'error-message' : 'success-message';
+ messageDiv.style.display = 'block';
+}
+
+function hideMessage() {
+ const messageDiv = document.getElementById('message');
+ if (messageDiv) {
+ messageDiv.style.display = 'none';
+ }
+}
+ // 유효성 검사
+ if (!name || !email) {
+ alert('이름과 이메일은 필수 입력사항입니다!');
+ return;
+ }
+
+ if (!isAgreed) {
+ alert('개인정보 처리방침에 동의해주세요!');
+ return;
+ }
+
+function collectFormData() {
+ const formData = {
+ personal: {
+ name: document.getElementById('userName').value,
+ email: document.getElementById('userEmail').value,
+ age: parseInt(document.getElementById('userAge').value) || null
+ },
+ preferences: {
+ gender: getSelectedRadioValue('gender'),
+ city: document.getElementById('userCity').value
+ },
+ agreements: {
+ privacy: document.getElementById('agree').checked
+ },
+ timestamp: new Date().toISOString()
+ };
+
+ return formData;
+}
+
+function getSelectedRadioValue(name) {
+ const radios = document.getElementsByName(name);
+ for (let radio of radios) {
+ if (radio.checked) {
+ return radio.value;
+ }
+ }
+ return null;
+}
+
+// 사용 예시
+function submitForm() {
+ const userData = collectFormData();
+ console.log('수집된 사용자 데이터:', userData);
+
+ // 여기서 서버로 데이터 전송
+ // fetch('/api/signup', {
+ // method: 'POST',
+ // headers: { 'Content-Type': 'application/json' },
+ // body: JSON.stringify(userData)
+ // });
+}
+
+
+document.getElementById('userEmail').addEventListener('input', function() {
+ const email = this.value;
+ const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+ if (email && !emailPattern.test(email)) {
+ this.style.borderColor = 'red';
+ showMessage('올바른 이메일 형식이 아닙니다.', 'error');
+ } else {
+ this.style.borderColor = '#ccc';
+ hideMessage();
+ }
+});
+
+
+
+ // 결과 표시
+ const resultDiv = document.getElementById('result');
+ resultDiv.innerHTML = `
+ <h3>입력하신 정보</h3>
+ <p><strong>이름:</strong> ${name}</p>
+ <p><strong>이메일:</strong> ${email}</p>
+ <p><strong>나이:</strong> ${age || '입력하지 않음'}</p>
+ <p><strong>성별:</strong> ${gender || '선택하지 않음'}</p>
+ <p><strong>거주지역:</strong> ${city || '선택하지 않음'}</p>
+ <p><strong>약관동의:</strong> ${isAgreed ? '동의함' : '동의하지 않음'}</p>
+ `;
+ resultDiv.style.display = 'block';
+ }
+ </script>
+</body>
+</html>
